@@ -8,4 +8,8 @@ interface ResourceHelper {
 
     fun getString(@StringRes strResId: Int, vararg args: Any?): String
 
+    fun convertToDp(px: Float): Float
+
+    fun convertToPx(dip: Float): Float
+
 }

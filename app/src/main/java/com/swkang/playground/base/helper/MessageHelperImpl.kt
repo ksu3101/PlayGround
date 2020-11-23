@@ -7,8 +7,10 @@ import com.swkang.model.base.helper.MessageHelper
 class MessageHelperImpl(
     private val context: Context
 ) : MessageHelper {
+    private var toast: Toast? = null
 
-    override fun showToast(msgResId: Int, msgStr: String?) {
+    override fun showToast(msgResId: Int, msgStr: String?, isLong: Boolean) {
+        this.toast?.cancel()
         val msg =
             if (msgResId == 0 && msgStr.isNullOrEmpty()) {
                 throw IllegalArgumentException("message parameter has not available.")
@@ -16,7 +18,9 @@ class MessageHelperImpl(
                 if (!msgStr.isNullOrEmpty()) msgStr
                 else context.getString(msgResId)
             }
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+        val toastLength = if (isLong) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
+        this.toast = Toast.makeText(context, msg, toastLength)
+        this.toast?.show()
     }
-    
+
 }

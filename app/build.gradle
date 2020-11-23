@@ -30,6 +30,9 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 		}
 	}
+	buildTypes.each {
+		it.buildConfigField 'String', "CORONA10KR_API_KEY", corona19krApiKey
+	}
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
 		targetCompatibility JavaVersion.VERSION_1_8
@@ -79,6 +82,8 @@ dependencies {
 
 	implementation "com.google.dagger:hilt-android:$daggerHilt"
 	kapt "com.google.dagger:hilt-android-compiler:$daggerHilt"
+	implementation "androidx.hilt:hilt-lifecycle-viewmodel:$daggerHiltJetpack"
+	kapt "androidx.hilt:hilt-compiler:$daggerHiltJetpack"
 
 	testImplementation "junit:junit:$jUnit"
 	testImplementation "org.mockito:mockito-core:$mockito"

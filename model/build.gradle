@@ -56,8 +56,11 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:$paging"
     implementation "io.reactivex.rxjava3:rxandroid:$rxAndroid"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitMoshiConverter"
+
     implementation "com.google.dagger:hilt-android:$daggerHilt"
     kapt "com.google.dagger:hilt-android-compiler:$daggerHilt"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$daggerHiltJetpack"
+    kapt "androidx.hilt:hilt-compiler:$daggerHiltJetpack"
 
     testImplementation "junit:junit:$jUnit"
     testImplementation "org.mockito:mockito-core:$mockito"

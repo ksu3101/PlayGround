@@ -12,4 +12,10 @@ class ResourceHelperImpl(
     override fun getString(strResId: Int, vararg args: Any?): String =
         context.getString(strResId, *args)
 
+    override fun convertToDp(px: Float): Float =
+        px / context.resources.displayMetrics.density
+
+    override fun convertToPx(dip: Float): Float =
+        dip * context.resources.displayMetrics.density
+
 }

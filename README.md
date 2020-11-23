@@ -14,8 +14,13 @@
   - 간단한 view와 비즈니스 로직이 전무한 경우 뷰 바인딩만 사용 한다.
 - [Redux event handler](https://github.com/ksu3101/TIL/blob/master/ETC/200305.md)
   - 전역적인 이벤트를 핸들링 하거나 domain간 의 이벤트를 전달 및 핸들링 해야할 경우 Redux방식의 이벤트 핸들링을 해당 도메인에 적용 한다.
+   
+- CI (WIP)
+  - jenkins
 
-
+- Code quality (WIP)
+  - Sonar qube
+  
 - 목표
   - 기술에 대한 경험을 얻기 위해 큰 목표 보다는 작은 목표 단위로 잘게 쪼개고 좋은 코드를 개발하기 위한 고민을 하고 적용 하며, 문제가 있어 진행이 어려우면 과감하게 결정 한다.
   - 단위 테스트 코드는 비즈니스 로직에 한해서 작성한다. 좋은 뷰 단위 테스트 도구가 생기면 테스트 하는 것 도 좋다.
@@ -23,7 +28,7 @@
 
 ### 1.1 사용된 라이브러리
 
-- [kotlin](https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk7)
+- [kotlin](https://kotlinlang.org/)
 - jetpack
   - [appcompat](https://developer.android.com/jetpack/androidx/releases/appcompat?hl=ko)
   - [recyclerView](https://developer.android.com/jetpack/androidx/releases/recyclerview?hl=ko)
@@ -40,6 +45,8 @@
 - [okhttp](https://square.github.io/okhttp/)
 - [moshi](https://github.com/square/moshi)
 - [glide](https://github.com/bumptech/glide)
+- jUnit
+- Mockito
 
 ## 2. 도메인
 
@@ -47,11 +54,28 @@
 
 - MainActivity : 앱 실행시 진입 Activity
 
-### 2.1 서브 도메인 1
+### 2.1 covid-19 현황판 (WIP) 
 
-(WIP)
+요란하게 만들것 없이 API통신에 대해서 통신하고 화면에 출력 하기 위한 용도. 
+
+- 국내 open API : [Corona-19-API](https://github.com/dhlife09/Corona-19-API) 
+  - 2020년 11월 23일 현재, 국내 데이터 만 제공 - 2020/11/23
+  - 데이터를 받기 위한 키를 얻어야 함. 위 링크 참고. 
+- 국외 API : [https://api.covid19api.com/](https://documenter.getpostman.com/view/10808728/SzS8rjbc)
 
 ### 2.2 서브 도메인 2
 
 (WIP)
 
+
+## ETC
+
+개발 테스트용으로 괜찮은 json을 내려주는 open API [목록 사이트](https://project-awesome.org/jdorfman/awesome-json-datasets).
+
+- NASA
+  - [ISS station location](http://api.open-notify.org/iss-now.json)
+  - [우주에 지금 많은 사람들이 있을까?](http://api.open-notify.org/astros.json)
+
+- Corona 19
+  - [Corona-19-API](https://github.com/dhlife09/Corona-19-API)
+  - [Coronavirus COVID19 API](https://documenter.getpostman.com/view/10808728/SzS8rjbc)

@@ -6,7 +6,8 @@ interface MessageHelper {
 
     fun showToast(
         @StringRes msgResId: Int,
-        msgStr: String? = null
+        msgStr: String? = null,
+        isLong: Boolean = false
     )
 
 }

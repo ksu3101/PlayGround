@@ -49,6 +49,9 @@ ext {
 	// reactive x
 	rxAndroid = '3.0.0'
 
+	// dagger-hilt jetpack
+	daggerHiltJetpack = '1.0.0-alpha02'
+
 	// network
 	retrofit = '2.4.0'
 	retrofitRxAdapter = '2.9.0'
