@@ -9,7 +9,15 @@ class MessageHelperImpl(
 ) : MessageHelper {
     private var toast: Toast? = null
 
-    override fun showToast(msgResId: Int, msgStr: String?, isLong: Boolean) {
+    override fun showToast(msgResId: Int, isLong: Boolean) {
+        showToast(msgResId, null, isLong)
+    }
+
+    override fun showToast(msgStr: String, isLong: Boolean) {
+        showToast(0, msgStr, isLong)
+    }
+
+    private fun showToast(msgResId: Int, msgStr: String?, isLong: Boolean) {
         this.toast?.cancel()
         val msg =
             if (msgResId == 0 && msgStr.isNullOrEmpty()) {

@@ -23,4 +23,7 @@ class Covid19RepositoryImpl(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
+
+    override fun requestWorldStatusSummary() {
+    }
 }

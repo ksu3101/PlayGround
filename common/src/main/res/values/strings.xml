@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="c_error">알수 없는 오류가 발생 하였습니다. 다시 시도해 주세요.</string>
+
+    <string name="covid19_status_title">COVID-19 STATUS</string>
+    <string name="covid19_status_total_newcase">국내 총 확진자</string>
+    <string name="covid19_status_today_newcase">오늘 추가 확진자</string>
 
 </resources>

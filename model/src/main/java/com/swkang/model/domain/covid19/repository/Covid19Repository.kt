@@ -27,5 +27,4 @@ interface Covid19Repository {
      */
     fun requestWorldStatusSummary()
 
-
 }

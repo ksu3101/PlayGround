@@ -1,4 +1,4 @@
-package com.swkang.model.base
+package com.swkang.common.base
 
 import io.reactivex.rxjava3.disposables.Disposable
 
