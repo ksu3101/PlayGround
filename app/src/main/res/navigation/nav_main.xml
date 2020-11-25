@@ -8,12 +8,11 @@
         android:name="com.swkang.playground.view.main.MainFragment"
         android:label="MainFragment" >
         <action
-            android:id="@+id/action_mainFragment_to_covid19StatusFragment"
-            app:destination="@id/covid19StatusFragment"
-            app:launchSingleTop="true" />
+            android:id="@+id/action_mainFragment_to_covid19StatusActivity"
+            app:destination="@id/covid19StatusActivity" />
     </fragment>
-    <fragment
-        android:id="@+id/covid19StatusFragment"
-        android:name="com.swkang.playground.view.covid19.Covid19StatusFragment"
-        android:label="Covid19StatusFragment" />
+    <activity
+        android:id="@+id/covid19StatusActivity"
+        android:name="com.swkang.playground.view.covid19.Covid19StatusActivity"
+        android:label="Covid19StatusActivity" />
 </navigation>

@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.swkang.model.base.BaseViewModel
+import com.swkang.playground.BR
 
 abstract class BaseFragment : Fragment() {
     private lateinit var viewModel: BaseViewModel
@@ -31,7 +32,7 @@ abstract class BaseFragment : Fragment() {
             container,
             false
         )
-//        binding.setVariable(BR.vm, viewModel)
+        binding.setVariable(BR.vm, viewModel)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -40,5 +41,4 @@ abstract class BaseFragment : Fragment() {
         _binding = null
         super.onDestroyView()
     }
-
 }
