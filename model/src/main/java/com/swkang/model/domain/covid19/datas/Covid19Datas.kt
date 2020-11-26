@@ -1,7 +1,9 @@
 package com.swkang.model.domain.covid19.datas
 
 import com.swkang.common.exts.isNumber
+import com.swkang.model.domain.covid19.datas.krcorona19.Corona19KrCounter
 import com.swkang.model.domain.covid19.datas.krcorona19.Corona19KrCountry
+import com.swkang.model.domain.covid19.datas.krcorona19.Corona19KrCountryStatus
 
 data class Covid19Infos(
     /** 총 확진자 수 */
@@ -14,7 +16,7 @@ data class Covid19Infos(
     val newDeath: Long,
     /** 총 완치자 수 */
     val totalRecovered: Long,
-    /** 추가 사망자 수 */
+    /** 추가 완치자 수 */
     val newRecovered: Long,
 
     /**
@@ -39,18 +41,9 @@ data class LocationCovid19Infos(
     val newDeath: Long? = null,
     /** 총 완치자 수 */
     val totalRecovered: Long? = null,
-    /** 추가 사망자 수 */
+    /** 추가 완치자 수 */
     val newRecovered: Long? = null,
 )
-
-fun Corona19KrCountry.toLocationCovid19Infos(): LocationCovid19Infos {
-    return LocationCovid19Infos(
-        this.countryName,
-        this.totalCase.toNumberOnly(),
-        this.newCase.toNumberOnly(),
-        this.death.toNumberOnly()
-    )
-}
 
 fun String?.toNumberOnly(): Long {
     if (this.isNullOrEmpty()) return 0
@@ -61,27 +54,3 @@ fun String?.toNumberOnly(): Long {
     }
     throw IllegalArgumentException("`$this` is not Number.")
 }
-
-/*
-  "Global": {
-    "NewConfirmed": 100282,
-    "TotalConfirmed": 1162857,
-    "NewDeaths": 5658,
-    "TotalDeaths": 63263,
-    "NewRecovered": 15405,
-    "TotalRecovered": 230845
-  },
-  [
-    {
-      "Country": "Korea (South)",
-      "CountryCode": "KR",
-      "Slug": "korea-south",
-      "NewConfirmed": 94,
-      "TotalConfirmed": 10156,
-      "NewDeaths": 3,
-      "TotalDeaths": 177,
-      "NewRecovered": 304,
-      "TotalRecovered": 6325,
-      "Date": "2020-04-05T06:37:00Z"
-    },
- */

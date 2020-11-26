@@ -1,6 +1,9 @@
 package com.swkang.model.domain.covid19.datas.krcorona19
 
 import com.squareup.moshi.Json
+import com.swkang.model.domain.covid19.datas.Covid19Infos
+import com.swkang.model.domain.covid19.datas.LocationCovid19Infos
+import com.swkang.model.domain.covid19.datas.toNumberOnly
 
 data class Corona19KrCounter(
     /** 응답 코드 : 0, 401(Wrong key) */
@@ -17,7 +20,8 @@ data class Corona19KrCounter(
     /** 국내 격리자 수 */
     @field:Json(name = "NowCase") val nowCase: String,
 
-    /** 시도별 확진 환자 현황1 - 시도 이름 */    val city1n: String,
+    /** 시도별 확진 환자 현황1 - 시도 이름 */
+    val city1n: String,
     val city2n: String,
     val city3n: String,
     val city4n: String,
@@ -101,3 +105,48 @@ data class Corona19KrCountry(
     // 전일 대비 증감 - 지역발생
     val newCcase: String
 )
+
+fun toCovid19Infos(krCounter: Corona19KrCounter, country: Corona19KrCountryStatus): Covid19Infos {
+    return Covid19Infos(
+        krCounter.totalCase.toNumberOnly(),
+        krCounter.totalCaseBefore.toNumberOnly(),
+        krCounter.totalDeath.toNumberOnly(),
+        krCounter.todayDeath.toNumberOnly(),
+        krCounter.totalRecovered.toNumberOnly(),
+        krCounter.todayRecovered.toNumberOnly(),
+        parseLocationsFrom(country)
+    )
+}
+
+private fun parseLocationsFrom(country: Corona19KrCountryStatus): List<LocationCovid19Infos> {
+    val locations = listOf(
+        country.seoul.toLocationCovid19Infos(),
+        country.busan.toLocationCovid19Infos(),
+        country.daegu.toLocationCovid19Infos(),
+        country.incheon.toLocationCovid19Infos(),
+        country.gwangju.toLocationCovid19Infos(),
+        country.daejeon.toLocationCovid19Infos(),
+        country.ulsan.toLocationCovid19Infos(),
+        country.sejong.toLocationCovid19Infos(),
+        country.gyeonggi.toLocationCovid19Infos(),
+        country.gangwon.toLocationCovid19Infos(),
+        country.chungbuk.toLocationCovid19Infos(),
+        country.chungnam.toLocationCovid19Infos(),
+        country.jeonbuk.toLocationCovid19Infos(),
+        country.jeonnam.toLocationCovid19Infos(),
+        country.gyeongbuk.toLocationCovid19Infos(),
+        country.gyeongnam.toLocationCovid19Infos(),
+        country.jeju.toLocationCovid19Infos(),
+        country.quarantine.toLocationCovid19Infos()
+    )
+    return locations
+}
+
+fun Corona19KrCountry.toLocationCovid19Infos(): LocationCovid19Infos {
+    return LocationCovid19Infos(
+        this.countryName,
+        this.totalCase.toNumberOnly(),
+        this.newCase.toNumberOnly(),
+        this.death.toNumberOnly()
+    )
+}

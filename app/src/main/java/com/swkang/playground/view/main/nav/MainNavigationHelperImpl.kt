@@ -12,7 +12,7 @@ class MainNavigationHelperImpl(
 
     override fun openCovid19StatusPage() {
         val direction = MainFragmentDirections
-            .actionMainFragmentToCovid19StatusFragment()
+            .actionMainFragmentToCovid19StatusActivity()
         activity.findNavController(R.id.fragmentContainer).navigate(direction)
         activity.supportActionBar?.hide()
     }

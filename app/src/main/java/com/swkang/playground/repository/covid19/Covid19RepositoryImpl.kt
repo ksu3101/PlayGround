@@ -1,5 +1,6 @@
 package com.swkang.playground.repository.covid19
 
+import com.swkang.model.domain.covid19.datas.covid19api.Covid19ApiDatas
 import com.swkang.model.domain.covid19.datas.krcorona19.Corona19KrCounter
 import com.swkang.model.domain.covid19.datas.krcorona19.Corona19KrCountryStatus
 import com.swkang.model.domain.covid19.repository.Covid19Repository
@@ -24,6 +25,9 @@ class Covid19RepositoryImpl(
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun requestWorldStatusSummary() {
+    override fun requestWorldStatusSummary(): Single<Covid19ApiDatas> {
+        return worldApi.requestWorldStatusSummary()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 }
