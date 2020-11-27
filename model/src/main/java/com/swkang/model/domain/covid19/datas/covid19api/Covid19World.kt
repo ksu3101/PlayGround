@@ -1,7 +1,7 @@
 package com.swkang.model.domain.covid19.datas.covid19api
 
 import com.squareup.moshi.Json
-import com.swkang.common.exts.sliceList
+import com.swkang.common.exts.limit
 import com.swkang.model.domain.covid19.datas.Covid19Infos
 import com.swkang.model.domain.covid19.datas.LocationCovid19Infos
 
@@ -41,7 +41,7 @@ fun toCovid19Infos(worldDatas: Covid19ApiDatas): Covid19Infos {
         worldDatas.globalInfos.totalRecovered,
         worldDatas.globalInfos.newRecovered,
         worldDatas.countries.sortedWith(compareBy { it.totalConfiremd })
-            .sliceList(0, 18)
+            .limit(18)
             .map {
                 LocationCovid19Infos(
                     it.countryName,

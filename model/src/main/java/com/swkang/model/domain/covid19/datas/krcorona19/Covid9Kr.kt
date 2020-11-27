@@ -1,9 +1,9 @@
 package com.swkang.model.domain.covid19.datas.krcorona19
 
 import com.squareup.moshi.Json
+import com.swkang.common.exts.isNumber
 import com.swkang.model.domain.covid19.datas.Covid19Infos
 import com.swkang.model.domain.covid19.datas.LocationCovid19Infos
-import com.swkang.model.domain.covid19.datas.toNumberOnly
 
 data class Corona19KrCounter(
     /** 응답 코드 : 0, 401(Wrong key) */
@@ -106,7 +106,7 @@ data class Corona19KrCountry(
     val newCcase: String
 )
 
-fun toCovid19Infos(krCounter: Corona19KrCounter, country: Corona19KrCountryStatus): Covid19Infos {
+fun toCovid19InfosFromKrDatas(krCounter: Corona19KrCounter, country: Corona19KrCountryStatus): Covid19Infos {
     return Covid19Infos(
         krCounter.totalCase.toNumberOnly(),
         krCounter.totalCaseBefore.toNumberOnly(),
@@ -149,4 +149,14 @@ fun Corona19KrCountry.toLocationCovid19Infos(): LocationCovid19Infos {
         this.newCase.toNumberOnly(),
         this.death.toNumberOnly()
     )
+}
+
+private fun String?.toNumberOnly(): Long {
+    if (this.isNullOrEmpty()) return 0
+    else if (this.contains(",")) {
+        return this.replace(",", "").toLong()
+    } else if (this.isNumber()) {
+        return this.toLong()
+    }
+    throw IllegalArgumentException("`$this` is not Number.")
 }

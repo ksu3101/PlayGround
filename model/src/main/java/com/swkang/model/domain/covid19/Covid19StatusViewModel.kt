@@ -4,10 +4,12 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.swkang.common.exts.rx.subscribeAndDisposed
+import com.swkang.common.exts.toCommaNumberString
 import com.swkang.model.R
 import com.swkang.model.base.BaseViewModel
 import com.swkang.model.base.helper.MessageHelper
 import com.swkang.model.base.helper.ResourceHelper
+import com.swkang.model.domain.covid19.datas.Covid19Infos
 import com.swkang.model.domain.covid19.datas.krcorona19.Corona19KrCounter
 import com.swkang.model.domain.covid19.repository.Covid19Repository
 import java.text.SimpleDateFormat
@@ -52,49 +54,47 @@ class Covid19StatusViewModel @ViewModelInject constructor(
     val totalDeath: LiveData<String>
         get() = _totalDeath
 
+    // 새로고침 이벤트 핸들러
     val onRefreshListener: () -> Unit = {
-        requestCovid19StatusOfKorea()
+        setCountryAndStartRequesting(isKorean.value!!)
     }
 
-    init {
-
-    }
-
+    /**
+     * 외부에서 한국, 세계 여부를 설정 하고 그에 따라 한국, 세계의 코로나19
+     * 현황을 가져온다.
+     *
+     * @param isKorea 한국 | 세계 인지 여부
+     */
     fun setCountryAndStartRequesting(isKorea: Boolean) {
         _isKorean.value = isKorea
+        requestCovid19Status(isKorea)
+    }
+
+    private fun requestCovid19Status(isKorea: Boolean) {
         if (isKorea) {
-            requestCovid19StatusOfKorea()
+            covid19Repo.requestKoreaStatus()
         } else {
-            requestCovid19StatusOfWorld()
-        }
-    }
-
-    private fun requestCovid19StatusOfKorea() {
-        covid19Repo.requestKoreaCounter()
-            .doOnSubscribe {
-                _isLoading.postValue(true)
-                clearViews()
+            covid19Repo.requestWorldStatusSummary()
+        }.doOnSubscribe {
+            _isLoading.postValue(true)
+            clearViews()
+        }.doFinally {
+            _isLoading.postValue(false)
+        }.subscribeAndDisposed(
+            this,
+            {
+                updateViews(it)
+            },
+            {
+                messageHelper.showToast(
+                    if (it.message.isNullOrEmpty()) {
+                        resourceHelper.getString(R.string.c_error)
+                    } else {
+                        it.message!!
+                    }
+                )
             }
-            .subscribeAndDisposed(
-                this,
-                {
-                    updateViews(it)
-                },
-                {
-                    messageHelper.showToast(
-                        if (it.message.isNullOrEmpty()) {
-                            resourceHelper.getString(R.string.c_error)
-                        } else {
-                            it.message!!
-                        }
-                    )
-                    _isLoading.postValue(false)
-                }
-            )
-    }
-
-    private fun requestCovid19StatusOfWorld() {
-
+        )
     }
 
     private fun clearViews() {
@@ -102,12 +102,16 @@ class Covid19StatusViewModel @ViewModelInject constructor(
         _totalCase.value = ""
         _todayNewCase.value = ""
 
-        _isLoading.postValue(false)
+        // TODO : 추가 뷰 작업
+
     }
 
-    private fun updateViews(counter: Corona19KrCounter) {
-        _totalCase.value = counter.totalCase
-        _todayNewCase.value = counter.caseCount
+    private fun updateViews(counter: Covid19Infos) {
+        _totalCase.value = counter.totalConfirmed.toCommaNumberString()
+        _todayNewCase.value = counter.newConfirmed.toCommaNumberString()
+
+        // TODO : 추가 뷰 작업
+
     }
 
     private fun getTimeStamp(): String {

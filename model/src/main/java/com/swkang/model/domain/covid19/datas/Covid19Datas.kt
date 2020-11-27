@@ -1,10 +1,5 @@
 package com.swkang.model.domain.covid19.datas
 
-import com.swkang.common.exts.isNumber
-import com.swkang.model.domain.covid19.datas.krcorona19.Corona19KrCounter
-import com.swkang.model.domain.covid19.datas.krcorona19.Corona19KrCountry
-import com.swkang.model.domain.covid19.datas.krcorona19.Corona19KrCountryStatus
-
 data class Covid19Infos(
     /** 총 확진자 수 */
     val totalConfirmed: Long,
@@ -44,13 +39,3 @@ data class LocationCovid19Infos(
     /** 추가 완치자 수 */
     val newRecovered: Long? = null,
 )
-
-fun String?.toNumberOnly(): Long {
-    if (this.isNullOrEmpty()) return 0
-    else if (this.contains(",")) {
-        return this.replace(",", "").toLong()
-    } else if (this.isNumber()) {
-        return this.toLong()
-    }
-    throw IllegalArgumentException("`$this` is not Number.")
-}
