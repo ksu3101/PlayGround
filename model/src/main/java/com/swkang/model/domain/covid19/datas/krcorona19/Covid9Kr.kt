@@ -106,44 +106,53 @@ data class Corona19KrCountry(
     val newCcase: String
 )
 
-fun toCovid19InfosFromKrDatas(krCounter: Corona19KrCounter, country: Corona19KrCountryStatus): Covid19Infos {
+fun toCovid19InfosFromKrDatas(
+    krCounter: Corona19KrCounter,
+    country: Corona19KrCountryStatus
+): Covid19Infos {
+    val currentTime = System.currentTimeMillis()
     return Covid19Infos(
+        currentTime,
         krCounter.totalCase.toNumberOnly(),
         krCounter.totalCaseBefore.toNumberOnly(),
         krCounter.totalDeath.toNumberOnly(),
         krCounter.todayDeath.toNumberOnly(),
         krCounter.totalRecovered.toNumberOnly(),
         krCounter.todayRecovered.toNumberOnly(),
-        parseLocationsFrom(country)
+        parseLocationsFrom(currentTime, country)
     )
 }
 
-private fun parseLocationsFrom(country: Corona19KrCountryStatus): List<LocationCovid19Infos> {
+private fun parseLocationsFrom(
+    currentTime: Long,
+    country: Corona19KrCountryStatus
+): List<LocationCovid19Infos> {
     val locations = listOf(
-        country.seoul.toLocationCovid19Infos(),
-        country.busan.toLocationCovid19Infos(),
-        country.daegu.toLocationCovid19Infos(),
-        country.incheon.toLocationCovid19Infos(),
-        country.gwangju.toLocationCovid19Infos(),
-        country.daejeon.toLocationCovid19Infos(),
-        country.ulsan.toLocationCovid19Infos(),
-        country.sejong.toLocationCovid19Infos(),
-        country.gyeonggi.toLocationCovid19Infos(),
-        country.gangwon.toLocationCovid19Infos(),
-        country.chungbuk.toLocationCovid19Infos(),
-        country.chungnam.toLocationCovid19Infos(),
-        country.jeonbuk.toLocationCovid19Infos(),
-        country.jeonnam.toLocationCovid19Infos(),
-        country.gyeongbuk.toLocationCovid19Infos(),
-        country.gyeongnam.toLocationCovid19Infos(),
-        country.jeju.toLocationCovid19Infos(),
-        country.quarantine.toLocationCovid19Infos()
+        country.seoul.toLocationCovid19Infos(currentTime),
+        country.busan.toLocationCovid19Infos(currentTime),
+        country.daegu.toLocationCovid19Infos(currentTime),
+        country.incheon.toLocationCovid19Infos(currentTime),
+        country.gwangju.toLocationCovid19Infos(currentTime),
+        country.daejeon.toLocationCovid19Infos(currentTime),
+        country.ulsan.toLocationCovid19Infos(currentTime),
+        country.sejong.toLocationCovid19Infos(currentTime),
+        country.gyeonggi.toLocationCovid19Infos(currentTime),
+        country.gangwon.toLocationCovid19Infos(currentTime),
+        country.chungbuk.toLocationCovid19Infos(currentTime),
+        country.chungnam.toLocationCovid19Infos(currentTime),
+        country.jeonbuk.toLocationCovid19Infos(currentTime),
+        country.jeonnam.toLocationCovid19Infos(currentTime),
+        country.gyeongbuk.toLocationCovid19Infos(currentTime),
+        country.gyeongnam.toLocationCovid19Infos(currentTime),
+        country.jeju.toLocationCovid19Infos(currentTime),
+        country.quarantine.toLocationCovid19Infos(currentTime)
     )
     return locations
 }
 
-fun Corona19KrCountry.toLocationCovid19Infos(): LocationCovid19Infos {
+fun Corona19KrCountry.toLocationCovid19Infos(currentTime: Long): LocationCovid19Infos {
     return LocationCovid19Infos(
+        currentTime,
         this.countryName,
         this.totalCase.toNumberOnly(),
         this.newCase.toNumberOnly(),

@@ -33,7 +33,9 @@ data class CountryCovid19Status(
 )
 
 fun toCovid19Infos(worldDatas: Covid19ApiDatas): Covid19Infos {
+    val currentTime = System.currentTimeMillis()
     return Covid19Infos(
+        currentTime,
         worldDatas.globalInfos.totalConfiremd,
         worldDatas.globalInfos.newConfirmed,
         worldDatas.globalInfos.totalDeaths,
@@ -44,6 +46,7 @@ fun toCovid19Infos(worldDatas: Covid19ApiDatas): Covid19Infos {
             .limit(18)
             .map {
                 LocationCovid19Infos(
+                    currentTime,
                     it.countryName,
                     it.totalConfiremd,
                     it.newConfirmed,

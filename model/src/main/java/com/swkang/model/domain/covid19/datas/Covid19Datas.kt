@@ -1,6 +1,8 @@
 package com.swkang.model.domain.covid19.datas
 
 data class Covid19Infos(
+    /** 데이터 생성 시간 */
+    val date: Long,
     /** 총 확진자 수 */
     val totalConfirmed: Long,
     /** 새 확진자 수 */
@@ -24,6 +26,7 @@ data class Covid19Infos(
 )
 
 data class LocationCovid19Infos(
+    val date: Long,
     /** 지역 이름 */
     val name: String,
     /** 총 확진자 수 */

@@ -10,7 +10,6 @@ import com.swkang.model.base.BaseViewModel
 import com.swkang.model.base.helper.MessageHelper
 import com.swkang.model.base.helper.ResourceHelper
 import com.swkang.model.domain.covid19.datas.Covid19Infos
-import com.swkang.model.domain.covid19.datas.krcorona19.Corona19KrCounter
 import com.swkang.model.domain.covid19.repository.Covid19Repository
 import java.text.SimpleDateFormat
 import java.util.*
@@ -53,6 +52,10 @@ class Covid19StatusViewModel @ViewModelInject constructor(
     private val _totalDeath = MutableLiveData("")
     val totalDeath: LiveData<String>
         get() = _totalDeath
+
+    private val _covid19Countries = MutableLiveData<List<Covid19Infos>>(emptyList())
+    private val covid19Countries: LiveData<List<Covid19Infos>>
+        get() = _covid19Countries
 
     // 새로고침 이벤트 핸들러
     val onRefreshListener: () -> Unit = {
