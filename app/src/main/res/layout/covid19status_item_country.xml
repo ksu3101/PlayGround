@@ -7,9 +7,6 @@
         <variable
             name="covid19Location"
             type="com.swkang.model.domain.covid19.datas.LocationCovid19Infos" />
-        <variable
-            name="vm"
-            type="com.swkang.model.domain.covid19.Covid19StatusViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

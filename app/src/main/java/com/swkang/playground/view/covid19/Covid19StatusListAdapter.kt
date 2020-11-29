@@ -8,13 +8,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.swkang.model.domain.covid19.Covid19StatusViewModel
-import com.swkang.model.domain.covid19.datas.Covid19Infos
 import com.swkang.model.domain.covid19.datas.LocationCovid19Infos
 import com.swkang.playground.BR
 import com.swkang.playground.R
 
 class Covid19StatusListAdapter(
-    private val covid19Infos: Covid19Infos,
     private val vm: Covid19StatusViewModel
 ) : ListAdapter<LocationCovid19Infos, Covid19StatusListAdapter.Covid19StatusViewHolder>(difUtil) {
     companion object {
@@ -38,23 +36,19 @@ class Covid19StatusListAdapter(
         }
     }
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Covid19StatusViewHolder {
-        return Covid19StatusViewHolder.create(parent, viewType)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Covid19StatusViewHolder =
+        Covid19StatusViewHolder.create(parent, viewType)
 
     override fun onBindViewHolder(holder: Covid19StatusViewHolder, position: Int) {
-        if (holder is Covid19StatusTopViewHolder) holder.bind(vm, covid19Infos)
-        else if (holder is Civud18StatusCountryViewHolder) holder.bind(vm, getItem(position))
-
+        if (holder is Covid19StatusTopViewHolder) holder.bind(vm)
+        else if (holder is Civud18StatusCountryViewHolder) holder.bind(getItem(position))
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return when (position) {
+    override fun getItemViewType(position: Int): Int =
+        when (position) {
             0 -> VIEWTYPE_TOP
             else -> VIEWTYPE_DEFAULT
         }
-    }
 
     /**
      * base view holder abstract class.
@@ -87,9 +81,8 @@ class Covid19StatusListAdapter(
      */
     class Covid19StatusTopViewHolder(private val binding: ViewDataBinding) :
         Covid19StatusViewHolder(binding) {
-        fun bind(vm: Covid19StatusViewModel, covid19Infos: Covid19Infos) {
+        fun bind(vm: Covid19StatusViewModel) {
             binding.setVariable(BR.vm, vm)
-            binding.setVariable(BR.covid19Info, covid19Infos)
             binding.executePendingBindings()
         }
     }
@@ -99,8 +92,7 @@ class Covid19StatusListAdapter(
      */
     class Civud18StatusCountryViewHolder(private val binding: ViewDataBinding) :
         Covid19StatusViewHolder(binding) {
-        fun bind(vm: Covid19StatusViewModel, covid19Location: LocationCovid19Infos) {
-            binding.setVariable(BR.vm, vm)
+        fun bind(covid19Location: LocationCovid19Infos) {
             binding.setVariable(BR.covid19Location, covid19Location)
             binding.executePendingBindings()
         }

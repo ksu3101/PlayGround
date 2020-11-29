@@ -5,9 +5,6 @@
 
     <data>
         <variable
-            name="covid19Info"
-            type="com.swkang.model.domain.covid19.datas.Covid19Infos" />
-        <variable
             name="vm"
             type="com.swkang.model.domain.covid19.Covid19StatusViewModel" />
     </data>
