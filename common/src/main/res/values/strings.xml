@@ -7,6 +7,9 @@
     <string name="covid19_status_korea_title">국내</string>
     <string name="covid19_status_world_title">세계</string>
     <string name="covid19_status_total_newcase">국내 총 확진자</string>
+    <string name="covid19_status_total_newcase_w">세계 총 확진자</string>
     <string name="covid19_status_today_newcase">오늘 추가 확진자</string>
+    <string name="covid19_status_total_death">국내 총 사망자</string>
+    <string name="covid19_status_total_death_w">세계 총 사망자</string>
 
 </resources>

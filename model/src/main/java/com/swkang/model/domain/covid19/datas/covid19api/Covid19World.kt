@@ -14,7 +14,7 @@ data class GlobalCovid19Status(
     @field:Json(name = "NewConfirmed") val newConfirmed: Long,
     @field:Json(name = "TotalConfirmed") val totalConfiremd: Long,
     @field:Json(name = "NewDeaths") val newDeaths: Long,
-    @field:Json(name = "TotalDeath") val totalDeaths: Long,
+    @field:Json(name = "TotalDeaths") val totalDeaths: Long,
     @field:Json(name = "NewRecovered") val newRecovered: Long,
     @field:Json(name = "TotalRecovered") val totalRecovered: Long
 )
@@ -27,7 +27,7 @@ data class CountryCovid19Status(
     @field:Json(name = "NewConfirmed") val newConfirmed: Long,
     @field:Json(name = "TotalConfirmed") val totalConfiremd: Long,
     @field:Json(name = "NewDeaths") val newDeaths: Long,
-    @field:Json(name = "TotalDeath") val totalDeaths: Long,
+    @field:Json(name = "TotalDeaths") val totalDeaths: Long,
     @field:Json(name = "NewRecovered") val newRecovered: Long,
     @field:Json(name = "TotalRecovered") val totalRecovered: Long
 )
@@ -42,7 +42,7 @@ fun toCovid19Infos(worldDatas: Covid19ApiDatas): Covid19Infos {
         worldDatas.globalInfos.newDeaths,
         worldDatas.globalInfos.totalRecovered,
         worldDatas.globalInfos.newRecovered,
-        worldDatas.countries.sortedWith(compareBy { it.totalConfiremd })
+        worldDatas.countries.sortedByDescending { it.totalConfiremd }
             .limit(18)
             .map {
                 LocationCovid19Infos(

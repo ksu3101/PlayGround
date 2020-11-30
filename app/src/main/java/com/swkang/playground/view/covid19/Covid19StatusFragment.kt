@@ -9,7 +9,9 @@ import com.swkang.model.base.BaseViewModel
 import com.swkang.model.domain.covid19.Covid19StatusViewModel
 import com.swkang.playground.R
 import com.swkang.playground.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class Covid19StatusFragment(
     private val isKorea: Boolean
 ) : BaseFragment() {

@@ -54,7 +54,7 @@ class Covid19StatusListAdapter(
      * base view holder abstract class.
      */
     abstract class Covid19StatusViewHolder(
-        private val binding: ViewDataBinding
+        binding: ViewDataBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         companion object {
             fun create(parent: ViewGroup, viewType: Int): Covid19StatusViewHolder {

@@ -6,6 +6,7 @@ import androidx.navigation.ui.NavigationUI
 import com.swkang.playground.R
 import com.swkang.playground.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.main_activity.*
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
@@ -13,6 +14,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(main_toolbar)
 
         val navController = findNavController(R.id.fragmentContainer)
         NavigationUI.setupActionBarWithNavController(this, navController)

@@ -8,8 +8,10 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.swkang.playground.R
 import com.swkang.playground.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.covid19status_activity.*
 
+@AndroidEntryPoint
 class Covid19StatusActivity : BaseActivity() {
     private val NUM_PAGES = 2
     private lateinit var vPager: ViewPager2
