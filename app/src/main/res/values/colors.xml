@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3498db</color>
-    <color name="colorPrimaryDark">#2980b9</color>
+    <color name="colorPrimary">#34495e</color>
+    <color name="colorPrimaryDark">#2c3e50</color>
     <color name="colorAccent">#e74c3c</color>
     <color name="def_background">#ffffff</color>
-    <color name="def_font">#000000</color>
-    <color name="def_font_light">#777777</color>
-    <color name="def_font_darken">#000000</color>
-    <color name="def_font_disabled">#000000</color>
+    <color name="def_font">#34495e</color>
+    <color name="def_font_light">#bdc3c7</color>
+    <color name="def_font_darken">#2c3e50</color>
+    <color name="def_font_disabled">#bdc3c7</color>
 
+    <color name="transparent">#00000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
     <!-- COVID 19 STATUS -->
-    <color name="covid_font_primary">#3498db</color>
+    <color name="covid_font_primary">@color/colorPrimary</color>
     <color name="covid_font_positive">#2ecc71</color>
     <color name="covid_font_negative">#e74c3c</color>
+    <color name="covid_rv_item_bg">#ecf0f1</color>
 
 </resources>

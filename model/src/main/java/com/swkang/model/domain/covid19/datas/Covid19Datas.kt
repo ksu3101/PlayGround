@@ -26,6 +26,9 @@ data class Covid19Infos(
 )
 
 data class LocationCovid19Infos(
+    // 구분하기 위한 인덱스
+    val index: Int,
+    // 생성 날짜
     val date: Long,
     /** 지역 이름 */
     val name: String,
@@ -42,3 +45,7 @@ data class LocationCovid19Infos(
     /** 추가 완치자 수 */
     val newRecovered: Long? = null,
 )
+
+object Covid19Datas {
+    val DUMMY_LOC_COVID19INFOS = LocationCovid19Infos(-1, 0, "", 0, 0, 0, 0)
+}

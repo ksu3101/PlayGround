@@ -128,30 +128,31 @@ private fun parseLocationsFrom(
     country: Corona19KrCountryStatus
 ): List<LocationCovid19Infos> {
     val locations = listOf(
-        country.seoul.toLocationCovid19Infos(currentTime),
-        country.busan.toLocationCovid19Infos(currentTime),
-        country.daegu.toLocationCovid19Infos(currentTime),
-        country.incheon.toLocationCovid19Infos(currentTime),
-        country.gwangju.toLocationCovid19Infos(currentTime),
-        country.daejeon.toLocationCovid19Infos(currentTime),
-        country.ulsan.toLocationCovid19Infos(currentTime),
-        country.sejong.toLocationCovid19Infos(currentTime),
-        country.gyeonggi.toLocationCovid19Infos(currentTime),
-        country.gangwon.toLocationCovid19Infos(currentTime),
-        country.chungbuk.toLocationCovid19Infos(currentTime),
-        country.chungnam.toLocationCovid19Infos(currentTime),
-        country.jeonbuk.toLocationCovid19Infos(currentTime),
-        country.jeonnam.toLocationCovid19Infos(currentTime),
-        country.gyeongbuk.toLocationCovid19Infos(currentTime),
-        country.gyeongnam.toLocationCovid19Infos(currentTime),
-        country.jeju.toLocationCovid19Infos(currentTime),
-        country.quarantine.toLocationCovid19Infos(currentTime)
+        country.seoul.toLocationCovid19Infos(0, currentTime),
+        country.busan.toLocationCovid19Infos(1, currentTime),
+        country.daegu.toLocationCovid19Infos(2, currentTime),
+        country.incheon.toLocationCovid19Infos(3, currentTime),
+        country.gwangju.toLocationCovid19Infos(4, currentTime),
+        country.daejeon.toLocationCovid19Infos(5, currentTime),
+        country.ulsan.toLocationCovid19Infos(6, currentTime),
+        country.sejong.toLocationCovid19Infos(7, currentTime),
+        country.gyeonggi.toLocationCovid19Infos(8, currentTime),
+        country.gangwon.toLocationCovid19Infos(9, currentTime),
+        country.chungbuk.toLocationCovid19Infos(10, currentTime),
+        country.chungnam.toLocationCovid19Infos(11, currentTime),
+        country.jeonbuk.toLocationCovid19Infos(12, currentTime),
+        country.jeonnam.toLocationCovid19Infos(13, currentTime),
+        country.gyeongbuk.toLocationCovid19Infos(14, currentTime),
+        country.gyeongnam.toLocationCovid19Infos(15, currentTime),
+        country.jeju.toLocationCovid19Infos(16, currentTime),
+        country.quarantine.toLocationCovid19Infos(17, currentTime)
     )
     return locations
 }
 
-fun Corona19KrCountry.toLocationCovid19Infos(currentTime: Long): LocationCovid19Infos {
+fun Corona19KrCountry.toLocationCovid19Infos(index: Int, currentTime: Long): LocationCovid19Infos {
     return LocationCovid19Infos(
+        index,
         currentTime,
         this.countryName,
         this.totalCase.toNumberOnly(),

@@ -4,6 +4,7 @@ import com.squareup.moshi.Json
 import com.swkang.common.exts.limit
 import com.swkang.model.domain.covid19.datas.Covid19Infos
 import com.swkang.model.domain.covid19.datas.LocationCovid19Infos
+import java.lang.IllegalStateException
 
 data class Covid19ApiDatas(
     @field:Json(name = "Global") val globalInfos: GlobalCovid19Status,
@@ -44,8 +45,9 @@ fun toCovid19Infos(worldDatas: Covid19ApiDatas): Covid19Infos {
         worldDatas.globalInfos.newRecovered,
         worldDatas.countries.sortedByDescending { it.totalConfiremd }
             .limit(18)
-            .map {
+            .mapIndexed { index, it ->
                 LocationCovid19Infos(
+                    index,
                     currentTime,
                     it.countryName,
                     it.totalConfiremd,

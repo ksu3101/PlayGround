@@ -67,14 +67,36 @@
 
 - MainActivity : 앱 실행시 진입 Activity
 
-### 2.1 covid-19 현황판 (WIP) 
+### 2.1 covid-19 현황판  
 
-요란하게 만들것 없이 API통신에 대해서 통신하고 화면에 출력 하기 위한 용도. 
+국내와 전 세계의 코로나19 현황을 보여준다. 보여주는 정보는 총 확진자, 총 사망자, 총 완치자 및 각 국가 확진자 순위별 정렬된 목록 혹은 국내 시도별 분류된 확진자 및 사망자의 정보를 보여준다. 
 
-- 국내 open API : [Corona-19-API](https://github.com/dhlife09/Corona-19-API) 
-  - 2020년 11월 23일 현재, 국내 데이터 만 제공 - 2020/11/23
-  - 데이터를 받기 위한 키를 얻어야 함. 위 링크 참고. 
-- 국외 API : [https://api.covid19api.com/](https://documenter.getpostman.com/view/10808728/SzS8rjbc)
+One `Activity`에 `Fragment`에서는 `ViewPager2`와 Tab을 구현하여 내부에서는 `SwipeRefreshLayout`와 `RecyclerView`를 이용하여 새로고침을 비롯한 내부 UI를 구현 하였다. 간단한 러프 기획은 아래 이미지와 같다. 
+
+![d](./_res/20201201_l_fixed.png)
+
+`RecyclerView`의 경우 `ListAdapter`와 `DiffUtil`을 사용 하였다. recycler view의 UI는 두가지 view type으로 나누어서 구현 하였다. 추가적으로 다크모드를 제공 할 수 있도록 `color`셋 을 추가하였다.
+
+- [ListAdapter 구현 보기](https://github.com/ksu3101/PlayGround/blob/master/app/src/main/java/com/swkang/playground/view/covid19/Covid19StatusListAdapter.kt)
+- [ViewModel 구현 보기](https://github.com/ksu3101/PlayGround/blob/master/model/src/main/java/com/swkang/model/domain/covid19/Covid19StatusViewModel.kt)
+- [Repository의 구현 클래스 보기](https://github.com/ksu3101/PlayGround/blob/master/app/src/main/java/com/swkang/playground/repository/covid19/Covid19RepositoryImpl.kt)
+  - covid19 현황판 서브 도메인에서는 2개의 api를 필요로 하는데 이 때 Qualifier를 이용해 Retrofit API인스턴스를 구분 해 줘야 한다. 그에 대한 Retrofit2의 [DI 모듈은 이 링크를 참고 한다.](https://github.com/ksu3101/PlayGround/blob/master/app/src/main/java/com/swkang/playground/base/di/network/Covid19NetworkModule.kt)  
+
+#### 2.1 국내 현황
+
+![img1](./_res/20201201_fixed1.png)
+
+- 국내 코로나19 정보 : [Corona-19-API](https://github.com/dhlife09/Corona-19-API)
+  - 국내 코로나19 정보 api는 미진한 부분이 있어 어쩔수 없이 하드코딩된 부분이 추가 되었음. 
+  - 국내 코로나 통합정보와 각 시도별 정보는 api가 따로 존재 한다. 그렇기 때문에 두개의 api를 Rx를 통해 비동기로 호출 하고 그에 따른 response를 Rx의 `Single`으로 받은 다음 이를 `zip`으로 합쳐서 Rx Single 소스로 내려주게 한다.  
+  - 이 Api의 경우 secret api key를 필요로 하기 때문에 이 키를 따로 보관 하고 git에는 업로드 하지 않았다.  
+
+#### 2.2 세계 현황 
+
+![img2](./_res/20201201_fixed2.png)  
+
+- 국외 코로나19 정보 : [https://api.covid19api.com/](https://documenter.getpostman.com/view/10808728/SzS8rjbc)
+  - 가끔 서버 내부 캐시를 정리 하거나 여러가지 이유로 API가 정상작동 하지 않을때가 있는데, 문제는 이를 오류 response code로 내려주지 않는 경우가 있다. 이런 경우에 대한 에러 핸들링이 어려워 일단 처리를 보류 하였다. 
 
 ### 2.2 서브 도메인 2
 

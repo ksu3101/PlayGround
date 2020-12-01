@@ -11,5 +11,11 @@
     <string name="covid19_status_today_newcase">오늘 추가 확진자</string>
     <string name="covid19_status_total_death">국내 총 사망자</string>
     <string name="covid19_status_total_death_w">세계 총 사망자</string>
+    <string name="covid19_status_total_recovered">국내 총 완치자</string>
+    <string name="covid19_status_total_recovered_w">세계 총 완치자</string>
+    <string name="covid19_status_locations">지역</string>
+    <string name="covid19_status_locations_w">국가</string>
+    <string name="covid19_status_locations_totalnewcase">총 확진자</string>
+    <string name="covid19_status_locations_totaldeaths">총 사망자</string>
 
 </resources>

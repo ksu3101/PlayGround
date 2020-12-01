@@ -40,3 +40,9 @@ fun <E> List<E>.add(e: E): List<E> {
     mutableList.add(e)
     return mutableList
 }
+
+fun <E> List<E>.addFirst(e: E): List<E> {
+    val mutableList = this.toMutableList()
+    mutableList.add(0, e)
+    return mutableList
+}
