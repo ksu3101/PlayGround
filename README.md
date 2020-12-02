@@ -79,7 +79,7 @@ One `Activity`에 `Fragment`에서는 `ViewPager2`와 Tab을 구현하여 내부
 
 - [ListAdapter 구현 보기](https://github.com/ksu3101/PlayGround/blob/master/app/src/main/java/com/swkang/playground/view/covid19/Covid19StatusListAdapter.kt)
 - [ViewModel 구현 보기](https://github.com/ksu3101/PlayGround/blob/master/model/src/main/java/com/swkang/model/domain/covid19/Covid19StatusViewModel.kt)
-  - [ViewModel의 테스트 코드 보기]()
+  - [ViewModel의 테스트 코드 보기](https://github.com/ksu3101/PlayGround/blob/master/model/src/test/java/com/swkang/model/domain/covid19/Covid19StatusViewModelTest.kt)
 - [Repository의 구현 클래스 보기](https://github.com/ksu3101/PlayGround/blob/master/app/src/main/java/com/swkang/playground/repository/covid19/Covid19RepositoryImpl.kt)
   - covid19 현황판 서브 도메인에서는 2개의 api를 필요로 하는데 이 때 Qualifier를 이용해 Retrofit API인스턴스를 구분 해 줘야 한다. 그에 대한 Retrofit2의 [DI 모듈은 이 링크를 참고 한다.](https://github.com/ksu3101/PlayGround/blob/master/app/src/main/java/com/swkang/playground/base/di/network/Covid19NetworkModule.kt)  
 
