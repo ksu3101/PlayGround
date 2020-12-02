@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.covid19status_activity.*
 
 @AndroidEntryPoint
 class Covid19StatusActivity : BaseActivity() {
-    private val NUM_PAGES = 2
+    private val maxPages = 2
     private lateinit var vPager: ViewPager2
 
     override fun getLayoutId(): Int = R.layout.covid19status_activity
@@ -50,7 +50,7 @@ class Covid19StatusActivity : BaseActivity() {
     private inner class Covid19StatusPagerAdapter(
         fa: FragmentActivity
     ) : FragmentStateAdapter(fa) {
-        override fun getItemCount(): Int = NUM_PAGES
+        override fun getItemCount(): Int = maxPages
 
         override fun createFragment(position: Int): Fragment =
             Covid19StatusFragment(position == 0)

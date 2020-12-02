@@ -1,5 +1,6 @@
 package com.swkang.model.domain.covid19
 
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -134,9 +135,13 @@ class Covid19StatusViewModel @ViewModelInject constructor(
         _totalCase.value = ""
         _todayNewCase.value = ""
 
-        _covid19Countries.value = emptyList()
-        // TODO : 추가 뷰 작업
+        _totalDeath.value = ""
+        _todayNewDeath.value = ""
 
+        _totalRecovered.value = ""
+        _todayNewRecovered.value = ""
+
+        _covid19Countries.value = emptyList()
     }
 
     private fun updateViews(covid19Infos: Covid19Infos) {
