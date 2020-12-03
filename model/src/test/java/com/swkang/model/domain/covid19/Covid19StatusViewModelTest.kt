@@ -63,12 +63,12 @@ class Covid19StatusViewModelTest {
     @Test
     fun createdViewModel_OnStartUp_ThenClearedViews() {
         vm.currentTimeStamp.value shouldBe ""
-        vm.totalCase.value shouldBe ""
-        vm.todayNewCase.value shouldBe ""
-        vm.totalDeath.value shouldBe ""
-        vm.todayNewDeath.value shouldBe ""
-        vm.totalRecovered.value shouldBe ""
-        vm.todayNewRecovered.value shouldBe ""
+        vm.totalCase.value shouldBe 0
+        vm.todayNewCase.value shouldBe 0
+        vm.totalDeath.value shouldBe 0
+        vm.todayNewDeath.value shouldBe 0
+        vm.totalRecovered.value shouldBe 0
+        vm.todayNewRecovered.value shouldBe 0
         vm.covid19Countries.value shouldNotBe null
         vm.covid19Countries.value!!.isEmpty() shouldBe true
     }
@@ -85,12 +85,12 @@ class Covid19StatusViewModelTest {
         messageHelper.hasNotCalled().showToast(anyString(), anyBoolean())
         vm.isKorean.value shouldBe isKorea
         vm.isLoading.value shouldBe false
-        vm.totalCase.value shouldBe "12,345"
-        vm.todayNewCase.value shouldBe "+ 99"
-        vm.totalDeath.value shouldBe "897"
-        vm.todayNewDeath.value shouldBe "0"
-        vm.totalRecovered.value shouldBe "55,555"
-        vm.todayNewRecovered.value shouldBe "+ 5"
+        vm.totalCase.value shouldBe DUMMY_COVID19INFOS.totalConfirmed
+        vm.todayNewCase.value shouldBe DUMMY_COVID19INFOS.newConfirmed
+        vm.totalDeath.value shouldBe DUMMY_COVID19INFOS.totalDeath
+        vm.todayNewDeath.value shouldBe DUMMY_COVID19INFOS.newDeath
+        vm.totalRecovered.value shouldBe DUMMY_COVID19INFOS.totalRecovered
+        vm.todayNewRecovered.value shouldBe DUMMY_COVID19INFOS.newRecovered
         vm.covid19Countries.value shouldNotBe null
         vm.covid19Countries.value!!.size shouldBe 4 // add Top header
     }
@@ -108,7 +108,7 @@ class Covid19StatusViewModelTest {
         messageHelper.hasCalled().showToast(anyString(), anyBoolean())
         vm.isKorean.value shouldBe isKorea
         vm.isLoading.value shouldBe false
-        vm.totalCase.value shouldBe ""
+        vm.totalCase.value shouldBe 0
         vm.covid19Countries.value!!.isEmpty() shouldBe true
     }
 
@@ -126,7 +126,7 @@ class Covid19StatusViewModelTest {
         messageHelper.hasCalled().showToast(anyString(), anyBoolean())
         vm.isKorean.value shouldBe isKorea
         vm.isLoading.value shouldBe false
-        vm.totalCase.value shouldBe ""
+        vm.totalCase.value shouldBe 0
         vm.covid19Countries.value!!.isEmpty() shouldBe true
     }
 
@@ -142,12 +142,12 @@ class Covid19StatusViewModelTest {
         messageHelper.hasNotCalled().showToast(anyString(), anyBoolean())
         vm.isKorean.value shouldBe isKorea
         vm.isLoading.value shouldBe false
-        vm.totalCase.value shouldBe "12,345"
-        vm.todayNewCase.value shouldBe "+ 99"
-        vm.totalDeath.value shouldBe "897"
-        vm.todayNewDeath.value shouldBe "0"
-        vm.totalRecovered.value shouldBe "55,555"
-        vm.todayNewRecovered.value shouldBe "+ 5"
+        vm.totalCase.value shouldBe DUMMY_COVID19INFOS.totalConfirmed
+        vm.todayNewCase.value shouldBe DUMMY_COVID19INFOS.newConfirmed
+        vm.totalDeath.value shouldBe DUMMY_COVID19INFOS.totalDeath
+        vm.todayNewDeath.value shouldBe DUMMY_COVID19INFOS.newDeath
+        vm.totalRecovered.value shouldBe DUMMY_COVID19INFOS.totalRecovered
+        vm.todayNewRecovered.value shouldBe DUMMY_COVID19INFOS.newRecovered
         vm.covid19Countries.value shouldNotBe null
         vm.covid19Countries.value!!.size shouldBe 4 // add Top header
     }

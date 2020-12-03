@@ -1,13 +1,11 @@
 package com.swkang.model.domain.covid19
 
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.swkang.common.DEFAULT_TIMESTAMP
 import com.swkang.common.exts.addFirst
 import com.swkang.common.exts.rx.subscribeAndDisposed
-import com.swkang.common.exts.toCommaNumberString
 import com.swkang.model.R
 import com.swkang.model.base.BaseViewModel
 import com.swkang.model.base.helper.MessageHelper
@@ -39,46 +37,34 @@ class Covid19StatusViewModel @ViewModelInject constructor(
         get() = _currentTimeStamp
 
     // 국내 총 확진자 수
-    private val _totalCase = MutableLiveData("")
-    val totalCase: LiveData<String>
+    private val _totalCase = MutableLiveData<Long>(0)
+    val totalCase: LiveData<Long>
         get() = _totalCase
 
     // 추가 확진자 수
-    private val _todayNewCase = MutableLiveData("")
-    val todayNewCase: LiveData<String>
+    private val _todayNewCase = MutableLiveData<Long>(0)
+    val todayNewCase: LiveData<Long>
         get() = _todayNewCase
 
-    private val _isPositiveTodayNewCase = MutableLiveData(false)
-    val isPositiveTodayNewCase: LiveData<Boolean>
-        get() = _isPositiveTodayNewCase
-
     // 국내 총 사망자 수
-    private val _totalDeath = MutableLiveData("")
-    val totalDeath: LiveData<String>
+    private val _totalDeath = MutableLiveData<Long>(0)
+    val totalDeath: LiveData<Long>
         get() = _totalDeath
 
     // 추가 사망자 수
-    private val _todayNewDeath = MutableLiveData("")
-    val todayNewDeath: LiveData<String>
+    private val _todayNewDeath = MutableLiveData<Long>(0)
+    val todayNewDeath: LiveData<Long>
         get() = _todayNewDeath
 
-    private val _isPositiveTodayNewDeath = MutableLiveData(false)
-    val isPositiveTodayNewDeath: LiveData<Boolean>
-        get() = _isPositiveTodayNewDeath
-
     // 국내 총 완치자 수
-    private val _totalRecovered = MutableLiveData("")
-    val totalRecovered: LiveData<String>
+    private val _totalRecovered = MutableLiveData<Long>(0)
+    val totalRecovered: LiveData<Long>
         get() = _totalRecovered
 
     // 추가 완치자 수
-    private val _todayNewRecovered = MutableLiveData("")
-    val todayNewRecovered: LiveData<String>
+    private val _todayNewRecovered = MutableLiveData<Long>(0)
+    val todayNewRecovered: LiveData<Long>
         get() = _todayNewRecovered
-
-    private val _isPositiveTodayNewRecovered = MutableLiveData(false)
-    val isPositiveTodayNewRecovered: LiveData<Boolean>
-        get() = _isPositiveTodayNewRecovered
 
     // 국내 : 각 시도별 확진자 정보
     // 세계 : 확진자 순 정렬된 각 국가의 확진자 정보
@@ -132,14 +118,14 @@ class Covid19StatusViewModel @ViewModelInject constructor(
 
     private fun clearViews() {
         _currentTimeStamp.value = ""
-        _totalCase.value = ""
-        _todayNewCase.value = ""
+        _totalCase.value = 0
+        _todayNewCase.value = 0
 
-        _totalDeath.value = ""
-        _todayNewDeath.value = ""
+        _totalDeath.value = 0
+        _todayNewDeath.value = 0
 
-        _totalRecovered.value = ""
-        _todayNewRecovered.value = ""
+        _totalRecovered.value = 0
+        _todayNewRecovered.value = 0
 
         _covid19Countries.value = emptyList()
     }
@@ -149,28 +135,16 @@ class Covid19StatusViewModel @ViewModelInject constructor(
         _currentTimeStamp.value = getTimeStamp()
 
         // 총 확진자
-        _totalCase.value = covid19Infos.totalConfirmed.toCommaNumberString()
-        // 오늘 추가 확진자
-        val todayNewCaseOp =
-            if (covid19Infos.newConfirmed < 0) "- " else if (covid19Infos.newConfirmed > 0) "+ " else ""
-        _todayNewCase.value = todayNewCaseOp + covid19Infos.newConfirmed.toCommaNumberString()
-        _isPositiveTodayNewCase.value = covid19Infos.newConfirmed <= 0
+        _totalCase.value = covid19Infos.totalConfirmed
+        _todayNewCase.value = covid19Infos.newConfirmed
 
         // 총 사망자
-        _totalDeath.value = covid19Infos.totalDeath.toCommaNumberString()
-        // 오늘 추가 사망자
-        val todayNewDeathOp =
-            if (covid19Infos.newDeath < 0) "- " else if (covid19Infos.newDeath > 0) "+ " else ""
-        _todayNewDeath.value = todayNewDeathOp + covid19Infos.newDeath.toCommaNumberString()
-        _isPositiveTodayNewDeath.value = covid19Infos.newDeath <= 0
+        _totalDeath.value = covid19Infos.totalDeath
+        _todayNewDeath.value = covid19Infos.newDeath
 
         // 총 완치자
-        _totalRecovered.value = covid19Infos.totalRecovered.toCommaNumberString()
-        // 오늘 추가 완치자
-        val todayNewRecoveredOp =
-            if (covid19Infos.newRecovered < 0) "- " else if (covid19Infos.newRecovered > 0) "+ " else ""
-        _todayNewRecovered.value = todayNewRecoveredOp + covid19Infos.newRecovered.toCommaNumberString()
-        _isPositiveTodayNewRecovered.value = covid19Infos.newRecovered > 0
+        _totalRecovered.value = covid19Infos.totalRecovered
+        _todayNewRecovered.value = covid19Infos.newRecovered
 
         // 지역별 covid19 정보 리스트
         // 맨 앞에 TOP header를 추가 한다. (TODO : header에 대한 apdater 재정의 필요)

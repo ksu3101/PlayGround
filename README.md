@@ -73,7 +73,7 @@
 
 One `Activity`에 `Fragment`에서는 `ViewPager2`와 Tab을 구현하여 내부에서는 `SwipeRefreshLayout`와 `RecyclerView`를 이용하여 새로고침을 비롯한 내부 UI를 구현 하였다. 간단한 러프 기획은 아래 이미지와 같다. 
 
-![d](./_res/20201201_l_fixed.png)
+  ![d](./_res/20201201_l_fixed.png)
 
 `RecyclerView`의 경우 `ListAdapter`와 `DiffUtil`을 사용 하였다. recycler view의 UI는 두가지 view type으로 나누어서 구현 하였다. 추가적으로 다크모드를 제공 할 수 있도록 `color`셋 을 추가하였다.
 
@@ -85,7 +85,7 @@ One `Activity`에 `Fragment`에서는 `ViewPager2`와 Tab을 구현하여 내부
 
 #### 2.1 국내 현황
 
-![img1](./_res/20201201_fixed1.png)
+  ![img1](./_res/20201201_fixed1.png)
 
 - 국내 코로나19 정보 : [Corona-19-API](https://github.com/dhlife09/Corona-19-API)
   - 국내 코로나19 정보 api는 미진한 부분이 있어 어쩔수 없이 하드코딩된 부분이 추가 되었음. 
@@ -94,7 +94,7 @@ One `Activity`에 `Fragment`에서는 `ViewPager2`와 Tab을 구현하여 내부
 
 #### 2.2 세계 현황 
 
-![img2](./_res/20201201_fixed2.png)  
+  ![img2](./_res/20201201_fixed2.png)  
 
 - 국외 코로나19 정보 : [https://api.covid19api.com/](https://documenter.getpostman.com/view/10808728/SzS8rjbc)
   - 가끔 서버 내부 캐시를 정리 하거나 여러가지 이유로 API가 정상작동 하지 않을때가 있는데, 문제는 이를 오류 response code로 내려주지 않는 경우가 있다. 이런 경우에 대한 에러 핸들링이 어려워 일단 처리를 보류 하였다. 
