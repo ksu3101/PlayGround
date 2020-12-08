@@ -45,7 +45,6 @@ interface Store<S : State> {
     fun stateListener(): Observable<S>
 }
 
-
 interface Middleware<S : State> {
     fun create(store: Store<S>, next: Dispatcher): Dispatcher
 }
