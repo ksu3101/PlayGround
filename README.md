@@ -10,11 +10,15 @@
   - `common` 모듈 : app, model모듈에서 필요한 상수, 유틸리티, 확장 함수, String 자원 등 이 존재 하는 모듈
   - `moddel` 모듈 : ViewModel, Repository, Helper 인터페이스 와 비즈니스 로직이 존재 하는 모듈
 - MVVM & Databinding
+  - 기본적으로 sub domain에 대해서는 MVVM과 Databinding을 적용
+  - 비즈니스 로직은 `Repository`에서 수행하고 그에 대한 콜백으로 처리. 
+  - 콜백이 복잡해질 경우 위 `MVVM + Uni-Directional flow event handling & Databinding`으로 처리 
+- MVVM + Uni-Directional flow event handling & Databinding
+  - MVVM과 Databinding을 사용 하되 Use case에 대해 `Action`과 `State`로 정의 하고 이를 Rx 스트림으로 처리.
+  - 단일 스트림은 Uni-directional flow으로 MVI와 Redux등을 생각하면 쉽다.  
+  - 이벤트의 트리거에서 콜백 받아 화면 업데이트 까지, 단일 스트림으로 구성 하여 콜백을 최소화. 
 - ViewBinding
-  - 간단한 view에 대한 처리 및 비즈니스 로직이 전무한 경우 뷰 바인딩만 사용 한다.
-- [Redux event handler](https://github.com/ksu3101/TIL/blob/master/ETC/200305.md)
-  - 전역적인 이벤트를 핸들링 하거나 domain간 의 이벤트를 전달 및 핸들링 해야할 경우 Redux방식의 이벤트 핸들링을 해당 도메인에 적용 한다.
-  - 혹은 더 나은 이벤트 핸들러가 있으면 그 이벤트 핸들러로 변경하고 적용 한다. 
+  - 간단한 view에 대한 처리 및 비즈니스 로직이 전무한 경우 뷰 바인딩만 사용 한다. 
    
 - CI (WIP)
   - [github Actions](https://docs.github.com/en/free-pro-team@latest/actions) : 일단 이거 생각중.. 

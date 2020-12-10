@@ -11,7 +11,7 @@ import com.swkang.model.base.BaseViewModel
 import com.swkang.playground.BR
 
 abstract class BaseFragment : Fragment() {
-    private lateinit var viewModel: BaseViewModel
+    protected lateinit var viewModel: BaseViewModel
     private var _binding: ViewDataBinding? = null
     private val binding get() = _binding!!
 
