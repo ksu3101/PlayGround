@@ -20,14 +20,14 @@ interface State
  * 에서 비즈니스 로직을 통해서 `State`를 반환하고, 이를 `stateSubscriber()`를 통해 구독했을 경우
  * 발행 될 `Observer<State>`를 받아 View를 갱신 한다.
  */
-abstract class BaseStateRepository<in A : Action, S : State> {
+abstract class BaseStateRepository<S : State> {
     private val stateEmitter: BehaviorSubject<S> = BehaviorSubject.create()
 
     /**
      * 패러미터로 받은 `Action`을 런칭한다. 런칭된 Action은 비즈니스로직 을 수행 하는 등 작업 후
      * View를 업데이트 하기 위한 `State`로 생성 되거나 다른 Action이 발행될 수 있다.
      */
-    abstract fun dispatcher(action: A)
+    abstract fun dispatcher(action: Action)
 
     /**
      * 런칭된 `Action`을 처리 하고 `State`를 반환 한다.
@@ -35,7 +35,7 @@ abstract class BaseStateRepository<in A : Action, S : State> {
      * 뷰를 업데이트 하기 위한 `State`들을 발행 한다. 발행된 `State`는 `stateSubscriber()`메소드를
      * 통해 발행될 옵저버를 구독 하면 된다.
      */
-    protected abstract fun actionHandler(action: A): S
+    protected abstract fun actionHandler(action: Action): S
 
     /**
      * 발행된 `State`를 구독 하고 리스너 인스턴스를 반환한다.
