@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="c_confirm">확인</string>
+    <string name="c_yes">네</string>
+    <string name="c_no">아니오</string>
     <string name="c_error">알수 없는 오류가 발생 하였습니다. 다시 시도해 주세요.</string>
     <string name="c_exit">한번더 Back키를 누르면 앱이 종료 됩니다.</string>
     <string name="c_people_kr">명</string>
@@ -18,5 +21,26 @@
     <string name="covid19_status_locations_w">국가</string>
     <string name="covid19_status_locations_totalnewcase">총 확진자</string>
     <string name="covid19_status_locations_totaldeaths">총 사망자</string>
+
+    <string name="common_str">
+        Lorem ipsum dolor sit amet, odio enim non hymenaeos, sollicitudin nullam ut quis quis vitae, etiam a quam massa dictumst amet. Est integer lobortis wisi, sed a sit urna sapien consequat, vivamus nec vitae hac lectus accumsan, lectus ultricies sagittis egestas, diam ac. Hac lacinia mauris sem vel in luctus, erat id, morbi ab rutrum elementum augue ante et, erat fusce rhoncus dignissim sit. Aliquet elementum eget erat urna morbi taciti, dolor tempor, ultricies vestibulum purus. Nam eleifend, praesent pellentesque tristique dignissim diam nam odio, eu morbi eget, purus ultricies. Id felis metus tristique auctor leo et, vivamus quam elementum in rutrum. Tempor in qui, ut at metus consectetuer wisi, dui posuere non nulla nibh etiam neque, mattis pellentesque curabitur, adipisicing id blandit per nisl est.
+        \n
+        \n
+        Ullam sed gravida at natoque rutrum vulputate, mauris magna morbi, ullamcorper blandit, at et dui ante aliquam semper et, mauris tempor. Amet lacus pharetra nulla vitae. Vehicula nam nunc nascetur libero, est eros, proin duis mi hac cursus consectetuer, pede sociis neque purus etiam. Suspendisse totam amet, vehicula in nibh eros id, eu magnis vel pretium vel, at turpis, nisl orci. Consequat pede metus suscipit ut mollis, ut ipsum nulla gravida, at sit lobortis etiam tempor elit sapien. Augue mollis, et velit, lacus in congue orci, est libero consectetuer mauris bibendum euismod quod. At sagittis laoreet vel mollis pellentesque tellus. Et erat tellus sed at. In pellentesque, enim arcu enim habitant, cursus quam nunc, ut enim, ut non magna ac tempor amet sem. Dapibus felis similique, egestas consectetuer tortor libero.
+        \n
+        \n
+        Cursus et eget nulla est, nec etiam et. Nec orci dolor ac platea. Lacus orci non quisque eget curabitur, tempus at ante tincidunt arcu vitae, lobortis pharetra phasellus porta congue odio, morbi hymenaeos a magna aliquet sagittis velit. Vitae at dignissim elit vestibulum. Mauris augue morbi curabitur, suscipit neque pretium, ullam tellus mattis aenean non luctus sed, sapien wisi. Vel mauris tempor, vel ut nec placerat velit nibh, tempus sodales consectetuer ultricies, rutrum pede. Integer vulputate, luctus nunc enim. Est est non, integer lorem eget vel, vestibulum platea egestas nullam aliquam, proin vestibulum ullamcorper. Pellentesque sed mi bibendum ac, nostra reiciendis auctor purus purus nec, dolor scelerisque in lectus.
+        \n
+        \n
+        Consectetuer sit fames fusce wisi, velit vestibulum. Senectus tortor, porta placerat vestibulum, lectus orci sed, erat arcu ut proin eros id. Nulla nunc vel urna mauris mi wisi, adipiscing ad ut erat nibh vehicula, ornare nam rutrum. Felis ipsum. Purus lorem, maecenas consectetuer odio. Potenti eget mi diam, cras purus volutpat magna turpis libero sapien. Duis sit. Nunc id pellentesque natoque, porta lacus per metus ac dolorum arcu, lobortis odio magnis ligula, mollis wisi placerat amet, lacinia diam fermentum. Litora feugiat urna nulla et in, erat at nulla dui luctus ornare, aliquam ridiculus id, magna non, nulla a hac torquent consequat. Velit anim, ipsum vitae porttitor, integer dui tellus aliquet, blandit lectus eget, ac varius diam suspendisse lacus semper. Congue tellus accumsan suspendisse ligula dui scelerisque, rutrum a viverra a facilisis purus, in adipiscing arcu sed. Feugiat feugiat nunc, quisque donec pretium tellus felis pellentesque at, eleifend risus sit risus ad ullamcorper excepturi, nulla lorem.
+    </string>
+
+    <string name="common_str1">
+        Lorem ipsum dolor sit amet, odio enim non hymenaeos, sollicitudin nullam ut quis quis vitae, etiam a quam massa dictumst amet. Est integer lobortis wisi, sed a sit urna sapien consequat, vivamus nec vitae hac lectus accumsan, lectus ultricies sagittis egestas, diam ac. Hac lacinia mauris sem vel in luctus, erat id, morbi ab rutrum elementum augue ante et, erat fusce rhoncus dignissim sit. Aliquet elementum eget erat urna morbi taciti, dolor tempor, ultricies vestibulum purus. Nam eleifend, praesent pellentesque tristique dignissim diam nam odio, eu morbi eget, purus ultricies. Id felis metus tristique auctor leo et, vivamus quam elementum in rutrum. Tempor in qui, ut at metus consectetuer wisi, dui posuere non nulla nibh etiam neque, mattis pellentesque curabitur, adipisicing id blandit per nisl est.
+    </string>
+
+    <string name="common_str2">
+        Ullam sed gravida at natoque rutrum vulputate, mauris magna morbi, ullamcorper blandit, at et dui ante aliquam semper et, mauris tempor. Amet lacus pharetra nulla vitae. Vehicula nam nunc nascetur libero, est eros, proin duis mi hac cursus consectetuer, pede sociis neque purus etiam. Suspendisse totam amet, vehicula in nibh eros id, eu magnis vel pretium vel, at turpis, nisl orci. Consequat pede metus suscipit ut mollis, ut ipsum nulla gravida, at sit lobortis etiam tempor elit sapien. Augue mollis, et velit, lacus in congue orci, est libero consectetuer mauris bibendum euismod quod. At sagittis laoreet vel mollis pellentesque tellus. Et erat tellus sed at. In pellentesque, enim arcu enim habitant, cursus quam nunc, ut enim, ut non magna ac tempor amet sem. Dapibus felis similique, egestas consectetuer tortor libero.
+    </string>
 
 </resources>

@@ -1,6 +1,13 @@
 package com.swkang.model.base.helper
 
 import androidx.annotation.StringRes
+import com.swkang.model.R
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Single
+
+enum class AlertDialogButton {
+    NONE, POSITIVE, NEGATIVE
+}
 
 interface MessageHelper {
 
@@ -13,5 +20,29 @@ interface MessageHelper {
         msgStr: String,
         isLong: Boolean = false
     )
+
+    fun createSimpleComfirmDialog(
+        message: String,
+        comfirmButtonLabel: Int = R.string.c_confirm
+    ): Completable
+
+    fun createSimpleComfirmDialog(
+        message: Int,
+        comfirmButtonLabel: Int = R.string.c_confirm
+    ): Completable
+
+    fun createAlertDialog(
+        message: String,
+        title: String? = null,
+        positiveButtonLabel: Int = R.string.c_yes,
+        negativeButtonLabel: Int = R.string.c_no
+    ): Single<AlertDialogButton>
+
+    fun createAlertDialog(
+        message: Int,
+        title: Int? = null,
+        positiveButtonLabel: Int = R.string.c_yes,
+        negativeButtonLabel: Int = R.string.c_no
+    ): Single<AlertDialogButton>
 
 }

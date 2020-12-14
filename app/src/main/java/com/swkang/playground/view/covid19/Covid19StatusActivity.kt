@@ -28,7 +28,7 @@ class Covid19StatusActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        if (vPager.currentItem == 0) {
+        if (!::vPager.isInitialized || vPager.currentItem == 0) {
             super.onBackPressed()
         } else {
             vPager.currentItem - 1

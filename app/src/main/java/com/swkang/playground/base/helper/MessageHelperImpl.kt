@@ -2,7 +2,12 @@ package com.swkang.playground.base.helper
 
 import android.content.Context
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.swkang.model.base.helper.AlertDialogButton
 import com.swkang.model.base.helper.MessageHelper
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.disposables.Disposable
 
 class MessageHelperImpl(
     private val context: Context
@@ -30,5 +35,75 @@ class MessageHelperImpl(
         this.toast = Toast.makeText(context, msg, toastLength)
         this.toast?.show()
     }
+
+    override fun createSimpleComfirmDialog(
+        message: String,
+        comfirmButtonLabel: Int
+    ): Completable =
+        createAlertDialogBySingleSources(
+            message,
+            null,
+            comfirmButtonLabel,
+            null
+        ).flatMapCompletable { Completable.complete() }
+
+    override fun createSimpleComfirmDialog(message: Int, comfirmButtonLabel: Int): Completable =
+        createAlertDialogBySingleSources(
+            context.getString(message),
+            null,
+            comfirmButtonLabel,
+            null
+        ).flatMapCompletable { Completable.complete() }
+
+    override fun createAlertDialog(
+        message: String,
+        title: String?,
+        positiveButtonLabel: Int,
+        negativeButtonLabel: Int
+    ): Single<AlertDialogButton> = createAlertDialogBySingleSources(
+        message, title, positiveButtonLabel, negativeButtonLabel
+    )
+
+    override fun createAlertDialog(
+        message: Int,
+        title: Int?,
+        positiveButtonLabel: Int,
+        negativeButtonLabel: Int
+    ): Single<AlertDialogButton> = createAlertDialogBySingleSources(
+        context.getText(message),
+        if (title != null) context.getText(title) else null,
+        positiveButtonLabel,
+        negativeButtonLabel
+    )
+
+    private fun createAlertDialogBySingleSources(
+        message: CharSequence,
+        title: CharSequence?,
+        positiveButtonLabel: Int,
+        negativeButtonLabel: Int?
+    ): Single<AlertDialogButton> =
+        Single.create { emitter ->
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage(message)
+            if (!title.isNullOrEmpty()) {
+                builder.setTitle(title)
+            }
+            builder.setPositiveButton(positiveButtonLabel) { dialog, which ->
+                emitter.onSuccess(AlertDialogButton.POSITIVE)
+            }
+            negativeButtonLabel?.let {
+                builder.setNegativeButton(it) { dialog, which ->
+                    emitter.onSuccess(AlertDialogButton.NEGATIVE)
+                }
+            }
+            builder.setOnCancelListener {
+                emitter.onSuccess(AlertDialogButton.NONE)
+            }
+            val dialog = builder.create()
+            emitter.setDisposable(
+                Disposable.fromRunnable { dialog.dismiss() }
+            )
+            dialog.show()
+        }
 
 }

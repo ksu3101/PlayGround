@@ -1,4 +1,4 @@
-# PlayGround (WIP)
+# PlayGround 
 
 이 프로젝트는 토이 프로젝트로서 업무외 시간에 개인적인 목표를 잡고 여러가지의 도메인을 시도해 본다.
 
@@ -70,6 +70,7 @@
 `MainActivity`에서 각 도메인으로 이동 할 수 있게 하고, 각 도메인은 서로간 의존을 자제 하거나 최소화 한다.
 
 - MainActivity : 앱 실행시 진입 Activity
+  - MainFragment : 하단의 각 서브 도메인으로 진입할 수 있는 버튼들을 갖고 있다. 
 
 ### 2.1 covid-19 현황판  
 

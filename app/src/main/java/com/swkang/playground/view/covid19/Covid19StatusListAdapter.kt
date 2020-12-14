@@ -15,6 +15,8 @@ import com.swkang.playground.R
 class Covid19StatusListAdapter(
     private val vm: Covid19StatusViewModel
 ) : ListAdapter<LocationCovid19Infos, Covid19StatusListAdapter.Covid19StatusViewHolder>(difUtil) {
+
+    // Diff util
     companion object {
         const val VIEWTYPE_TOP = 0
         const val VIEWTYPE_DEFAULT = 1
@@ -51,7 +53,7 @@ class Covid19StatusListAdapter(
         }
 
     /**
-     * base view holder abstract class.
+     * 뷰타입에 따른 각 뷰홀더의 부모 클래스
      */
     abstract class Covid19StatusViewHolder(
         binding: ViewDataBinding
@@ -77,7 +79,11 @@ class Covid19StatusListAdapter(
     }
 
     /**
-     * Top view holder class.
+     * 상단 헤더 뷰 홀더
+     *
+     * - 국내/세계 감염자, 사망자, 완치자 현황
+     * - 시-도/각 국가 별 현황 리스트 목록의 헤더
+     * - 목록에서 0번째 포지션에 무조건 한개만 존재
      */
     class Covid19StatusTopViewHolder(private val binding: ViewDataBinding) :
         Covid19StatusViewHolder(binding) {
@@ -88,7 +94,7 @@ class Covid19StatusListAdapter(
     }
 
     /**
-     * default view holder class.
+     * 시-도/각 국가 별 현황 리스트 아이템 항목에 대한 뷰 홀더
      */
     class Civud18StatusCountryViewHolder(private val binding: ViewDataBinding) :
         Covid19StatusViewHolder(binding) {
