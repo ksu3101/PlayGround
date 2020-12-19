@@ -3,7 +3,9 @@
     <string name="c_confirm">확인</string>
     <string name="c_yes">네</string>
     <string name="c_no">아니오</string>
+    <string name="c_retry">재시도</string>
     <string name="c_error">알수 없는 오류가 발생 하였습니다. 다시 시도해 주세요.</string>
+    <string name="c_error_retry">데이터를 불러오는데 실패 하였습니다. 다시 시도 하겠습니까?</string>
     <string name="c_exit">한번더 Back키를 누르면 앱이 종료 됩니다.</string>
     <string name="c_people_kr">명</string>
 

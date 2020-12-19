@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.swkang.model.base.helper.AlertDialogButton
 import com.swkang.model.base.helper.MessageHelper
+import com.swkang.playground.R
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
@@ -54,6 +55,28 @@ class MessageHelperImpl(
             comfirmButtonLabel,
             null
         ).flatMapCompletable { Completable.complete() }
+
+    override fun createSimpleRetryDialog(
+        message: String,
+        retryButtonLabel: Int
+    ): Single<AlertDialogButton> =
+        createAlertDialogBySingleSources(
+            message,
+            null,
+            retryButtonLabel,
+            R.string.c_no
+        )
+
+    override fun createSimpleRetryDialog(
+        message: Int,
+        retryButtonLabel: Int
+    ): Single<AlertDialogButton> =
+        createAlertDialogBySingleSources(
+            context.getString(message),
+            null,
+            retryButtonLabel,
+            R.string.c_no
+        )
 
     override fun createAlertDialog(
         message: String,

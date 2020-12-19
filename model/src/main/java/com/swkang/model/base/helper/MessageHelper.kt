@@ -31,6 +31,16 @@ interface MessageHelper {
         comfirmButtonLabel: Int = R.string.c_confirm
     ): Completable
 
+    fun createSimpleRetryDialog(
+        message: String,
+        retryButtonLabel: Int = R.string.c_retry
+    ): Single<AlertDialogButton>
+
+    fun createSimpleRetryDialog(
+        message: Int = R.string.c_error_retry,
+        retryButtonLabel: Int = R.string.c_retry
+    ): Single<AlertDialogButton>
+
     fun createAlertDialog(
         message: String,
         title: String? = null,
