@@ -6,23 +6,23 @@ import com.swkang.model.domain.peopleinspace.datas.SpacePeople
 
 // - - ACTION - - - - - - - - - - - - - - - - - -
 
-sealed class HowManyPeopleInSpaceAction : Action
+sealed class PeopleInSpaceAction : Action
 
-object InitializeAction : HowManyPeopleInSpaceAction()
+object InitializeAction : PeopleInSpaceAction()
 
-object RetrievePeoplesInSpaceAction : HowManyPeopleInSpaceAction()
+object RetrievePeoplesInSpaceAction : PeopleInSpaceAction()
 
 // - - STATE - - - - - - - - - - - - - - - - - - -
 
-sealed class HowManyPeopleInSpaceState : State
+sealed class PeopleInSpaceState : State
 
-object InitializedState : HowManyPeopleInSpaceState()
+object InitializedState : PeopleInSpaceState()
 
-data class PeoplesInSpaceRetrieveCompleteState(
+data class PeoplesInSpaceReceiveSuccessState(
     val peopleCounts: Int,
     val peoples: List<SpacePeople>
-) : HowManyPeopleInSpaceState()
+) : PeopleInSpaceState()
 
-data class PeoplesInSpaceRetrieveErrorState(
+data class PeoplesInSpaceReceiveErrorState(
     val errorMessage: String
-) : HowManyPeopleInSpaceState()
+) : PeopleInSpaceState()

@@ -13,7 +13,7 @@ import com.swkang.model.domain.peopleinspace.repository.HowManyPeopleInSpaceRepo
 class HowManyPeopleInSpaceViewModel @ViewModelInject constructor(
     private val repository: HowManyPeopleInSpaceRepository,
     private val messageHelper: MessageHelper
-) : BaseStateViewModel<HowManyPeopleInSpaceState>() {
+) : BaseStateViewModel<PeopleInSpaceState>() {
 
     private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean>
@@ -28,7 +28,7 @@ class HowManyPeopleInSpaceViewModel @ViewModelInject constructor(
         get() = _peoples
 
     init {
-        repository.stateSubscriber()
+        repository.stateSubscribe()
             .subscribeAndDisposed(
                 this,
                 { render(it) }
@@ -37,19 +37,19 @@ class HowManyPeopleInSpaceViewModel @ViewModelInject constructor(
         dispatchRetrievePeoplesInSpaceAction()
     }
 
-    override fun render(state: HowManyPeopleInSpaceState) {
+    override fun render(state: PeopleInSpaceState) {
         when (state) {
             is InitializedState -> {
                 _isLoading.value = false
                 _peopleCounts.value = 0
                 _peoples.value = emptyList()
             }
-            is PeoplesInSpaceRetrieveCompleteState -> {
+            is PeoplesInSpaceReceiveSuccessState -> {
                 _isLoading.value = false
                 _peopleCounts.value = state.peopleCounts
                 _peoples.value = state.peoples
             }
-            is PeoplesInSpaceRetrieveErrorState -> {
+            is PeoplesInSpaceReceiveErrorState -> {
                 _isLoading.value = false
                 messageHelper.createSimpleRetryDialog()
                     .subscribeAndDisposed(
