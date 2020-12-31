@@ -6,7 +6,9 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 
 enum class AlertDialogButton {
-    NONE, POSITIVE, NEGATIVE
+    NONE, POSITIVE, NEGATIVE;
+
+    fun isPositiveButton(): Boolean = this == POSITIVE
 }
 
 interface MessageHelper {

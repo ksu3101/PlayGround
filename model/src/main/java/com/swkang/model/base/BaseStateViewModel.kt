@@ -1,6 +1,18 @@
 package com.swkang.model.base
 
-abstract class BaseStateViewModel<in S: State>: BaseViewModel() {
+import com.swkang.common.exts.rx.subscribeAndDisposed
+
+abstract class BaseStateViewModel<A : Action, S : State>(
+    stateRepository: BaseStateRepository<A, S>
+) : BaseViewModel() {
+
+    init {
+        stateRepository.stateSubscribe()
+            .subscribeAndDisposed(
+                this,
+                { render(it) }
+            )
+    }
 
     abstract fun render(state: S)
 
