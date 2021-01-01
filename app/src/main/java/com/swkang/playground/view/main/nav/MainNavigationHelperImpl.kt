@@ -22,4 +22,15 @@ class MainNavigationHelperImpl(
         activity.supportActionBar?.show()
     }
 
+    override fun openHowManyPeoplesInSpacePage() {
+        val direction = MainFragmentDirections
+            .actionMainFragmentToHowManyPeopleInSpaceActivity()
+        activity.findNavController(R.id.fragmentContainer).navigate(direction)
+        activity.supportActionBar?.hide()
+    }
+
+    override fun closeHowManyPeoplesInSpacepage() {
+        activity.findNavController(R.id.fragmentContainer).navigateUp()
+        activity.supportActionBar?.show()
+    }
 }

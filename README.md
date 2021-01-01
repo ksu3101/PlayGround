@@ -111,7 +111,9 @@ One `Activity`에 `Fragment`에서는 `ViewPager2`와 Tab을 구현하여 내부
 - `Action` : State를 변화시킬 수 있는 유일한 방법으로서, Action이 dispatch 되어야 한다.   
 - `State` : 처리된 Action을 바탕으로 만들어진 화면의 상태를 정의한 불변 데이터 클래스(Immutable data class).
   - State는 `StateRepository`를 통해서 publish된다. state listener(Observable source)를 구독 한다면 해당 Observable source를 받아을 수 있으며 이를 `StateViewModel`의 `render()` 에서 State를 처리(뷰의 갱신) 하면 된다.  
-- `StateRepository` : Action을 dispatch할수 있게 Api를 제공 하고 dispatch된 Action을 State로 만들기 위한 비즈니스 로직을 수행하는 클래스. 
+- `StateRepository` : Action을 dispatch할수 있게 Api를 제공 하고 dispatch된 Action을 State로 만들기 위한 비즈니스 로직을 수행하는 클래스.
+- `StateViewModel` : State를 받아 Render 하는 ViewModel. 
+  - `fun render(state: S)` : State를 처리 하는 추상 함수.  
 
 ### 2.3 서브 도메인 3
 

@@ -10,9 +10,16 @@
         <action
             android:id="@+id/action_mainFragment_to_covid19StatusActivity"
             app:destination="@id/covid19StatusActivity" />
+        <action
+            android:id="@+id/action_mainFragment_to_howManyPeopleInSpaceActivity"
+            app:destination="@id/howManyPeopleInSpaceActivity" />
     </fragment>
     <activity
         android:id="@+id/covid19StatusActivity"
         android:name="com.swkang.playground.view.covid19.Covid19StatusActivity"
         android:label="Covid19StatusActivity" />
+    <activity
+        android:id="@+id/howManyPeopleInSpaceActivity"
+        android:name="com.swkang.playground.view.peopleinspace.HowManyPeopleInSpaceActivity"
+        android:label="HowManyPeopleInSpaceActivity" />
 </navigation>

@@ -15,4 +15,8 @@ class MainViewModel @ViewModelInject constructor(
         navigation.openCovid19StatusPage()
     }
 
+    val onHowManyPeoplesInSpaceBtnClicked: () -> Unit = {
+        navigation.openHowManyPeoplesInSpacePage()
+    }
+
 }

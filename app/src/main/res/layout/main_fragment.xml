@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/main_btn_covid19nav"
             style="@style/PrimaryButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -28,6 +28,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/main_btn_howmanypeoplesinspacenav"
+            style="@style/PrimaryButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:onClick="@{vm.onHowManyPeoplesInSpaceBtnClicked}"
+            android:text="@string/howmanypeoplesinspace_title"
+            app:layout_constraintEnd_toEndOf="@+id/main_btn_covid19nav"
+            app:layout_constraintStart_toStartOf="@+id/main_btn_covid19nav"
+            app:layout_constraintTop_toBottomOf="@+id/main_btn_covid19nav" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
