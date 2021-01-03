@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- snack bar -->
+    <dimen name="c_snackbar_margin_top">0dp</dimen>
+    <dimen name="c_snackbar_margin_left">12dp</dimen>
+    <dimen name="c_snackbar_margin_bottom">16dp</dimen>
+    <dimen name="c_snackbar_margin_right">10dp</dimen>
+    <dimen name="c_snackbar_padding_top">10dp</dimen>
+    <dimen name="c_snackbar_padding_left">10dp</dimen>
+    <dimen name="c_snackbar_padding_bottom">10dp</dimen>
+    <dimen name="c_snackbar_padding_right">10dp</dimen>
+    <dimen name="c_snackbar_default_text_size">14dp</dimen>
+
+</resources>

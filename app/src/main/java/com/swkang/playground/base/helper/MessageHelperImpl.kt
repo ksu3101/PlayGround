@@ -1,11 +1,15 @@
 package com.swkang.playground.base.helper
 
+import android.app.Activity
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.google.android.material.snackbar.Snackbar
 import com.swkang.model.base.helper.AlertDialogButton
 import com.swkang.model.base.helper.MessageHelper
 import com.swkang.playground.R
+import com.swkang.playground.base.exts.setMaterialDesignStyle
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
@@ -25,16 +29,40 @@ class MessageHelperImpl(
 
     private fun showToast(msgResId: Int, msgStr: String?, isLong: Boolean) {
         this.toast?.cancel()
-        val msg =
-            if (msgResId == 0 && msgStr.isNullOrEmpty()) {
-                throw IllegalArgumentException("message parameter has not available.")
-            } else {
-                if (!msgStr.isNullOrEmpty()) msgStr
-                else context.getString(msgResId)
-            }
+        val msg = getMessageString(msgResId, msgStr)
         val toastLength = if (isLong) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
         this.toast = Toast.makeText(context, msg, toastLength)
         this.toast?.show()
+    }
+
+    override fun showSnackBar(
+        msgResId: Int,
+        msgStr: String?,
+        btnLabel: Int,
+        btnListener: (() -> Unit)?
+    ) {
+        if (context is Activity) {
+            context.window.decorView.rootView?.let {
+                val msg = getMessageString(msgResId, msgStr)
+                val snackBar = Snackbar.make(it, msg, Snackbar.LENGTH_SHORT)
+                btnListener?.let { listener ->
+                    snackBar.setAction(context.getString(btnLabel)) { listener() }
+                }
+                snackBar.setMaterialDesignStyle()
+                snackBar.show()
+            }
+        } else {
+            Log.e("MessageHelperImpl", "showSnackBar() // Context is not Activity instance. ")
+        }
+    }
+
+    private fun getMessageString(msgResId: Int, msgStr: String?): String {
+        return if (msgResId == 0 && msgStr.isNullOrEmpty()) {
+            throw IllegalArgumentException("message parameter has not available.")
+        } else {
+            if (!msgStr.isNullOrEmpty()) msgStr
+            else context.getString(msgResId)
+        }
     }
 
     override fun createSimpleComfirmDialog(
