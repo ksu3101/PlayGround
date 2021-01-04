@@ -23,13 +23,6 @@ interface MessageHelper {
         isLong: Boolean = false
     )
 
-    fun showSnackBar(
-        msgResId: Int,
-        msgStr: String? = null,
-        btnLabel: Int = R.string.c_confirm,
-        btnListener: (() -> Unit)? = null
-    )
-
     fun createSimpleComfirmDialog(
         message: String,
         comfirmButtonLabel: Int = R.string.c_confirm
