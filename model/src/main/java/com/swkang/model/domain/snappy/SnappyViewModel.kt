@@ -8,8 +8,8 @@ import com.swkang.model.base.BaseViewModel
  * https://medium.com/over-engineering/detecting-snap-changes-with-androids-recyclerview-snaphelper-9e9f5e95c424
  */
 
-interface SnappyItem<T> {
-    val item: T
+interface RvItem<T> {
+    val data: T
     val viewType: Int
 }
 
@@ -20,8 +20,8 @@ data class Book(
 
 class SnappyViewModel : BaseViewModel() {
 
-    private val _items = MutableLiveData<List<SnappyItem<Book>>>()
-    val items: LiveData<List<SnappyItem<Book>>>
+    private val _items = MutableLiveData<List<RvItem<Book>>>()
+    val items: LiveData<List<RvItem<Book>>>
         get() = _items
 
     init {

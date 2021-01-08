@@ -5,15 +5,21 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.swkang.model.domain.snappy.Book
-import com.swkang.model.domain.snappy.SnappyItem
+import com.swkang.model.domain.snappy.RvItem
 
 data class BestSeller(
-    override val item: Book,
+    override val data: Book,
     override val viewType: Int
-): SnappyItem<Book>
+): RvItem<Book>
+
+data class NewBook(
+    override val data: Book,
+    override val viewType: Int
+): RvItem<Book>
+
 
 class SnappyItemsListAdapter
-    : ListAdapter<SnappyItem<Book>, RecyclerView.ViewHolder>(diffUtil) {
+    : ListAdapter<RvItem<Book>, RecyclerView.ViewHolder>(diffUtil) {
 
     companion object {
         const val VIEWTYPE_CATEGORY = 0
@@ -22,17 +28,16 @@ class SnappyItemsListAdapter
         const val VIEWTYPE_RECOMMENDED = 3
         const val VIEWTYPE_DEFAULT = 4
 
-        val diffUtil = object : DiffUtil.ItemCallback<SnappyItem<Book>>() {
+        val diffUtil = object : DiffUtil.ItemCallback<RvItem<Book>>() {
             override fun areItemsTheSame(
-                oldItem: SnappyItem<Book>,
-                newItem: SnappyItem<Book>
-            ) = oldItem.item.id == newItem.item.id
+                oldItem: RvItem<Book>,
+                newItem: RvItem<Book>
+            ) = oldItem.data.id == newItem.data.id
 
             override fun areContentsTheSame(
-                oldItem: SnappyItem<Book>,
-                newItem: SnappyItem<Book>
-            ) = oldItem.item == newItem.item
-
+                oldItem: RvItem<Book>,
+                newItem: RvItem<Book>
+            ) = oldItem.data == newItem.data
         }
     }
 
