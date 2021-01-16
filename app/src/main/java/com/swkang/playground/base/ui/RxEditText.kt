@@ -1,4 +1,4 @@
-package com.swkang.model.base.ui
+package com.swkang.playground.base.ui
 
 import android.content.Context
 import android.text.Editable
