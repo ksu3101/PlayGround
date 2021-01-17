@@ -4,7 +4,7 @@ import com.swkang.common.base.RxDisposer
 import io.reactivex.rxjava3.core.*
 
 
-fun <T> Observable<T>.subscribeAndDisposed(
+fun <T> Observable<T>.subscribeAndDispose(
     disposer: RxDisposer,
     onSuccess: (T) -> Unit,
     onError: ((Throwable) -> Unit)? = null,
@@ -15,7 +15,7 @@ fun <T> Observable<T>.subscribeAndDisposed(
     )
 }
 
-fun <T> Flowable<T>.subscribeAndDisposed(
+fun <T> Flowable<T>.subscribeAndDispose(
     disposer: RxDisposer,
     onSuccess: (T) -> Unit,
     onError: ((Throwable) -> Unit)? = null,
@@ -26,7 +26,7 @@ fun <T> Flowable<T>.subscribeAndDisposed(
     )
 }
 
-fun <T> Maybe<T>.subscribeAndDisposed(
+fun <T> Maybe<T>.subscribeAndDispose(
     disposer: RxDisposer,
     onSuccess: (T) -> Unit,
     onError: ((Throwable) -> Unit)? = null,
@@ -37,7 +37,7 @@ fun <T> Maybe<T>.subscribeAndDisposed(
     )
 }
 
-fun <T> Single<T>.subscribeAndDisposed(
+fun <T> Single<T>.subscribeAndDispose(
     disposer: RxDisposer,
     onSuccess: (T) -> Unit,
     onError: ((Throwable) -> Unit)? = null
@@ -47,7 +47,7 @@ fun <T> Single<T>.subscribeAndDisposed(
     )
 }
 
-fun Completable.subscribeAndDisposed(
+fun Completable.subscribeAndDispose(
     disposer: RxDisposer,
     onError: ((Throwable) -> Unit)? = null,
     onComplete: (() -> Unit)

@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.swkang.common.DEFAULT_TIMESTAMP
 import com.swkang.common.exts.addFirst
-import com.swkang.common.exts.rx.subscribeAndDisposed
+import com.swkang.common.exts.rx.subscribeAndDispose
 import com.swkang.model.R
 import com.swkang.model.base.BaseViewModel
 import com.swkang.model.base.helper.MessageHelper
@@ -99,7 +99,7 @@ class Covid19StatusViewModel @ViewModelInject constructor(
             clearViews()
         }.doFinally {
             _isLoading.postValue(false)
-        }.subscribeAndDisposed(
+        }.subscribeAndDispose(
             this,
             {
                 updateViews(it)

@@ -3,9 +3,8 @@ package com.swkang.model.domain.peopleinspace
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.swkang.common.exts.rx.subscribeAndDisposed
+import com.swkang.common.exts.rx.subscribeAndDispose
 import com.swkang.model.base.BaseStateViewModel
-import com.swkang.model.base.helper.AlertDialogButton
 import com.swkang.model.base.helper.MessageHelper
 import com.swkang.model.domain.peopleinspace.datas.SpacePeople
 import com.swkang.model.domain.peopleinspace.repository.HowManyPeopleInSpaceRepository
@@ -46,7 +45,7 @@ class HowManyPeopleInSpaceViewModel @ViewModelInject constructor(
             is PeoplesInSpaceReceiveErrorState -> {
                 _isLoading.value = false
                 messageHelper.createSimpleRetryDialog()
-                    .subscribeAndDisposed(
+                    .subscribeAndDispose(
                         this,
                         {
                             if (it.isPositiveButton()) {

@@ -1,6 +1,6 @@
 package com.swkang.model.base
 
-import com.swkang.common.exts.rx.subscribeAndDisposed
+import com.swkang.common.exts.rx.subscribeAndDispose
 
 abstract class BaseStateViewModel<A : Action, S : State>(
     stateRepository: BaseStateRepository<A, S>
@@ -8,7 +8,7 @@ abstract class BaseStateViewModel<A : Action, S : State>(
 
     init {
         stateRepository.stateSubscribe()
-            .subscribeAndDisposed(
+            .subscribeAndDispose(
                 this,
                 { render(it) }
             )

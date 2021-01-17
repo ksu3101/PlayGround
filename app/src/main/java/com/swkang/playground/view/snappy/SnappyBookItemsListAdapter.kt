@@ -39,23 +39,17 @@ class SnappyBookItemsListAdapter : MultipleItemTypedListAdater() {
             else -> throw IllegalArgumentException("unknown viewType. at [$position].")
         }
 
-    fun getBook(position: Int): Book =
-        getItem(position) as? Book ?: throw IllegalStateException(
-            "[$position] item is not Book instance. [${
-                getItem(
-                    position
-                )
-            }]"
-        )
+    fun getBook(position: Int): Book {
+        val book = getItem(position)
+        return book as? Book
+            ?: throw IllegalStateException("[$position] item is not Book instance. [$book]")
+    }
 
-    fun getCategory(position: Int): TextCategoryItem =
-        getItem(position) as? TextCategoryItem ?: throw IllegalStateException(
-            "[$position] item is not TextCategoryItem instance. [${
-                getItem(
-                    position
-                )
-            }]"
-        )
+    fun getCategory(position: Int): TextCategoryItem {
+        val category = getItem(position)
+        return category as? TextCategoryItem
+            ?: throw IllegalStateException("[$position] item is not TextCategoryItem instance. [$category]")
+    }
 
     /**
      * Book View Holder
