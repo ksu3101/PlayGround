@@ -94,3 +94,5 @@ dependencies {
 	implementation project(':common')
 	implementation project(':model')
 }
+
+apply from: "$rootDir/jacoco.gradle"

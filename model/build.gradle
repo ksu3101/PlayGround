@@ -68,3 +68,5 @@ dependencies {
 
     implementation project(':common')
 }
+
+apply from: "$rootDir/jacoco.gradle"

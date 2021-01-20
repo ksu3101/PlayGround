@@ -47,3 +47,5 @@ dependencies {
     testImplementation "junit:junit:$jUnit"
     testImplementation "org.mockito:mockito-core:$mockito"
 }
+
+apply from: "$rootDir/jacoco.gradle"

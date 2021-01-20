@@ -1,0 +1,74 @@
+apply plugin: "jacoco"
+
+/*
+TODO
+ 1. 각 모듈에서 생성되는 xml리포트 파일 머지
+*/
+
+jacoco {
+    toolVersion = '0.8.6'
+    reportsDir = file("${buildDir}/reports")
+}
+
+String flavor = project.ext.has('pFlavor') ? project.ext.pFlavor : ''
+String dependsOnTask = "test${flavor.capitalize()}DebugUnitTest"
+
+task generateCodeCoverageReports(type: JacocoReport, dependsOn: dependsOnTask) {
+    group = "Reporting"
+    description = "Generate Jaoco Coverage Reports"
+
+    def reportDirPath = "$buildDir/reports/codeCoverage"
+
+    reports {
+        html.enabled true
+        xml.enabled true
+
+        html.destination file("$reportDirPath/reports")
+        xml.destination file("$reportDirPath/reports.xml")
+    }
+
+    def fileFilter =
+            [
+                    '**/R.class',
+                    '**/R$*.class',
+                    '**/BuildConfig.*',
+                    '**/Manifest*.*',
+                    '**/*Test*.*',
+                    'android/**/*.*',
+                    '**/*InjectAdapter*.*',
+                    '**/*StaticInjection*.*',
+                    '**/*ModuleAdapter*.*',
+                    // Dagger
+                    '**/*_Provide*/**',
+                    '**/*_Factory*/**',
+                    '**/*_MembersInjector.class',
+                    '**/*Dagger*'
+            ]
+
+    def javaClassDirPath = "$project.buildDir/intermediates/javac/debug/classes"
+    def kotlinClassDirPath = "$project.buildDir/tmp/kotlin-classes/debug"
+    def coverageExecutionDataPath = "${buildDir}/jacoco/testDebugUnitTest.exec"
+
+    if (!flavor.isEmpty()) {
+        javaClassDirPath = "$project.buildDir/intermediates/javac/${flavor}Debug/classes"
+        kotlinClassDirPath = "$project.buildDir/tmp/kotlin-classes/${flavor}Debug"
+        coverageExecutionDataPath = "${buildDir}/jacoco/test${flavor.capitalize()}DebugUnitTest.exec"
+    }
+    def mainJavaSrcPath = "$project.projectDir/src/main/java"
+    def mainKotlinSrcPath = "$project.projectDir/src/main/kotlin"
+    sourceDirectories.from = files([mainJavaSrcPath, mainKotlinSrcPath])
+    classDirectories.from = fileTree(
+            dir: javaClassDirPath,
+            excludes: fileFilter
+    ) + fileTree(
+            dir: kotlinClassDirPath,
+            excludes: fileFilter
+    )
+    executionData.from = file(coverageExecutionDataPath)
+}
+
+tasks.all { task ->
+    if (task.name.equals(dependsOnTask)){
+        task.finalizedBy generateCodeCoverageReports
+    }
+}

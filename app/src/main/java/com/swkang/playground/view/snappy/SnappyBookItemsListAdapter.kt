@@ -63,8 +63,8 @@ class SnappyBookItemsListAdapter : MultipleItemTypedListAdater() {
         }
 
         override fun bind(data: Book) {
-            binding.setVariable(BR.book, data)
-            binding.executePendingBindings()
+//            binding.setVariable(BR.book, data)
+//            binding.executePendingBindings()
         }
     }
 
@@ -80,8 +80,8 @@ class SnappyBookItemsListAdapter : MultipleItemTypedListAdater() {
         }
 
         override fun bind(data: TextCategoryItem) {
-            binding.setVariable(BR.category, data)
-            binding.executePendingBindings()
+//            binding.setVariable(BR.category, data)
+//            binding.executePendingBindings()
         }
     }
 
