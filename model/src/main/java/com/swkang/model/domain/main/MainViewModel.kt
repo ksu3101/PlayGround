@@ -19,4 +19,8 @@ class MainViewModel @ViewModelInject constructor(
         navigation.openHowManyPeoplesInSpacePage()
     }
 
+    val onSnappyRecyclerViewExampleBtnClicked: () -> Unit = {
+        
+    }
+
 }

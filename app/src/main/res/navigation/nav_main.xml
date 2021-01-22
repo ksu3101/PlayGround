@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_howManyPeopleInSpaceActivity"
             app:destination="@id/howManyPeopleInSpaceActivity" />
+        <action
+            android:id="@+id/action_mainFragment_to_snappyRecyclerViewActivity"
+            app:destination="@id/snappyRecyclerViewActivity" />
     </fragment>
     <activity
         android:id="@+id/covid19StatusActivity"
@@ -22,4 +25,8 @@
         android:id="@+id/howManyPeopleInSpaceActivity"
         android:name="com.swkang.playground.view.peopleinspace.HowManyPeopleInSpaceActivity"
         android:label="HowManyPeopleInSpaceActivity" />
+    <activity
+        android:id="@+id/snappyRecyclerViewActivity"
+        android:name="com.swkang.playground.view.snappy.SnappyRecyclerViewActivity"
+        android:label="SnappyRecyclerViewActivity" />
 </navigation>

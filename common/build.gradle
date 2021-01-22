@@ -49,3 +49,4 @@ dependencies {
 }
 
 apply from: "$rootDir/jacoco.gradle"
+apply from: "$rootDir/sonarqube.gradle"

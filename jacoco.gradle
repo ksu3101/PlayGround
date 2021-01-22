@@ -4,7 +4,6 @@ apply plugin: "jacoco"
 TODO
  1. 각 모듈에서 생성되는 xml리포트 파일 머지
 */
-
 jacoco {
     toolVersion = '0.8.6'
     reportsDir = file("${buildDir}/reports")
