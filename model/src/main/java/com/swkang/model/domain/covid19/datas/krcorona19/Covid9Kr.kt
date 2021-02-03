@@ -1,7 +1,7 @@
 package com.swkang.model.domain.covid19.datas.krcorona19
 
 import com.squareup.moshi.Json
-import com.swkang.common.exts.isNumber
+import com.swkang.common.exts.isSignedNumber
 import com.swkang.model.domain.covid19.datas.Covid19Infos
 import com.swkang.model.domain.covid19.datas.LocationCovid19Infos
 
@@ -163,10 +163,12 @@ fun Corona19KrCountry.toLocationCovid19Infos(index: Int, currentTime: Long): Loc
 
 private fun String?.toNumberOnly(): Long {
     if (this.isNullOrEmpty()) return 0
-    else if (this.contains(",")) {
-        return this.replace(",", "").toLong()
-    } else if (this.isNumber()) {
-        return this.toLong()
+    var temp = this
+    if (temp.contains(",")) {
+        temp = this.replace(",", "")
+    }
+    if (temp.isSignedNumber()) {
+        return temp.toLong()
     }
     throw IllegalArgumentException("`$this` is not Number.")
 }
