@@ -65,6 +65,7 @@ dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 	implementation "androidx.appcompat:appcompat:$appCompat"
 	implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$architectureLifecycle"
+	implementation "androidx.lifecycle:lifecycle-common-java8:$architectureLifecycle"
 	implementation "androidx.recyclerview:recyclerview:$recyclerview"
 	implementation "androidx.core:core-ktx:$ktxCore"
 	implementation "androidx.fragment:fragment-ktx:$ktxFragment"
