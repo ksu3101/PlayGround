@@ -4,6 +4,7 @@ buildscript {
 	ext.navigation = '2.3.3'
 	ext.daggerHilt = '2.28-alpha'
 	ext.sonarqube = '3.1'
+	ext.kotlinxCoroutine = '1.4.2'
 
 	repositories {
 		google()

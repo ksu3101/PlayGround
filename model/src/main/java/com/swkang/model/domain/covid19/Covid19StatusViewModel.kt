@@ -1,8 +1,6 @@
 package com.swkang.model.domain.covid19
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.swkang.common.DEFAULT_TIMESTAMP
 import com.swkang.common.exts.addFirst
 import com.swkang.common.exts.rx.subscribeAndDispose
@@ -14,6 +12,8 @@ import com.swkang.model.domain.covid19.datas.Covid19Datas
 import com.swkang.model.domain.covid19.datas.Covid19Infos
 import com.swkang.model.domain.covid19.datas.LocationCovid19Infos
 import com.swkang.model.domain.covid19.repository.Covid19Repository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -22,55 +22,55 @@ class Covid19StatusViewModel @ViewModelInject constructor(
     private val messageHelper: MessageHelper,
     private val resourceHelper: ResourceHelper
 ) : BaseViewModel() {
-    private val _isLoading = MutableLiveData(false)
-    val isLoading: LiveData<Boolean>
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean>
         get() = _isLoading
 
     // 한국 | 세계 구분
-    private val _isKorean = MutableLiveData(true)
-    val isKorean: LiveData<Boolean>
+    private val _isKorean = MutableStateFlow(true)
+    val isKorean: StateFlow<Boolean>
         get() = _isKorean
 
     // api 완료 시점 - 시간 스탬프
-    private val _currentTimeStamp = MutableLiveData("")
-    val currentTimeStamp: LiveData<String>
+    private val _currentTimeStamp = MutableStateFlow("")
+    val currentTimeStamp: StateFlow<String>
         get() = _currentTimeStamp
 
     // 국내 총 확진자 수
-    private val _totalCase = MutableLiveData<Long>(0)
-    val totalCase: LiveData<Long>
+    private val _totalCase = MutableStateFlow<Long>(0)
+    val totalCase: StateFlow<Long>
         get() = _totalCase
 
     // 추가 확진자 수
-    private val _todayNewCase = MutableLiveData<Long>(0)
-    val todayNewCase: LiveData<Long>
+    private val _todayNewCase = MutableStateFlow<Long>(0)
+    val todayNewCase: StateFlow<Long>
         get() = _todayNewCase
 
     // 국내 총 사망자 수
-    private val _totalDeath = MutableLiveData<Long>(0)
-    val totalDeath: LiveData<Long>
+    private val _totalDeath = MutableStateFlow<Long>(0)
+    val totalDeath: StateFlow<Long>
         get() = _totalDeath
 
     // 추가 사망자 수
-    private val _todayNewDeath = MutableLiveData<Long>(0)
-    val todayNewDeath: LiveData<Long>
+    private val _todayNewDeath = MutableStateFlow<Long>(0)
+    val todayNewDeath: StateFlow<Long>
         get() = _todayNewDeath
 
     // 국내 총 완치자 수
-    private val _totalRecovered = MutableLiveData<Long>(0)
-    val totalRecovered: LiveData<Long>
+    private val _totalRecovered = MutableStateFlow<Long>(0)
+    val totalRecovered: StateFlow<Long>
         get() = _totalRecovered
 
     // 추가 완치자 수
-    private val _todayNewRecovered = MutableLiveData<Long>(0)
-    val todayNewRecovered: LiveData<Long>
+    private val _todayNewRecovered = MutableStateFlow<Long>(0)
+    val todayNewRecovered: StateFlow<Long>
         get() = _todayNewRecovered
 
     // 국내 : 각 시도별 확진자 정보
     // 세계 : 확진자 순 정렬된 각 국가의 확진자 정보
     // 국내, 세계 모두 최대 18개 까지 출력
-    private val _covid19Countries = MutableLiveData<List<LocationCovid19Infos>>(emptyList())
-    val covid19Countries: LiveData<List<LocationCovid19Infos>>
+    private val _covid19Countries = MutableStateFlow<List<LocationCovid19Infos>>(emptyList())
+    val covid19Countries: StateFlow<List<LocationCovid19Infos>>
         get() = _covid19Countries
 
     // 새로고침 이벤트 핸들러
@@ -95,10 +95,10 @@ class Covid19StatusViewModel @ViewModelInject constructor(
         } else {
             covid19Repo.requestWorldStatusSummary()
         }.doOnSubscribe {
-            _isLoading.postValue(true)
+            _isLoading.value = true
             clearViews()
         }.doFinally {
-            _isLoading.postValue(false)
+            _isLoading.value = false
         }.subscribeAndDispose(
             this,
             {
