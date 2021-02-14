@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.swkang.common.DEFAULT_TIMESTAMP
 import com.swkang.common.exts.addFirst
 import com.swkang.common.exts.rx.subscribeAndDispose
+import com.swkang.common.getTimeStamp
 import com.swkang.model.R
 import com.swkang.model.base.BaseViewModel
 import com.swkang.model.base.helper.MessageHelper
@@ -151,12 +152,6 @@ class Covid19StatusViewModel @ViewModelInject constructor(
         _covid19Countries.value = covid19Infos.locations.addFirst(
             Covid19Datas.DUMMY_LOC_COVID19INFOS
         )
-    }
-
-    private fun getTimeStamp(): String {
-        val sdf = SimpleDateFormat(DEFAULT_TIMESTAMP, Locale.KOREA)
-        sdf.timeZone = TimeZone.getTimeZone("Asia/Seoul")
-        return sdf.format(Calendar.getInstance().time)
     }
 
 }
