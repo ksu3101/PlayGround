@@ -1,9 +1,7 @@
 package com.swkang.model.domain.covid19
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.swkang.common.DEFAULT_TIMESTAMP
 import com.swkang.common.exts.addFirst
 import com.swkang.common.exts.rx.subscribeAndDispose
 import com.swkang.common.getTimeStamp
@@ -15,10 +13,11 @@ import com.swkang.model.domain.covid19.datas.Covid19Datas
 import com.swkang.model.domain.covid19.datas.Covid19Infos
 import com.swkang.model.domain.covid19.datas.LocationCovid19Infos
 import com.swkang.model.domain.covid19.repository.Covid19Repository
-import java.text.SimpleDateFormat
-import java.util.*
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class Covid19StatusViewModel @ViewModelInject constructor(
+@HiltViewModel
+class Covid19StatusViewModel @Inject constructor(
     private val covid19Repo: Covid19Repository,
     private val messageHelper: MessageHelper,
     private val resourceHelper: ResourceHelper

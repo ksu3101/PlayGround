@@ -1,14 +1,15 @@
 package com.swkang.model.domain.main
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import com.swkang.model.base.BaseViewModel
 import com.swkang.model.domain.main.nav.MainNavigationHelper
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainViewModel @ViewModelInject constructor(
-    private val navigation: MainNavigationHelper,
-    @Assisted private val savedStateHandle: SavedStateHandle
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
+    private val navigation: MainNavigationHelper
 ) : BaseViewModel() {
 
     val onCovid19StatusBtnClicked: () -> Unit = {
@@ -21,6 +22,10 @@ class MainViewModel @ViewModelInject constructor(
 
     val onSnappyRecyclerViewExampleBtnClicked: () -> Unit = {
         
+    }
+
+    val onContractsExampleBtnClicked: () -> Unit = {
+
     }
 
 }

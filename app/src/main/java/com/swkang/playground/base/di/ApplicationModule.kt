@@ -8,20 +8,17 @@ import com.swkang.playground.base.helper.ResourceHelperImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Singleton
+import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object ApplicationModule {
 
-    @Singleton
     @Provides
     fun provideMessageHelper(@ApplicationContext context: Context): MessageHelper =
         MessageHelperImpl(context)
 
-    @Singleton
     @Provides
     fun provideResourceHelper(@ApplicationContext context: Context): ResourceHelper =
         ResourceHelperImpl(context)
