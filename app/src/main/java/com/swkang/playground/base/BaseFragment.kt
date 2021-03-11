@@ -4,18 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.swkang.model.base.BaseViewModel
 import com.swkang.playground.BR
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment(
+    @LayoutRes val layoutId: Int
+) : Fragment(layoutId) {
     protected lateinit var viewModel: BaseViewModel
     private var _binding: ViewDataBinding? = null
     private val binding get() = _binding!!
-
-    abstract fun getLayoutId(): Int
 
     abstract fun createViewModel(): BaseViewModel
 
@@ -28,7 +29,7 @@ abstract class BaseFragment : Fragment() {
 
         _binding = DataBindingUtil.inflate(
             inflater,
-            getLayoutId(),
+            layoutId,
             container,
             false
         )

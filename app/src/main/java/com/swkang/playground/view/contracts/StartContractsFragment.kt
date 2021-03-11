@@ -6,10 +6,8 @@ import com.swkang.model.domain.contracts.StartContractsFragmentVM
 import com.swkang.playground.R
 import com.swkang.playground.base.BaseFragment
 
-class StartContractsFragment: BaseFragment() {
+class StartContractsFragment: BaseFragment(R.layout.contracts_start_fragment) {
     private val vm: StartContractsFragmentVM by viewModels()
-
-    override fun getLayoutId(): Int = R.layout.contracts_start_fragment
 
     override fun createViewModel(): BaseViewModel = vm
 }
