@@ -3,7 +3,7 @@
     <data>
         <variable
             name="vm"
-            type="com.swkang.model.domain.contracts.ContractFragmentVM" />
+            type="com.swkang.model.domain.contracts.SubContractFragmentVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
