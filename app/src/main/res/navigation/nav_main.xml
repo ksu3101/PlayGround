@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mainFragment_to_startContractsActivity"
             app:destination="@id/navigation2" />
+        <action
+            android:id="@+id/action_mainFragment_to_renderEffectExActivity"
+            app:destination="@id/renderEffectExActivity" />
     </fragment>
     <activity
         android:id="@+id/covid19StatusActivity"
@@ -53,4 +56,8 @@
         android:id="@+id/subContractActivity"
         android:name="com.swkang.playground.view.contracts.SubContractActivity"
         android:label="SubContractActivity" />
+    <activity
+        android:id="@+id/renderEffectExActivity"
+        android:name="com.swkang.playground.view.rendereffects.RenderEffectExActivity"
+        android:label="RenderEffectExActivity" />
 </navigation>

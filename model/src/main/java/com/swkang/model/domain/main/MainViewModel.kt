@@ -28,4 +28,8 @@ class MainViewModel @Inject constructor(
 
     }
 
+    val onRenderEffectsExampleBtnClicked: () -> Unit = {
+
+    }
+
 }
