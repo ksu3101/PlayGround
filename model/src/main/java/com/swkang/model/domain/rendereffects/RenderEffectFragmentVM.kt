@@ -13,12 +13,12 @@ class RenderEffectFragmentVM : BaseViewModel() {
     val isFullScreen: LiveData<Boolean>
         get() = _isFullScreen
 
-    private val _xValue = MutableLiveData(0)
-    val xValue: LiveData<Int>
+    private val _xValue = MutableLiveData(0.0f)
+    val xValue: LiveData<Float>
         get() = _xValue
 
-    private val _yValue = MutableLiveData(0)
-    val yValue: LiveData<Int>
+    private val _yValue = MutableLiveData(0.0f)
+    val yValue: LiveData<Float>
         get() = _yValue
 
 }

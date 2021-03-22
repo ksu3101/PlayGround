@@ -39,8 +39,8 @@ task clean(type: Delete) {
 ext {
 	// sdks
 	minSdk = 14
-	targetSdk = 28
-	compileSdk = 28
+	targetSdk = 31
+	compileSdk = "android-S"
 
 	// android dependency
 	androidX = '1.0.0'
