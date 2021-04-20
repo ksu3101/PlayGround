@@ -16,14 +16,15 @@ class PlayGroundApplication : MultiDexApplication() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             val processName = getProcessName(this)
             val packageName = this.packageName
-            if (!packageName.equals(processName)) {
+            if (!processName.isNullOrEmpty() && !packageName.equals(processName)) {
                 WebView.setDataDirectorySuffix(processName)
             }
         }
     }
 
     fun getProcessName(context: Context): String? {
-        val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager?
+        if (manager == null) return null
         for (p in manager.runningAppProcesses) {
             if (p.pid == android.os.Process.myPid()) {
                 return p.processName
