@@ -14,10 +14,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class Covid19StatusFragment(
     private val isKorea: Boolean
-) : BaseFragment() {
+) : BaseFragment(R.layout.covid19status_fragment) {
     private val vm: Covid19StatusViewModel by viewModels()
-
-    override fun getLayoutId(): Int = R.layout.covid19status_fragment
 
     override fun createViewModel(): BaseViewModel = vm
 

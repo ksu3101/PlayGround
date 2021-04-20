@@ -8,10 +8,8 @@ import com.swkang.playground.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SnappyRecyclerViewFragment : BaseFragment() {
+class SnappyRecyclerViewFragment : BaseFragment(R.layout.snappy_fragment) {
     private val vm: SnappyViewModel by viewModels()
-
-    override fun getLayoutId(): Int = R.layout.snappy_fragment
 
     override fun createViewModel(): BaseViewModel = vm
 }

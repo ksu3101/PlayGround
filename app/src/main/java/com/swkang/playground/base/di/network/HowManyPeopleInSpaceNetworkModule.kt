@@ -6,20 +6,17 @@ import com.swkang.playground.repository.peopleinspace.HowManyPeopleInSpaceReposi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Qualifier
-import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object HowManyPeopleInSpaceNetworkModule {
 
-    @Singleton
-    @Provides
     @HowManyPeopleInSpaceServer
     fun provideHowManyPeopleInSpaceRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
@@ -29,12 +26,10 @@ object HowManyPeopleInSpaceNetworkModule {
             .client(okHttpClient)
             .build()
 
-    @Singleton
     @Provides
     fun provideHowManyPeopleInSpaceApi(@HowManyPeopleInSpaceServer retrofit: Retrofit): HowManyPeopleInSpaceApi =
         retrofit.create(HowManyPeopleInSpaceApi::class.java)
 
-    @Singleton
     @Provides
     fun provideHowManyPeopleInSpaceRepository(
         howManyPeopleInSpaceApi: HowManyPeopleInSpaceApi

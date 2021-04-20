@@ -8,10 +8,8 @@ import com.swkang.playground.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HowManyPeopleInSpaceFragment : BaseFragment() {
+class HowManyPeopleInSpaceFragment : BaseFragment(R.layout.howmanypeopleinspace_fragment) {
     private val vm: HowManyPeopleInSpaceViewModel by viewModels()
-
-    override fun getLayoutId(): Int = R.layout.howmanypeopleinspace_fragment
 
     override fun createViewModel(): BaseViewModel = vm
 }

@@ -8,10 +8,8 @@ import com.swkang.playground.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFragment : BaseFragment() {
+class MainFragment : BaseFragment(R.layout.main_fragment) {
     private val vm: MainViewModel by viewModels()
-
-    override fun getLayoutId(): Int = R.layout.main_fragment
 
     override fun createViewModel(): BaseViewModel = vm
 }
