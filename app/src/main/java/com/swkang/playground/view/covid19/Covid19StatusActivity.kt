@@ -9,7 +9,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.swkang.playground.R
 import com.swkang.playground.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.covid19status_activity.*
 
 @AndroidEntryPoint
 class Covid19StatusActivity : BaseActivity() {
@@ -21,7 +20,7 @@ class Covid19StatusActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        vPager = covid19status_viewpager
+        vPager = findViewById(R.id.covid19status_viewpager)
         vPager.adapter = Covid19StatusPagerAdapter(this)
 
         initialzeTabLayouts()
@@ -36,7 +35,7 @@ class Covid19StatusActivity : BaseActivity() {
     }
 
     private fun initialzeTabLayouts() {
-        TabLayoutMediator(covid19status_tab, vPager) { tab, position ->
+        TabLayoutMediator(findViewById(R.id.covid19status_tab), vPager) { tab, position ->
             tab.text = getString(
                 if (position == 0) R.string.covid19_status_korea_title
                 else R.string.covid19_status_world_title

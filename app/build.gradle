@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'dagger.hilt.android.plugin'
 
@@ -31,7 +30,7 @@ android {
 		}
 	}
 	buildTypes.each {
-		it.buildConfigField 'String', "CORONA10KR_API_KEY", corona19krApiKey
+		it.buildConfigField 'String', "CORONA10KR_API_KEY", '\"FOR_TESTING\"'
 	}
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
@@ -76,6 +75,7 @@ dependencies {
 	implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshLayout"
 	implementation "com.google.android.material:material:$material"
 	implementation "com.android.support.constraint:constraint-layout:$constraintlayout"
+	implementation "com.android.billingclient:billing:$googleBilling"
 
 	implementation "io.reactivex.rxjava3:rxandroid:$rxAndroid"
 	implementation "com.github.bumptech.glide:glide:$glide"

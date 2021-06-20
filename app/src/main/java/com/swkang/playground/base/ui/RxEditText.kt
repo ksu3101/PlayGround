@@ -15,7 +15,9 @@ class RxEditText constructor(
     attrs: AttributeSet?
 ) : AppCompatEditText(context, attrs) {
     private val textWatcherRef: TextWatcher
-    private val textChanged = PublishSubject.create<String>()
+    private val textChanged by lazy {
+        PublishSubject.create<String>()
+    }
 
     init {
         textWatcherRef = object: TextWatcher {

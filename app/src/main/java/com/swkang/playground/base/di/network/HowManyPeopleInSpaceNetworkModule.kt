@@ -18,6 +18,7 @@ import javax.inject.Qualifier
 object HowManyPeopleInSpaceNetworkModule {
 
     @HowManyPeopleInSpaceServer
+    @Provides
     fun provideHowManyPeopleInSpaceRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create())
@@ -40,5 +41,5 @@ object HowManyPeopleInSpaceNetworkModule {
 }
 
 @Qualifier
-@kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.BINARY)
 annotation class HowManyPeopleInSpaceServer

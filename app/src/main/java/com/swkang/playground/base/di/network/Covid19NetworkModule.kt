@@ -56,9 +56,9 @@ object Covid19NetworkModule {
 }
 
 @Qualifier
-@kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.BINARY)
 annotation class Corona19KrServer
 
 @Qualifier
-@kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.BINARY)
 annotation class Covid19WorldServer

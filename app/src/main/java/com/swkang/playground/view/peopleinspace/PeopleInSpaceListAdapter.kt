@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.swkang.model.domain.peopleinspace.datas.SpacePeople
 import com.swkang.playground.R
-import kotlinx.android.synthetic.main.howmanypeopleinspace_people_item.view.peoplesinspace_item_tv_loc
-import kotlinx.android.synthetic.main.howmanypeopleinspace_people_item.view.peoplesinspace_item_tv_name
 
 class PeopleInSpaceListAdapter :
     ListAdapter<SpacePeople, PeopleInSpaceListAdapter.PeopleInSpaceViewHolder>(diffUtil) {
@@ -48,8 +46,8 @@ class PeopleInSpaceListAdapter :
         }
 
         fun bind(peopleInSpace: SpacePeople) {
-            binding.root.peoplesinspace_item_tv_loc.text = peopleInSpace.craft
-            binding.root.peoplesinspace_item_tv_name.text = peopleInSpace.name
+//            binding.root.peoplesinspace_item_tv_loc.text = peopleInSpace.craft
+//            binding.root.peoplesinspace_item_tv_name.text = peopleInSpace.name
         }
     }
 }
