@@ -38,6 +38,7 @@ class MainFragment : BaseFragment(R.layout.main_fragment), View.OnClickListener 
         rootView?.findViewById<Button>(R.id.main_btn_covid19nav)?.setOnClickListener(this)
         rootView?.findViewById<Button>(R.id.main_btn_howmanypeoplesinspacenav)
             ?.setOnClickListener(this)
+        rootView?.findViewById<Button>(R.id.main_btn_google_billingnav)?.setOnClickListener(this)
 
         return rootView
     }
@@ -47,6 +48,7 @@ class MainFragment : BaseFragment(R.layout.main_fragment), View.OnClickListener 
         when (view.id) {
             R.id.main_btn_covid19nav -> onCovid19StatusBtnClicked()
             R.id.main_btn_howmanypeoplesinspacenav -> onHowManyPeoplesInSpaceBtnClicked()
+            R.id.main_btn_google_billingnav -> onGoogleBillingBtnClicked()
         }
     }
 
@@ -64,6 +66,10 @@ class MainFragment : BaseFragment(R.layout.main_fragment), View.OnClickListener 
             .actionMainFragmentToHowManyPeopleInSpaceActivity()
         activity.findNavController(R.id.fragmentContainer).navigate(direction)
         activity.supportActionBar?.hide()
+    }
+
+    private fun onGoogleBillingBtnClicked() {
+        val activity = getAppCompatActivity()
     }
 
     private fun getAppCompatActivity(): AppCompatActivity =

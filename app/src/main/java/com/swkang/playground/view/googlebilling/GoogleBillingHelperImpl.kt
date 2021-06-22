@@ -1,6 +1,7 @@
-package com.swkang.playground.base.helper
+package com.swkang.playground.view.googlebilling
 
 import android.app.Activity
+import android.util.Log
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.PurchasesUpdatedListener
@@ -23,18 +24,28 @@ class GoogleBillingHelperImpl(
     }
 
     private val purchaseupdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
+        Log.d(
+            "GoogleBillingHelper",
+            "PurchasesUpdatedListener // responseCode = ${billingResult.responseCode}, " +
+                    "debugMessage = ${billingResult.debugMessage}, " +
+                    "purchases = ${purchases?.size ?: 0}"
+        )
         if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
             for (purchase in purchases) {
+                Log.d("GoogleBillingHelper", "\t\tpurchase = $purchase")
                 resultListener.onNext(PurchaseResultDatas(billingResult, purchase))
             }
         } else {
-            resultListener.onError(GoogleBillingErrorException(
-                activity.getString(
-                    if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED)
-                        R.string.google_billing_usercanceled
-                    else
-                        R.string.google_billing_error
-            )))
+            resultListener.onError(
+                GoogleBillingErrorException(
+                    activity.getString(
+                        if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED)
+                            R.string.google_billing_usercanceled
+                        else
+                            R.string.google_billing_error
+                    )
+                )
+            )
         }
     }
 
@@ -57,7 +68,8 @@ class GoogleBillingHelperImpl(
             val billingFlowParams = BillingFlowParams.newBuilder()
                 .setSkuDetails(skuDetailsList?.get(0) ?: throw NullPointerException("WTF??"))
                 .build()
-            val responseCode = billingClient.launchBillingFlow(activity, billingFlowParams).responseCode
+            val responseCode =
+                billingClient.launchBillingFlow(activity, billingFlowParams).responseCode
 
             // 결과 핸들링
         }

@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
     app:startDestination="@id/mainFragment">
 
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.swkang.playground.view.main.MainFragment"
-        android:label="MainFragment" >
+        android:label="MainFragment">
         <action
             android:id="@+id/action_mainFragment_to_covid19StatusActivity"
             app:destination="@id/covid19StatusActivity" />
         <action
             android:id="@+id/action_mainFragment_to_howManyPeopleInSpaceActivity"
             app:destination="@id/howManyPeopleInSpaceActivity" />
-        <action
-            android:id="@+id/action_mainFragment_to_snappyRecyclerViewActivity"
-            app:destination="@id/snappyRecyclerViewActivity" />
-        <action
-            android:id="@+id/action_mainFragment_to_startContractsActivity"
-            app:destination="@id/navigation2" />
-        <action
-            android:id="@+id/action_mainFragment_to_renderEffectExActivity"
-            app:destination="@id/renderEffectExActivity" />
     </fragment>
     <activity
         android:id="@+id/covid19StatusActivity"
@@ -31,33 +23,4 @@
         android:id="@+id/howManyPeopleInSpaceActivity"
         android:name="com.swkang.playground.view.peopleinspace.HowManyPeopleInSpaceActivity"
         android:label="HowManyPeopleInSpaceActivity" />
-    <activity
-        android:id="@+id/snappyRecyclerViewActivity"
-        android:name="com.swkang.playground.view.snappy.SnappyRecyclerViewActivity"
-        android:label="SnappyRecyclerViewActivity" />
-    <activity
-        android:id="@+id/forResultActivity"
-        android:name="com.swkang.playground.view.contracts.ForResultActivity"
-        android:label="ForResultActivity" />
-    <navigation android:id="@+id/navigation2"
-        app:startDestination="@id/startContractsActivity">
-        <activity
-            android:id="@+id/startContractsActivity"
-            android:name="com.swkang.playground.view.contracts.StartContractsActivity"
-            android:label="StartContractsActivity" />
-        <action
-            android:id="@+id/action_global_forResultActivity"
-            app:destination="@id/forResultActivity" />
-        <action
-            android:id="@+id/action_global_subContractActivity"
-            app:destination="@id/subContractActivity" />
-    </navigation>
-    <activity
-        android:id="@+id/subContractActivity"
-        android:name="com.swkang.playground.view.contracts.SubContractActivity"
-        android:label="SubContractActivity" />
-    <activity
-        android:id="@+id/renderEffectExActivity"
-        android:name="com.swkang.playground.view.rendereffects.RenderEffectExActivity"
-        android:label="RenderEffectExActivity" />
 </navigation>

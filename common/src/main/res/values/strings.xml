@@ -51,6 +51,8 @@
         Ullam sed gravida at natoque rutrum vulputate, mauris magna morbi, ullamcorper blandit, at et dui ante aliquam semper et, mauris tempor. Amet lacus pharetra nulla vitae. Vehicula nam nunc nascetur libero, est eros, proin duis mi hac cursus consectetuer, pede sociis neque purus etiam. Suspendisse totam amet, vehicula in nibh eros id, eu magnis vel pretium vel, at turpis, nisl orci. Consequat pede metus suscipit ut mollis, ut ipsum nulla gravida, at sit lobortis etiam tempor elit sapien. Augue mollis, et velit, lacus in congue orci, est libero consectetuer mauris bibendum euismod quod. At sagittis laoreet vel mollis pellentesque tellus. Et erat tellus sed at. In pellentesque, enim arcu enim habitant, cursus quam nunc, ut enim, ut non magna ac tempor amet sem. Dapibus felis similique, egestas consectetuer tortor libero.
     </string>
 
+    <string name="google_billing_title">Google인앱 결제 개발자 테스트</string>
+    <string name="google_billing_start_devtest">인앱 결제 테스트 하기</string>
     <string name="google_billing_usercanceled">결제가 취소 되었습니다.</string>
     <string name="google_billing_error">결제도중 오류가 발생하였습니다.</string>
 

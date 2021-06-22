@@ -74,6 +74,8 @@
 
 ### 2.1 covid-19 현황판  
 
+> (TODO) 국내 코로나 api키 제거 되어 갱신 해주어야 함.
+
 국내와 전 세계의 코로나19 현황을 보여준다. 보여주는 정보는 총 확진자, 총 사망자, 총 완치자 및 각 국가 확진자 순위별 정렬된 목록 혹은 국내 시도별 분류된 확진자 및 사망자의 정보를 보여준다. 
 
 One `Activity`에 `Fragment`에서는 `ViewPager2`와 Tab을 구현하여 내부에서는 `SwipeRefreshLayout`와 `RecyclerView`를 이용하여 새로고침을 비롯한 내부 UI를 구현 하였다. 간단한 러프 기획은 아래 이미지와 같다. 
@@ -115,7 +117,11 @@ One `Activity`에 `Fragment`에서는 `ViewPager2`와 Tab을 구현하여 내부
 - `StateViewModel` : State를 받아 Render 하는 ViewModel. 
   - `fun render(state: S)` : State를 처리 하는 추상 함수.  
 
-### 2.3 서브 도메인 3
+### 2.3 구글 인앱 결제 테스트 모듈
+
+- [구글 Play 인앱 결제](https://developer.android.com/google/play/billing?hl=ko) 개발자 테스트용. 
+
+### 2.4 서브 도메인 4
 
 (WIP)
 
