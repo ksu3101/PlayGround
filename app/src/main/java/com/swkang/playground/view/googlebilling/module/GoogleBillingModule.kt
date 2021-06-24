@@ -8,6 +8,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.FragmentComponent
+import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.scopes.ActivityScoped
 import dagger.hilt.android.scopes.FragmentScoped
 
@@ -19,7 +20,7 @@ class GoogleBillingModule {
     @Provides
     @FragmentScoped
     fun provideGoogleBillingHelper(
-        @ActivityScoped context: Context
+        @ActivityContext context: Context
     ): GoogleBillingHelper {
         return GoogleBillingHelperImpl(context as Activity)
     }

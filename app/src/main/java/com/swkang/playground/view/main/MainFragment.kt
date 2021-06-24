@@ -70,6 +70,10 @@ class MainFragment : BaseFragment(R.layout.main_fragment), View.OnClickListener 
 
     private fun onGoogleBillingBtnClicked() {
         val activity = getAppCompatActivity()
+        val direction = MainFragmentDirections
+            .actionMainFragmentToGoogleBillingActivity()
+        activity.findNavController(R.id.fragmentContainer).navigate(direction)
+        activity.supportActionBar?.hide()
     }
 
     private fun getAppCompatActivity(): AppCompatActivity =

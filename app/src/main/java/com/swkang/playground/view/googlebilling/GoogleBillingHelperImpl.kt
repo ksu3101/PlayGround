@@ -8,6 +8,7 @@ import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.SkuDetailsParams
 import com.swkang.model.base.helper.GoogleBillingErrorException
 import com.swkang.model.base.helper.GoogleBillingHelper
+import com.swkang.model.base.helper.PurchaseItems
 import com.swkang.model.base.helper.PurchaseResultDatas
 import com.swkang.playground.R
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -59,7 +60,7 @@ class GoogleBillingHelperImpl(
 
     override fun queryTestingBillings() {
         val skuList = ArrayList<String>()
-        skuList.add("")
+        skuList.add(PurchaseItems.GEM_100.skuId)
         val params = SkuDetailsParams.newBuilder()
         params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP)
 
