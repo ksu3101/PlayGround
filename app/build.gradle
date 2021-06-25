@@ -7,10 +7,7 @@ apply plugin: 'dagger.hilt.android.plugin'
 android {
     signingConfigs {
 		release {
-			storeFile file('F:\\Dropbox\\Android\\210621_playground.jks')
-			storePassword 'rkdtjddn12'
-			keyAlias 'playground'
-			keyPassword 'rkdtjddn12'
+			// 
 		}
 	}
 	compileSdkVersion rootProject.compileSdk
