@@ -55,5 +55,6 @@
     <string name="google_billing_start_devtest">인앱 결제 테스트 하기</string>
     <string name="google_billing_usercanceled">결제가 취소 되었습니다.</string>
     <string name="google_billing_error">결제도중 오류가 발생하였습니다.</string>
+    <string name="google_billing_error_setup">결제 초기화중 오류가 발생하였습니다.</string>
 
 </resources>
