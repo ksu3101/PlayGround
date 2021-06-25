@@ -75,7 +75,7 @@ object BillingServiceReadyState : PurchaseState()
  */
 data class BillingTestItemRecivedState(
     val skuDetails: List<SkuDetails>
-): PurchaseState()
+) : PurchaseState()
 
 /**
  * 결제 완료 및 결과 데이터 클래스
@@ -88,11 +88,13 @@ data class PurchaseSuccessState(
 /**
  * 결제에 대한 확인이 모두 끝난 데이터 클래스
  */
-data class PurchaseConfirmedFinisedState(
+data class PurchaseConfirmedState(
     val billingResult: BillingResult
-): PurchaseState()
+) : PurchaseState()
 
 /**
  * 인앱 결제 중 발생한 예외
  */
-class GoogleBillingErrorException(message: String) : RuntimeException(message)
+class PurchaseException(
+    message: String
+) : RuntimeException(message)

@@ -38,7 +38,7 @@ task clean(type: Delete) {
 
 ext {
 	// sdks
-	minSdk = 14
+	minSdk = 28
 	targetSdk = 31
 	compileSdk = "android-S"
 

@@ -5,6 +5,14 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
+    signingConfigs {
+		release {
+			storeFile file('F:\\Dropbox\\Android\\210621_playground.jks')
+			storePassword 'rkdtjddn12'
+			keyAlias 'playground'
+			keyPassword 'rkdtjddn12'
+		}
+	}
 	compileSdkVersion rootProject.compileSdk
 	buildToolsVersion "29.0.3"
 
@@ -16,6 +24,7 @@ android {
 		versionName "1.0"
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		multiDexEnabled true
+		signingConfig signingConfigs.release
 	}
 
 	buildTypes {
@@ -65,6 +74,7 @@ dependencies {
 	implementation "androidx.appcompat:appcompat:$appCompat"
 	implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$architectureLifecycle"
 	implementation "androidx.lifecycle:lifecycle-common-java8:$architectureLifecycle"
+	implementation "androidx.multidex:multidex:$multiDex"
 	implementation "androidx.recyclerview:recyclerview:$recyclerview"
 	implementation "androidx.core:core-ktx:$ktxCore"
 	implementation "androidx.fragment:fragment-ktx:$ktxFragment"

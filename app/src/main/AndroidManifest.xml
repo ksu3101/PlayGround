@@ -3,7 +3,7 @@
     package="com.swkang.playground">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.android.vending.BILLING"/>
+    <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
         android:name=".PlayGroundApplication"
@@ -32,6 +32,13 @@
 
         <activity
             android:name=".view.covid19.Covid19StatusActivity"
+            android:configChanges="keyboard|keyboardHidden|uiMode"
+            android:exported="false"
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+
+        <activity
+            android:name=".view.googlebilling.GoogleBillingActivity"
             android:configChanges="keyboard|keyboardHidden|uiMode"
             android:exported="false"
             android:screenOrientation="fullSensor"

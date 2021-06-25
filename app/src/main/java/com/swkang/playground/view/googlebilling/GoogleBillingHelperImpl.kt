@@ -14,9 +14,9 @@ import com.android.billingclient.api.SkuDetails
 import com.android.billingclient.api.SkuDetailsParams
 import com.swkang.model.base.helper.BillingServiceReadyState
 import com.swkang.model.base.helper.BillingTestItemRecivedState
-import com.swkang.model.base.helper.GoogleBillingErrorException
+import com.swkang.model.base.helper.PurchaseException
 import com.swkang.model.base.helper.GoogleBillingHelper
-import com.swkang.model.base.helper.PurchaseConfirmedFinisedState
+import com.swkang.model.base.helper.PurchaseConfirmedState
 import com.swkang.model.base.helper.PurchaseItems
 import com.swkang.model.base.helper.PurchaseState
 import com.swkang.model.base.helper.PurchaseSuccessState
@@ -45,7 +45,7 @@ class GoogleBillingHelperImpl(
         } else {
             // 구매 중 오류
             resultListener.onError(
-                GoogleBillingErrorException(
+                PurchaseException(
                     activity.getString(
                         if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED)
                             R.string.google_billing_usercanceled
@@ -69,7 +69,7 @@ class GoogleBillingHelperImpl(
                     resultListener.onNext(BillingServiceReadyState)
                 } else {
                     resultListener.onError(
-                        GoogleBillingErrorException(
+                        PurchaseException(
                             activity.getString(R.string.google_billing_error_setup)
                         )
                     )
@@ -108,7 +108,7 @@ class GoogleBillingHelperImpl(
 
         val responseCode = billingClient.launchBillingFlow(activity, flowParams).responseCode
         if (responseCode != BillingClient.BillingResponseCode.OK) {
-            resultListener.onError(GoogleBillingErrorException(activity.getString(R.string.google_billing_error)))
+            resultListener.onError(PurchaseException(activity.getString(R.string.google_billing_error)))
         }
         // 여기부터 purchaseupdatedListener에서 처리.
     }
@@ -119,7 +119,7 @@ class GoogleBillingHelperImpl(
                 .setPurchaseToken(purchase.purchaseToken)
             billingClient.acknowledgePurchase(acknowledgePurchaseParams.build()) { billingResult ->
                 logBillingResults(billingResult, "confirmPurchase()")
-                resultListener.onNext(PurchaseConfirmedFinisedState(billingResult))
+                resultListener.onNext(PurchaseConfirmedState(billingResult))
             }
         }
         // 소비성 구매에 대한 consumable처리는 따로 해야 한다.
