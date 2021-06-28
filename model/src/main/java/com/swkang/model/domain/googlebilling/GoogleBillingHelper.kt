@@ -73,7 +73,7 @@ object BillingServiceReadyState : PurchaseState()
 /**
  * 테스트용 결제 상품 목록을 받아온 상태
  */
-data class BillingTestItemRecivedState(
+data class BillingTestItemReceivedState(
     val skuDetails: List<SkuDetails>
 ) : PurchaseState()
 

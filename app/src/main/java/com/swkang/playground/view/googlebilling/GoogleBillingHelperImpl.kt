@@ -13,7 +13,7 @@ import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.SkuDetails
 import com.android.billingclient.api.SkuDetailsParams
 import com.swkang.model.base.helper.BillingServiceReadyState
-import com.swkang.model.base.helper.BillingTestItemRecivedState
+import com.swkang.model.base.helper.BillingTestItemReceivedState
 import com.swkang.model.base.helper.PurchaseException
 import com.swkang.model.base.helper.GoogleBillingHelper
 import com.swkang.model.base.helper.PurchaseConfirmedState
@@ -29,12 +29,12 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 class GoogleBillingHelperImpl(
     private val activity: Activity
 ) : GoogleBillingHelper {
-    private val TAG = "GoogleBillingHelper"
+    private val TAG = "GoogleBillingModule //Helper"
     private val resultListener by lazy {
         PublishSubject.create<PurchaseState>()
     }
 
-    private val purchaseupdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
+    private val purchaseUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
         logBillingResults(billingResult, "purchaseupdatedListener()", purchases)
         if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
             for (purchase in purchases) {
@@ -58,7 +58,7 @@ class GoogleBillingHelperImpl(
     }
 
     private val billingClient = BillingClient.newBuilder(activity)
-        .setListener(purchaseupdatedListener)
+        .setListener(purchaseUpdatedListener)
         .enablePendingPurchases()
         .build()
 
@@ -97,16 +97,18 @@ class GoogleBillingHelperImpl(
 
         billingClient.querySkuDetailsAsync(skuDetailParams) { billingResult, skuDetailsList ->
             logBillingResults(billingResult, "queryTestingBillings() // ")
-            resultListener.onNext(BillingTestItemRecivedState(skuDetailsList ?: emptyList()))
+            resultListener.onNext(BillingTestItemReceivedState(skuDetailsList ?: emptyList()))
         }
     }
 
     override fun requestPurchaseItem(skuDetails: SkuDetails) {
+        Log.d(TAG, ">> requestPurchaseItem() // skuDetails = ${skuDetails}")
         val flowParams = BillingFlowParams.newBuilder().apply {
             setSkuDetails(skuDetails)
         }.build()
 
         val responseCode = billingClient.launchBillingFlow(activity, flowParams).responseCode
+        Log.d(TAG, ">> requestPurchaseItem() // responseCode = [$responseCode] ${getResponseStringByCode(responseCode)}")
         if (responseCode != BillingClient.BillingResponseCode.OK) {
             resultListener.onError(PurchaseException(activity.getString(R.string.google_billing_error)))
         }
@@ -131,11 +133,36 @@ class GoogleBillingHelperImpl(
         purchases: List<Purchase>? = null
     ) {
         var logMessage = if (!TextUtils.isEmpty(moreTag)) "$moreTag // " else ""
-        logMessage += "responseCode = ${billingResult.responseCode}, debugMessage = ${billingResult.debugMessage}" +
+        logMessage += "responseCode = [${billingResult.responseCode}] ${
+            getResponseStringByCode(
+                billingResult.responseCode
+            )
+        }, debugMessage = ${billingResult.debugMessage}" +
                 purchases?.let {
                     ", purchases list size = ${it.size}"
                 }
         Log.d(TAG, logMessage)
+    }
+
+    /**
+     * @see com.android.billingclient.api.BillingClient.BillingResponseCode
+     */
+    private fun getResponseStringByCode(resCode: Int): String {
+        return when (resCode) {
+            -3 -> "SERVICE_TIMEOUT"
+            -2 -> "FEATURE_NOT_SUPPORTED"
+            -1 -> "SERVICE_DISCONNECTED"
+            0 -> "OK"
+            1 -> "USER_CANCELED"
+            2 -> "SERVICE_UNAVAILABLE"
+            3 -> "BILLING_UNAVAILABLE"
+            4 -> "ITEM_UNAVAILABLE"
+            5 -> "DEVELOPER_ERROR"
+            6 -> "ERROR"
+            7 -> "ITEM_ALREADY_OWNED"
+            8 -> "ITEM_NOT_OWNED"
+            else -> "UNKNOWN_RESPONSE_CODE"
+        }
     }
 
 }

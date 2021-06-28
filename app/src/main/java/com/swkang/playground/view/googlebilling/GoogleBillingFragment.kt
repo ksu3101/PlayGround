@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.android.billingclient.api.SkuDetails
 import com.swkang.model.base.BaseViewModel
 import com.swkang.model.base.helper.BillingServiceReadyState
-import com.swkang.model.base.helper.BillingTestItemRecivedState
+import com.swkang.model.base.helper.BillingTestItemReceivedState
 import com.swkang.model.base.helper.GoogleBillingHelper
 import com.swkang.model.base.helper.MessageHelper
 import com.swkang.model.base.helper.PurchaseConfirmedState
@@ -25,7 +25,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class GoogleBillingFragment : BaseFragment(R.layout.googlebilling_fragment), OnClickListener {
-    private val TAG = "GoogleBillingFragment"
+    private val TAG = "GoogleBillingModule //Fragment"
     private val compositeDisposal: CompositeDisposable by lazy { CompositeDisposable() }
     private val vm: GoogleBillingViewModel by viewModels()
 
@@ -60,11 +60,11 @@ class GoogleBillingFragment : BaseFragment(R.layout.googlebilling_fragment), OnC
 
                     when (it) {
                         is BillingServiceReadyState -> {
-                            // 결제 초기화 완료 및 구매 대기 상태 -> 결제 버튼 활성화 시켜준다.
+                            // 결제 초기화 완료 및 구매 대기 상태 -> 결제 버튼 활성화
                             purchaseButton?.isEnabled = true
                         }
-                        is BillingTestItemRecivedState -> {
-                            // 결제 상품 정보 가져온 상태 -> 구매 진행
+                        is BillingTestItemReceivedState -> {
+                            // 결제 상품 정보 가져온 상태 -> 구매 대기 상태
                             it.skuDetails.mapIndexed { i, skuDetail ->
                                 Log.d(TAG, ">> purchase skuDetail[$i] = $skuDetail")
                             }
@@ -117,8 +117,10 @@ class GoogleBillingFragment : BaseFragment(R.layout.googlebilling_fragment), OnC
         when (view.id) {
             R.id.googlebilling_btn_starttest -> {
                 if (lastPurchaseSkuDetails != null) {
+                    Log.d(TAG, ">> onClicked() // billingHelper.requestPurchaseItem() // lastPurchaseSkuDetails = ${lastPurchaseSkuDetails!!}")
                     billingHelper.requestPurchaseItem(lastPurchaseSkuDetails!!)
                 } else {
+                    Log.d(TAG, ">> onClicked() // billingHelper.queryTestItemSkuDetails()")
                     billingHelper.queryTestItemSkuDetails()
                 }
             }
