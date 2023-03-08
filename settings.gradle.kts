@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "PlayGround"
-include ':app'
+rootProject.name = "playground"
+include(":app")
