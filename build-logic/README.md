@@ -15,11 +15,16 @@ plugins {
 
 이 프로젝트에서 구성된 플러그인의 목록은 아래와 같다. 
 
-  - `kr.swkang.playground.android.application` : 프로젝트의 가장 기본적인 구성을 포함 한다
+- 모든 모듈에 적용 가능
+  - `kr.swkang.playground.android.application` : 안드로이드 기본 구성
   - `kr.swkang.playground.android.application.compose` : 컴포즈 관련 구성
   - `kr.swkang.playground.android.feature` : 안드로이드 피쳐 들
-  - `kr.swkang.playground.android.library.compose` : 컴포즈를 사용 하기 위한 라이브러리 관련 (위에 compose 추가 하면 이 항목은 하지 않아도 된다.)
   - `kr.swkang.playground.android.hilt` : DI 도구인 Hilt 사용을 위한 구성
+  - `kr.swkang.playground.android.test`
+- 라이브러리 모듈 
+  - `kr.swkang.playground.android.library` : 라이브러리 모듈에 적용하기 위한 안드로이드 구성
+  - `kr.swkang.playground.android.library.compose` : 라이브러리 모듈에 적용하기 위한 컴포즈
+  
 
 ### 참고
 
