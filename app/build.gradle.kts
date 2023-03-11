@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:common"))
     implementation(project(":core:design"))
 
     androidTestImplementation(libs.androidx.navigation.testing)
