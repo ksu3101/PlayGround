@@ -4,7 +4,8 @@ WIP..
 
 ## 1. basic
 
-kotlin, mvvm, compose, multi-module, kts,  
+kotlin, mvvm, compose, multi-module, kts, coroutine 
+gitHub action, ktlint
 
 ## 2. modules
 
@@ -28,3 +29,11 @@ kotlin, mvvm, compose, multi-module, kts,
 
 서브 feature 의 구현
 
+## 3. CI, Code quality
+
+- GitHub Action
+- ktlint
+- spotless (이건 예정?)
+- sonarcloud (이것도 예정?)
+
+## 4. Unit testing
