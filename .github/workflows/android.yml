@@ -1,4 +1,4 @@
-name: Android CI
+name: PlayGround Debug
 
 on:
   push:
@@ -22,7 +22,8 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
     - name: ktlint code fomat checker
       run: ./gradlew ktlintCheck
+    - name: Build with Gradle
+      run: ./gradlew build
+    
