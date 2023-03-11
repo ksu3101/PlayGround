@@ -19,3 +19,5 @@ rootProject.name = "playground"
 // 서브 모듈 들
 include(":app")
 include(":core:design")
+include(":core:network")
+include(":core:common")
