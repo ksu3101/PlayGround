@@ -25,7 +25,11 @@ gitHub action, ktlint
 
 - convention : 멀티 모듈 환경에서 각 메인, 서브 모듈들의 `build.gradle.kts` 에 적용 되는 중복(보일러 플레이트)되는 코드들을 따로 정리 하여 공통 일괄 적용 시켜준다. 
  
-### 2.4 `domain`
+### 2.4 `feature`
+
+실제로 구현될 피쳐 레이어.
+
+- pokemon : `poke` api 를 활용한 간단한 포켓몬 목록, 상세 보기.
 
 서브 feature 의 구현
 

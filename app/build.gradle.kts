@@ -36,6 +36,8 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:design"))
 
+    implementation(project(":feature:pokemon"))
+
     androidTestImplementation(libs.androidx.navigation.testing)
     androidTestImplementation(libs.accompanist.testharness)
 

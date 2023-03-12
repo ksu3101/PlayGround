@@ -17,8 +17,8 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             pluginManager.apply {
-                apply("nowinandroid.android.library")
-                apply("nowinandroid.android.hilt")
+                apply("kr.swkang.playground.android.library")
+                apply("kr.swkang.playground.android.hilt")
             }
             extensions.configure<LibraryExtension> {
                 defaultConfig {
@@ -28,10 +28,9 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             }
 
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
-
             dependencies {
-                // 서브 모듈들을 아래에 추가 한다.
-                // ex. add("implementation", project(":model"))
+                add("implementation", project(":core:common"))
+                add("implementation", project(":core:design"))
 
                 // 그 외 공통 의존 들
                 add("implementation", libs.findLibrary("coil.kt").get())
