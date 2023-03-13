@@ -28,6 +28,7 @@ androidxUiAutomator = "2.2.0"
 androidxWindowManager = "1.0.0"
 androidxWork = "2.7.1"
 coil = "2.2.2"
+detekt = "1.22.0"
 gmsPlugin = "4.3.14"
 hilt = "2.44.2"
 hiltExt = "1.0.0"
@@ -44,6 +45,7 @@ protobufPlugin = "0.8.19"
 retrofit = "2.9.0"
 retrofitKotlinxSerializationJson = "0.8.0"
 room = "2.5.0"
+secrets = "2.0.1"
 turbine = "0.12.1"
 
 [libraries]
@@ -115,6 +117,7 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
@@ -123,7 +126,9 @@ ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devto
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }

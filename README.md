@@ -4,8 +4,17 @@ WIP..
 
 ## 1. basic
 
-kotlin, mvvm, compose, multi-module, kts, coroutine 
-gitHub action, ktlint
+- kotlin
+- mvvm
+- compose
+  - compose-lint, compose-rule
+- multi-module
+- coroutine 
+- gitHub action
+- ktlint
+- detekt
+- sonar-cloud
+- [secrets](https://developers.google.com/maps/documentation/android-sdk/secrets-gradle-plugin?hl=ko)
 
 ## 2. modules
 
@@ -37,7 +46,10 @@ gitHub action, ktlint
 
 - GitHub Action
 - ktlint
+- detekt
 - spotless (이건 예정?)
-- sonarcloud (이것도 예정?)
+- sonar-cloud (이것도 예정?)
 
-## 4. Unit testing
+## 4. Unit test
+
+- turbine

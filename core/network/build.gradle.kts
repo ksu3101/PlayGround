@@ -1,6 +1,5 @@
 plugins {
     id("kr.swkang.playground.android.library")
-    id("kr.swkang.playground.android.library.compose")
     id("kr.swkang.playground.android.hilt")
 }
 

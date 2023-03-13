@@ -1,7 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
-import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import kr.swkang.playground.configureKotlinAndroid
-import kr.swkang.playground.configurePrintApksTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -15,6 +13,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("com.android.application")
                 apply("org.jetbrains.kotlin.android")
+                apply("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
             }
 
             extensions.configure<ApplicationExtension> {
@@ -23,5 +22,4 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             }
         }
     }
-
 }
