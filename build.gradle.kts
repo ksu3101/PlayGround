@@ -34,7 +34,7 @@ tasks.register("installGitHook", Copy::class) {
     if (!file(".git/hooks/pre-commit").exists() || (file(".git/hook/pre-commit").length() != file(".github/pre-commit").length())) {
         // .git/hook/pre-commit 파일이 존재 하거나 수동으로 만든 파일과 다르다면 이 파일을 복사 해서 옳겨준다.
         from(File(rootProject.rootDir, ".github/pre-commit"))
-        into(File(rootProject.rootDir, ".git/hook"))
+        into(File(rootProject.rootDir, ".git/hooks"))
     }
 }
 
