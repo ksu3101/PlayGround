@@ -22,6 +22,9 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+    - name: Pre build
+      run: ./gradlew :app:preBuild
     - name: Build with Gradle
-      run: ./gradlew build
-    
+      run: ./gradlew :app:assembleGoogleDebug
+    - name: Run unit test
+      run: ./gradlew :app:testDebugUnitTest
