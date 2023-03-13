@@ -1,0 +1,31 @@
+#!/bash/sh
+
+export PATH=/usr/local/bin:$PATH
+export PATH=/opt/homebrew/bin:$PATH
+
+# ktlint 설치 여부 확인
+if ! (which ktlint >/dev/null); then
+  echo "ktlint not installed."
+  exit 1;
+fi
+
+CHANGED_FILES="$(git --no-pager diff --name-status --no-color --cached | awk '$1 != "D" && $NF ~ /\.kts?$/ { print $NF }')"
+
+# ktlint 를 시작 한다. (max-line-length 는 일단 제외 하였음)
+echo "run ktlint."
+ktlint --android --relative --disabled_rules=max-line-length $CHANGED_FILES
+if [ $? = 0 ]; then
+  echo "kotlin code convention acceptable."
+  exit 0;
+fi
+
+# ktlint 를 통해 코드를 자동 포맷팅 한다.
+ktlint -F --android --relative --disabled_rules=max-line-length $CHANGED_FILES
+if [ $? = 0 ]; then
+  git add $CHANGED_FILES
+else
+  echo "ktlint auto format failed."
+  exit 1;
+fi
+
+echo "ktlint completed."
