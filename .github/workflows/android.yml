@@ -8,8 +8,8 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
     - uses: actions/checkout@v3
@@ -23,8 +23,10 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Pre build
-      run: ./gradlew :app:preBuild
+      run: ./gradlew app:preBuild
+    - name: Detekt
+      run: ./gradlew app:detekt
     - name: Build with Gradle
-      run: ./gradlew :app:assembleGoogleDebug
+      run: ./gradlew app:assembleDebug
     - name: Run unit test
-      run: ./gradlew :app:testDebugUnitTest
+      run: ./gradlew test

@@ -56,3 +56,7 @@ dependencies {
 
     implementation(libs.coil.kt)
 }
+
+apply {
+    from("$rootDir/githooks.gradle.kts")
+}
