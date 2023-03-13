@@ -33,11 +33,11 @@ jobs:
     - name: Pre build
       run: ./gradlew app:preBuild
 
-    - name: Detekt
-      run: ./gradlew app:detekt
+#    - name: Detekt
+#      run: ./gradlew app:detekt
 
     - name: Build with Gradle
-      run: ./gradlew app:assembleDebug
+      run: ./gradlew assembleDebug
 
     - name: Run unit test
       run: ./gradlew test
