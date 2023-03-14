@@ -8,4 +8,5 @@ android {
 }
 
 dependencies {
+    lintChecks(libs.compose.lint)
 }

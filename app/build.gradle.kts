@@ -38,6 +38,9 @@ dependencies {
 
     implementation(project(":feature:pokemon"))
 
+    androidTestImplementation(project(":core:test"))
+    testImplementation(project(":core:test"))
+    androidTestImplementation(kotlin("test"))
     androidTestImplementation(libs.androidx.navigation.testing)
     androidTestImplementation(libs.accompanist.testharness)
 
@@ -55,8 +58,19 @@ dependencies {
     implementation(libs.androidx.profileinstaller)
 
     implementation(libs.coil.kt)
+
+    lintChecks(libs.compose.lint)
 }
 
 apply {
     from("$rootDir/githooks.gradle.kts")
+}
+
+// androidx.test is forcing JUnit, 4.12. This forces it to use 4.13
+configurations.configureEach {
+    resolutionStrategy {
+        force(libs.junit4)
+        // Temporary workaround for https://issuetracker.google.com/174733673
+        force("org.objenesis:objenesis:2.6")
+    }
 }

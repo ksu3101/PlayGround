@@ -21,4 +21,7 @@ dependencies {
     api(libs.androidx.compose.ui.tooling.preview)
     api(libs.androidx.compose.ui.util)
     api(libs.androidx.compose.runtime)
+    lintChecks(libs.compose.lint)
+
+    testImplementation(project(":core:test"))
 }
