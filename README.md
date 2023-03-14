@@ -46,7 +46,6 @@ WIP..
   - 커스텀 뷰 는 컴포즈로만 작성 하며 이 서브 모듈 에서만 추가 한다.
   - 추가되는 컬러 등은 internal 으로 모듈 내 에서만 사용 가능 하다.
 - `network` : (LIB) Retrofit, OkHttp 등 공통 코드.
-  -  
 - `test` : (LIB) 테스트 코드 공통, 러너 등.
 
 ### 2.3 [`build-logic`](./build-logic/README.md) 
@@ -58,18 +57,16 @@ WIP..
       - `kr.swkang.playground.android.application.compose` : 컴포즈 관련 구성
       - `kr.swkang.playground.android.feature` : 안드로이드 피쳐 들
       - `kr.swkang.playground.android.hilt` : DI 도구인 Hilt 사용을 위한 구성
-      - `kr.swkang.playground.android.test`
+      - `kr.swkang.playground.android.test` : 테스트 공통 설정
     - 라이브러리 모듈
       - `kr.swkang.playground.android.library` : 라이브러리 모듈에 적용하기 위한 안드로이드 구성
       - `kr.swkang.playground.android.library.compose` : 라이브러리 모듈에 적용하기 위한 컴포즈
  
 ### 2.4 `feature`
 
-실제로 구현될 피쳐 레이어.
+실제로 구현될 서브 피쳐의 ui 레이어 구현 레이어. (Compose screen, ViewModel, navigation..)
 
-- pokemon : `poke` api 를 활용한 간단한 포켓몬 목록, 상세 보기.
-
-서브 feature 의 구현
+- `pokemon` : [poke api](https://pokeapi.co/) 를 활용한 간단한 포켓몬 목록, 상세 보기.
 
 ## 3. CI/CD, Code quality
 
@@ -77,6 +74,7 @@ WIP..
   - pre-commit : `.github/pre-commit` 스크립트를 `.git/hooks/pre-commit`으로 복사 하는 스크립트 `githooks.gradle.kts`를 실행 해야 한다.  
 - ktlint
 - detekt
+  - (CLI) `> detekt -r html:build/reports/detekt.html ...` : `-r` 파라미터 추가 한 뒤 필요한 리포트 파일과 경로를 추가 하면 된다
 
 ## 4. Unit test
 
