@@ -33,11 +33,11 @@ gradlePlugin {
         }
         register("androidLibraryCompose") {
             id = "kr.swkang.playground.android.library.compose"
-            implementationClass = "AndroidLibraryComposeConventionPlugin"
+            implementationClass = "LibraryComposeConventionPlugin"
         }
         register("AndroidLibrary") {
             id = "kr.swkang.playground.android.library"
-            implementationClass = "AndroidLibraryConventionPlugin"
+            implementationClass = "LibraryConventionPlugin"
         }
         register("androidHilt") {
             id = "kr.swkang.playground.android.hilt"

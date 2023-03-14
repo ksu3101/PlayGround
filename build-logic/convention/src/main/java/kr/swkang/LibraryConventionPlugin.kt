@@ -12,7 +12,7 @@ import org.gradle.kotlin.dsl.kotlin
  * @author bmo
  * @since 2023-03-10
  */
-class AndroidLibraryConventionPlugin : Plugin<Project> {
+class LibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {

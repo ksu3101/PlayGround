@@ -4,17 +4,28 @@ WIP..
 
 ## 1. basic
 
+- toy project
+- multi-module
+- coroutine
 - kotlin
 - mvvm
+- [material design 3](https://m3.material.io/)
+- androidx
+  - navigation
+  - lifecycle
+  - compose
+    - [compose-lint](https://slackhq.github.io/compose-lints/)
+    - [accompanist](https://github.com/google/accompanist)
 - [hilt](https://dagger.dev/hilt/)
-- compose
-  - [compose-lint](https://slackhq.github.io/compose-lints/)
-- multi-module
-- coroutine 
-- gitHub action
-- [ktlint](https://pinterest.github.io/ktlint/)
-- [detekt](https://github.com/detekt/detekt)
-- [secrets](https://developers.google.com/maps/documentation/android-sdk/secrets-gradle-plugin?hl=ko)
+- [coil](https://coil-kt.github.io/coil/)
+- [moshi](https://github.com/square/moshi)
+- ci/cd, code quality
+  - gitHub action
+  - [ktlint](https://pinterest.github.io/ktlint/)
+  - [detekt](https://github.com/detekt/detekt)
+  - [secrets](https://developers.google.com/maps/documentation/android-sdk/secrets-gradle-plugin?hl=ko)
+- unit test
+  - [turbine](https://github.com/cashapp/turbine) 
 
 ## 2. modules
 
@@ -26,15 +37,31 @@ WIP..
 
 - `common` : (LIB) 공통
   - Main, IO 등 주입받아서 사용 할 수 있게 한 코루틴 디스패처.
+- `data` : (LIB) 데이터 레이어
+  - (Repository, DataSource) 네트워크, 로컬 데이터 소스 에 대한 비즈니스 로직 정의.  
+    - 비즈니스 로직이 너무 방대해지면 이를 `domain` 모듈에 UseCase 로 쪼갠다.
+- `domain` : (LIB) 도메인 레이어 
+  - UseCase 
 - `design` : (LIB) 머티리얼 디자인 테마, 컬러, 위젯 컴포넌트 등 컴포즈에 사용될 리소스
   - 커스텀 뷰 는 컴포즈로만 작성 하며 이 서브 모듈 에서만 추가 한다.
   - 추가되는 컬러 등은 internal 으로 모듈 내 에서만 사용 가능 하다.
 - `network` : (LIB) Retrofit, OkHttp 등 공통 코드.
+  -  
 - `test` : (LIB) 테스트 코드 공통, 러너 등.
 
 ### 2.3 [`build-logic`](./build-logic/README.md) 
 
-- convention : 멀티 모듈 환경에서 각 메인, 서브 모듈들의 `build.gradle.kts` 에 적용 되는 중복(보일러 플레이트)되는 코드들을 따로 정리 하여 공통 일괄 적용 시켜준다. 
+- convention : 멀티 모듈 환경에서 각 메인, 서브 모듈들의 `build.gradle.kts` 에 적용 되는 중복(보일러 플레이트)되는 코드들을 따로 정리 하여 공통 일괄 적용 시켜준다.
+  - 아래에 정의 된 각 플러그인 들은 필요에 따라 추가 하면 된다.
+    - 모든 모듈에 적용 가능
+      - `kr.swkang.playground.android.application` : 안드로이드 기본 구성
+      - `kr.swkang.playground.android.application.compose` : 컴포즈 관련 구성
+      - `kr.swkang.playground.android.feature` : 안드로이드 피쳐 들
+      - `kr.swkang.playground.android.hilt` : DI 도구인 Hilt 사용을 위한 구성
+      - `kr.swkang.playground.android.test`
+    - 라이브러리 모듈
+      - `kr.swkang.playground.android.library` : 라이브러리 모듈에 적용하기 위한 안드로이드 구성
+      - `kr.swkang.playground.android.library.compose` : 라이브러리 모듈에 적용하기 위한 컴포즈
  
 ### 2.4 `feature`
 
@@ -44,12 +71,17 @@ WIP..
 
 서브 feature 의 구현
 
-## 3. CI, Code quality
+## 3. CI/CD, Code quality
 
 - GitHub Action
+  - pre-commit : `.github/pre-commit` 스크립트를 `.git/hooks/pre-commit`으로 복사 하는 스크립트 `githooks.gradle.kts`를 실행 해야 한다.  
 - ktlint
 - detekt
 
 ## 4. Unit test
 
 - turbine
+
+## References
+
+- [Now in android](https://github.com/android/nowinandroid)

@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.getByType
  * @author bmo
  * @since 2023-03-10
  */
-class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
+class LibraryComposeConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             pluginManager.apply("com.android.library")
