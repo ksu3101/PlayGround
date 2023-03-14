@@ -33,9 +33,6 @@ jobs:
     - name: Pre build
       run: ./gradlew app:preBuild
 
-#    - name: Detekt
-#      run: ./gradlew app:detekt
-
     - name: Build with Gradle
       run: ./gradlew assembleDebug
 

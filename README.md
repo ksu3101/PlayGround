@@ -6,14 +6,14 @@ WIP..
 
 - kotlin
 - mvvm
+- [hilt](https://dagger.dev/hilt/)
 - compose
-  - compose-lint, compose-rule
+  - [compose-lint](https://slackhq.github.io/compose-lints/)
 - multi-module
 - coroutine 
 - gitHub action
-- ktlint
-- detekt
-- sonar-cloud
+- [ktlint](https://pinterest.github.io/ktlint/)
+- [detekt](https://github.com/detekt/detekt)
 - [secrets](https://developers.google.com/maps/documentation/android-sdk/secrets-gradle-plugin?hl=ko)
 
 ## 2. modules
@@ -29,6 +29,8 @@ WIP..
 - `design` : (LIB) 머티리얼 디자인 테마, 컬러, 위젯 컴포넌트 등 컴포즈에 사용될 리소스
   - 커스텀 뷰 는 컴포즈로만 작성 하며 이 서브 모듈 에서만 추가 한다.
   - 추가되는 컬러 등은 internal 으로 모듈 내 에서만 사용 가능 하다.
+- `network` : (LIB) Retrofit, OkHttp 등 공통 코드.
+- `test` : (LIB) 테스트 코드 공통, 러너 등.
 
 ### 2.3 [`build-logic`](./build-logic/README.md) 
 
@@ -47,8 +49,6 @@ WIP..
 - GitHub Action
 - ktlint
 - detekt
-- spotless (이건 예정?)
-- sonar-cloud (이것도 예정?)
 
 ## 4. Unit test
 
