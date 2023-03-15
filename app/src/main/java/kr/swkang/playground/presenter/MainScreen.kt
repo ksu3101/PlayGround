@@ -12,10 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
 import kr.swkang.design.components.PlayGroundTextButton
 import kr.swkang.design.components.PlayGroundTopAppBar
 import kr.swkang.design.theme.PlayGroundTheme
 import kr.swkang.playground.R
+import kr.swkang.playground.navigation.navigateToMain
 
 /**
  * 메인 화면
@@ -27,6 +29,7 @@ import kr.swkang.playground.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
+    val navController = rememberNavController()
     Scaffold(
         topBar = {
             PlayGroundTopAppBar(
@@ -42,7 +45,7 @@ fun MainScreen() {
             ) {
                 PlayGroundTextButton(
                     onClick = {
-                        // navigation
+                        navController.navigateToMain()
                     },
                     modifier = Modifier.fillMaxWidth(),
                     text = "PokeAPI"
