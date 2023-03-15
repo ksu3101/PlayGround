@@ -10,5 +10,5 @@ import androidx.compose.runtime.Composable
  */
 
 @Composable
-fun PokemonScreen() {
+fun PokeScreen() {
 }
