@@ -11,7 +11,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import kr.swkang.playground.presenter.MainDetailsScreen
-import kr.swkang.playground.presenter.MainScreen
 import kr.swkang.pokemon.PokeScreen
 import kr.swkang.pokemon.details.PokeDetailsScreen
 
