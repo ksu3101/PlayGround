@@ -17,9 +17,9 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun PlayGroundTextButton(
     onClick: () -> Unit,
+    text: CharSequence,
     modifier: Modifier = Modifier,
-    isEnable: Boolean = true,
-    text: CharSequence
+    isEnable: Boolean = true
 ) {
     PlayGroundButton(
         onClick = onClick,

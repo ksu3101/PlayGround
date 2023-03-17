@@ -5,10 +5,15 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import kr.swkang.playground.presenter.MainDetailsScreen
 import kr.swkang.playground.presenter.MainScreen
+import kr.swkang.pokemon.PokeScreen
+import kr.swkang.pokemon.details.PokeDetailsScreen
 
 /**
  * 각 컴포즈 화면으로 네비게이션 하기 위해 `NavHost`를 정의 한다.
@@ -20,6 +25,8 @@ import kr.swkang.playground.presenter.MainScreen
 
 internal const val navDestMain = "main"
 internal const val navDestPoke = "poke"
+internal const val pokeDetailArgumentKey = "pokemonId"
+internal const val navDeskPokeDetails = "pokeDetails/"
 
 @Composable
 fun PlayGroundNavHost(
@@ -35,10 +42,16 @@ fun PlayGroundNavHost(
     ) {
         // kotlin DSL 람다를 통해서 네비겨이셔닝 대상의 컴포저블 함수를 제공 하여 탐색할 수 있게 해준다.
         composable(route = navDestMain) {
-            MainScreen()
+            MainDetailsScreen(navController)
         }
         composable(route = navDestPoke) {
-            // PokeScreen()
+            PokeScreen()
+        }
+        composable(
+            route = "$navDeskPokeDetails{$pokeDetailArgumentKey}",
+            arguments = listOf(navArgument(pokeDetailArgumentKey) { type = NavType.IntType })
+        ) {
+            PokeDetailsScreen()
         }
     }
 }
@@ -53,6 +66,13 @@ fun NavController.navigateToMain(navOptions: NavOptions? = null) {
 /**
  * Poke 화면으로 탐색을 진행 한다.
  */
-fun NavController.navitateToPoke(navOptions: NavOptions? = null) {
+fun NavController.navigateToPoke(navOptions: NavOptions? = null) {
     this.navigate(navDestPoke, navOptions)
+}
+
+/**
+ * Poke 상세 화면으로 탐색을 진행 한다.
+ */
+fun NavController.navigateToPokeDetails(pokemonId: Int, navOption: NavOptions? = null) {
+    this.navigate("$navDeskPokeDetails{$pokemonId}", navOption)
 }
