@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import kr.swkang.design.theme.PlayGroundTheme
 import kr.swkang.playground.presenter.MainActivityViewModel
-import kr.swkang.playground.presenter.MainScreen
+import kr.swkang.playground.presenter.PlayGroundMain
 
 /**
  * @author bmo
@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PlayGroundTheme {
-                MainScreen()
+                PlayGroundMain()
             }
         }
     }

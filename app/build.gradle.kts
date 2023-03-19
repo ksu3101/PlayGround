@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.androidx.profileinstaller)
 
     implementation(libs.coil.kt)
+    implementation(libs.timber)
 
     lintChecks(libs.compose.lint)
 }

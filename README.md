@@ -31,7 +31,11 @@ WIP..
 
 ### 2.1 `app`
 
-메인 화면. 
+메인 화면.
+
+- `@Composable PlayGroundMain()` : 메인 화면의 기본 베이스, 뷰 와 네비게이션 호스트 연결.
+  - `PlayGroundNavHost` : 앱 네비게이션 Host 
+  - `@Composable MainScreen()` : 메인 화면 뷰
 
 ### 2.2 `core`
 

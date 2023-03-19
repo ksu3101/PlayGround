@@ -10,7 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import kr.swkang.playground.presenter.MainDetailsScreen
+import kr.swkang.playground.presenter.MainScreen
 import kr.swkang.pokemon.PokeScreen
 import kr.swkang.pokemon.details.PokeDetailsScreen
 
@@ -41,7 +41,7 @@ fun PlayGroundNavHost(
     ) {
         // kotlin DSL 람다를 통해서 네비겨이셔닝 대상의 컴포저블 함수를 제공 하여 탐색할 수 있게 해준다.
         composable(route = navDestMain) {
-            MainDetailsScreen(navController)
+            MainScreen(navController)
         }
         composable(route = navDestPoke) {
             PokeScreen()

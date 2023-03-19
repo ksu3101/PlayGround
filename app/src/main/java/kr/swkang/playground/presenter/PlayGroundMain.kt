@@ -27,34 +27,35 @@ import kr.swkang.playground.navigation.navigateToPoke
  * @author bmo
  * @since 2023-03-10
  */
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun PlayGroundMain(
+    modifier: Modifier = Modifier
+) {
     val navController = rememberNavController()
     Scaffold(
         topBar = {
             PlayGroundTopAppBar(
                 titleTextResId = R.string.app_name,
             )
-        },
-        content = { innerPadding ->
-            // NavHost 연결.
-            PlayGroundNavHost(
-                modifier = Modifier.padding(innerPadding),
-                navController = navController,
-                startDestination = navDestMain
-            )
         }
-    )
+    ) { innerPadding ->
+        // NavHost 연결.
+        PlayGroundNavHost(
+            modifier = modifier.padding(innerPadding),
+            navController = navController,
+            startDestination = navDestMain
+        )
+    }
 }
 
 @Composable
-fun MainDetailsScreen(
+fun MainScreen(
+    modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(start = 20.dp, end = 20.dp)
     ) {
@@ -75,7 +76,7 @@ fun MainDetailsScreen(
 @Composable
 fun MainScreenPreViewLight() {
     PlayGroundTheme {
-        MainDetailsScreen()
+        MainScreen()
     }
 }
 
@@ -86,6 +87,6 @@ fun MainScreenPreViewLight() {
 @Composable
 fun MainScreenPreViewDark() {
     PlayGroundTheme {
-        MainDetailsScreen()
+        MainScreen()
     }
 }
