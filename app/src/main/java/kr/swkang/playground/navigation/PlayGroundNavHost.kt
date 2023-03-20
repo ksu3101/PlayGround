@@ -2,6 +2,8 @@ package kr.swkang.playground.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
@@ -12,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import kr.swkang.playground.presenter.MainScreen
 import kr.swkang.pokemon.PokeScreen
+import kr.swkang.pokemon.PokeViewModel
 import kr.swkang.pokemon.details.PokeDetailsScreen
 
 /**
@@ -41,10 +44,13 @@ fun PlayGroundNavHost(
     ) {
         // kotlin DSL 람다를 통해서 네비겨이셔닝 대상의 컴포저블 함수를 제공 하여 탐색할 수 있게 해준다.
         composable(route = navDestMain) {
-            MainScreen(navController)
+            MainScreen(navController = navController)
         }
         composable(route = navDestPoke) {
-            PokeScreen()
+            PokeScreen(
+                // navigation graph 에서 ViewModel 의 인스턴스를 유지하기 위해 `hiltViewModel()`을 사용 한다.
+                viewModel = hiltViewModel()
+            )
         }
         composable(
             route = "$navDeskPokeDetails{$pokeDetailArgumentKey}",
