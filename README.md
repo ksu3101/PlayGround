@@ -5,7 +5,8 @@ WIP..
 ## 1. basic
 
 - toy project
-- multi-module
+- clean architecture
+  - multi-module
 - coroutine
 - kotlin
 - mvvm
