@@ -1,10 +1,9 @@
 # PlayGround
 
-WIP..
+Toy Project.
 
 ## 1. basic
 
-- toy project
 - clean architecture
   - multi-module
 - coroutine
@@ -21,7 +20,7 @@ WIP..
 - [coil](https://coil-kt.github.io/coil/)
 - [moshi](https://github.com/square/moshi)
 - ci/cd, code quality
-  - gitHub action
+  - [gitHub action](https://github.com/ksu3101/PlayGround/actions)
   - [ktlint](https://pinterest.github.io/ktlint/)
   - [detekt](https://github.com/detekt/detekt)
   - [secrets](https://developers.google.com/maps/documentation/android-sdk/secrets-gradle-plugin?hl=ko)
@@ -46,7 +45,7 @@ WIP..
   - (Repository, DataSource) 네트워크, 로컬 데이터 소스 에 대한 비즈니스 로직 정의.  
     - 비즈니스 로직이 너무 방대해지면 이를 `domain` 모듈에 UseCase 로 쪼갠다.
 - `domain` : (LIB) 도메인 레이어 
-  - UseCase 
+  - 각 피쳐에서 사용 하게 될 UseCase. 
 - `design` : (LIB) 머티리얼 디자인 테마, 컬러, 위젯 컴포넌트 등 컴포즈에 사용될 리소스
   - 커스텀 뷰 는 컴포즈로만 작성 하며 이 서브 모듈 에서만 추가 한다.
   - 추가되는 컬러 등은 internal 으로 모듈 내 에서만 사용 가능 하다.
@@ -73,12 +72,16 @@ WIP..
 실제로 구현될 서브 피쳐의 ui 레이어 구현 레이어. (Compose screen, ViewModel, navigation..)
 
 - `pokemon` : [poke api](https://pokeapi.co/) 를 활용한 간단한 포켓몬 목록, 상세 보기.
+  - svg [포켓몬 이미지 리소스](https://github.com/PokeAPI/sprites) 추가. 
+  - 원래 이미지 서버를 두고 불러와야 하지만, 서버가 없어서 로컬에서 불러옴. 용량 이슈로 인하여 최대 300개 까지만 저장. 
 
 ## 3. CI/CD, Code quality
 
 - GitHub Action
   - pre-commit : `.github/pre-commit` 스크립트를 `.git/hooks/pre-commit`으로 복사 하는 스크립트 `githooks.gradle.kts`를 실행 해야 한다.  
 - ktlint
+  - 이전의 플러그인 디펜던시 의존이 아닌 ktlint CLI를 이용하여 code style로 적용 되었다.  
+  - 윈도우의 경우 [ktlint](https://github.com/pinterest/ktlint/releases) 릴리즈 jar 파일을 환경 변수에 등록 해야 한다. 이전 인터넷에 있던 `--apply-idea-to..`와 같은 명령어는 제거 되어 동작하지 않는다. 
 - detekt
   - (CLI) `> detekt -r html:build/reports/detekt.html ...` : `-r` 파라미터 추가 한 뒤 필요한 리포트 파일과 경로를 추가 하면 된다
 
