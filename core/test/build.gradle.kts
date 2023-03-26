@@ -6,6 +6,11 @@ plugins {
 
 android {
     namespace = "kr.swkang.core.test"
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+        unitTests.isIncludeAndroidResources = true
+    }
 }
 
 dependencies {
