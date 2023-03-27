@@ -29,7 +29,9 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             dependencies {
+                add("implementation", project(":core:data"))
                 add("implementation", project(":core:common"))
+                add("implementation", project(":core:domain"))
                 add("implementation", project(":core:design"))
 
                 // 그 외 공통 의존 들
@@ -38,6 +40,8 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("androidx.hilt.navigation.compose").get())
                 add("implementation", libs.findLibrary("androidx.lifecycle.runtimeCompose").get())
                 add("implementation", libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
+                add("implementation", libs.findLibrary("androidx.paging.runtime").get())
+                add("implementation", libs.findLibrary("androidx.paging.compose").get())
                 add("implementation", libs.findLibrary("kotlinx.coroutines.android").get())
 
                 // 테스트 모듈

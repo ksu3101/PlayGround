@@ -1,5 +1,7 @@
 package kr.swkang.core.domain
 
+import kr.swkang.core.domain.pokemon.GetPokemonsUseCase
+import kr.swkang.core.domain.pokemon.parsePokemonId
 import kr.swkang.core.test.shouldBe
 import org.junit.Test
 
@@ -19,7 +21,7 @@ class ParseIdTest {
         val pokemonId = 14
         val url = "https://pokeapi.co/api/v2/pokemon/$pokemonId/"
 
-        val id = GetPokemonsUseCase.parsePokemonId(url)
+        val id = url.parsePokemonId()
 
         id shouldBe pokemonId
     }
@@ -38,7 +40,7 @@ class ParseIdTest {
         val pokemonId = 1
         val url = "https://pokeapi.co/api/v2/pokemon/$pokemonId/"
 
-        val id = GetPokemonsUseCase.parsePokemonId(url)
+        val id = url.parsePokemonId()
 
         id shouldBe pokemonId
     }
@@ -57,7 +59,7 @@ class ParseIdTest {
         val pokemonId = 1234567890
         val url = "https://pokeapi.co/api/v2/pokemon/$pokemonId"
 
-        val id = GetPokemonsUseCase.parsePokemonId(url)
+        val id = url.parsePokemonId()
 
         id shouldBe pokemonId
     }
@@ -76,7 +78,7 @@ class ParseIdTest {
         val pokemonId = 143
         val url = "http://pokeapi.co/api/v2/pokemon/$pokemonId"
 
-        val id = GetPokemonsUseCase.parsePokemonId(url)
+        val id = url.parsePokemonId()
 
         id shouldBe GetPokemonsUseCase.NOT_AVAILABLE_POKEMON_ID
     }
@@ -95,7 +97,7 @@ class ParseIdTest {
         val pokemonId = 143
         val url = "http://google.com/$pokemonId"
 
-        val id = GetPokemonsUseCase.parsePokemonId(url)
+        val id = url.parsePokemonId()
 
         id shouldBe GetPokemonsUseCase.NOT_AVAILABLE_POKEMON_ID
     }
@@ -113,7 +115,7 @@ class ParseIdTest {
     fun parsePokemonIdCaseTwo_fromEmptyUrls_returnNotAvailablePokemonId() {
         val url = ""
 
-        val id = GetPokemonsUseCase.parsePokemonId(url)
+        val id = url.parsePokemonId()
 
         id shouldBe GetPokemonsUseCase.NOT_AVAILABLE_POKEMON_ID
     }
@@ -131,7 +133,7 @@ class ParseIdTest {
     fun parsePokemonIdCaseThree_fromNullableStrings_returnNotAvailablePokemonId() {
         val url = null
 
-        val id = GetPokemonsUseCase.parsePokemonId(url)
+        val id = url.parsePokemonId()
 
         id shouldBe GetPokemonsUseCase.NOT_AVAILABLE_POKEMON_ID
     }

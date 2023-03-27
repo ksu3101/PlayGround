@@ -13,7 +13,8 @@ interface PokeApi {
     /**
      * 포켓몬의 목록을 가져 온다.
      *
-     * @param limit 한번에 불러올 포켓몬의 수. 기본값 100.
+     * @param offset 가져올 목록의 시작 인덱스.
+     * @param limit 한번에 불러올 포켓몬의 수.
      */
     @GET("api/v2/pokemon")
     suspend fun getPokemons(

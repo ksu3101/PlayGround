@@ -1,4 +1,4 @@
-package kr.swkang.core.domain.model
+package kr.swkang.core.domain.pokemon.model
 
 /**
  * @author bmo

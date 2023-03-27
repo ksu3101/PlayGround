@@ -6,11 +6,11 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 import kr.swkang.network.retrofit.poke.PokeApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Singleton
 
 /**
  * @author beemo
@@ -23,7 +23,7 @@ object PokeNetworkModule {
     @Provides
     fun providePokeRetrofit(
         okHttpClient: OkHttpClient
-    ) = Retrofit.Builder()
+    ): PokeApi = Retrofit.Builder()
         .client(okHttpClient)
         .baseUrl("https://pokeapi.co/")
         .addConverterFactory(

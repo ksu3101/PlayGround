@@ -6,4 +6,4 @@ package kr.swkang.common.exts
  */
 
 fun String.isNumber(): Boolean =
-    (!this.isEmpty() && this.matches(Regex("\\d+")))
+    (this.isNotEmpty() && this.matches(Regex("\\d+")))

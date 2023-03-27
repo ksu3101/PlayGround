@@ -13,6 +13,7 @@ Toy Project.
 - androidx
   - navigation
   - lifecycle
+  - paging3
   - compose
     - [compose-lint](https://slackhq.github.io/compose-lints/)
     - [accompanist](https://github.com/google/accompanist)
