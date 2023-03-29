@@ -1,7 +1,6 @@
 package kr.swkang.pokemon
 
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,7 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
-import androidx.compose.material3.Divider
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -31,6 +31,8 @@ import androidx.paging.compose.items
 import androidx.palette.graphics.Palette
 import kr.swkang.core.domain.pokemon.model.SimplePokemonInfos
 import kr.swkang.design.components.OnLoadingProgressWithDim
+import kr.swkang.design.extensions.getBitmapFromDrawable
+import timber.log.Timber
 
 /**
  * 포켓몬 목록 화면
@@ -68,13 +70,12 @@ fun PokeScreenDetails(
         LazyColumn {
             items(
                 items = pokemons,
-                key = { it.url }
+                key = { it.id }
             ) { pokemon ->
+                if (pokemon == null) return@items
                 SimplePokemonCard(
-                    pokemons = pokemon,
-                    modifier = Modifier.fillMaxWidth()
+                    pokemons = pokemon
                 )
-                Divider()
             }
         }
 
@@ -127,21 +128,24 @@ fun SimplePokemonCard(
     val context = LocalContext.current
     val pokemonSpriteResId = POKEMON_SPRITES[pokemons.id] ?: R.drawable._poke_placeholder
     val bitmap = remember {
-        BitmapFactory.decodeResource(context.resources, pokemonSpriteResId)
+        context.getBitmapFromDrawable(pokemonSpriteResId)
     }
-    val palette = remember {
-        Palette.from(bitmap).generate()
+    val palette = bitmap?.let {
+        remember {
+            Palette.from(bitmap).generate()
+        }
     }
+    Timber.d(">> ${pokemons.name} // palette = $palette")
     Card(
         modifier = modifier
             .fillMaxWidth()
             .height(140.dp)
-            .padding(10.dp)
-            .background(
-                palette.mutedSwatch?.let {
-                    Color(it.titleTextColor)
-                } ?: Color.White
-            )
+            .padding(10.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = palette?.vibrantSwatch?.let {
+                Color(it.rgb)
+            } ?: MaterialTheme.colorScheme.background
+        )
     ) {
         Image(
             modifier = Modifier

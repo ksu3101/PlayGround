@@ -33,7 +33,7 @@ class PokemonsPagingSource(
                         url = it.url
                     )
                 },
-                prevKey = if (page == 1) null else page.minus(1),
+                prevKey = if (page == 0) null else page.minus(1),
                 nextKey = if (response.next == null) null else page.plus(1)
             )
         } catch (e: Exception) {

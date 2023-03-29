@@ -25,6 +25,7 @@ import kr.swkang.design.theme.PlayGroundTheme
 import kr.swkang.playground.R
 import kr.swkang.playground.navigation.PlayGroundNavHost
 import kr.swkang.playground.navigation.navDestMain
+import kr.swkang.playground.navigation.navDestPoke
 import kr.swkang.playground.navigation.navigateToPoke
 
 /**
@@ -50,8 +51,13 @@ fun PlayGroundMain(
     Scaffold(
         topBar = {
             PlayGroundTopAppBar(
-                titleText = stringResource(id = R.string.app_name),
-                isShowBackButton = isShowBackButton,
+                titleText = stringResource(
+                    id = when (currentRoute.value?.destination?.route) {
+                        navDestPoke -> R.string.pokemons
+                        else -> R.string.app_name
+                    }
+                ),
+                isShowBackButton = isShowBackButton
             ) {
                 // <- 버튼 누르면, 이전 화면으로 이동.
                 navController.navigateUp()
@@ -68,8 +74,8 @@ fun PlayGroundMain(
         // (accompanist) 최상단 시스템 바 배경, 아이콘 컬러 설정.
         SideEffect {
             systemUiController.setSystemBarsColor(
-                color = Color.Transparent,  // 상단 시스템 바 배경을 투명으로 하여 배경 색을 보인다.
-                darkIcons = useDarkIcon     // 아이콘 다크 테마에 따른 설정
+                color = Color.Transparent, // 상단 시스템 바 배경을 투명으로 하여 배경 색을 보인다.
+                darkIcons = useDarkIcon // 아이콘 다크 테마에 따른 설정
             )
         }
     }
@@ -78,7 +84,7 @@ fun PlayGroundMain(
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController = rememberNavController()
 ) {
     Column(
         modifier = modifier
@@ -90,7 +96,7 @@ fun MainScreen(
                 navController.navigateToPoke()
             },
             modifier = Modifier.fillMaxWidth(),
-            text = "PokeAPI"
+            text = stringResource(id = R.string.pokeapi)
         )
     }
 }
