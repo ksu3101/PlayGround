@@ -9,6 +9,7 @@ android {
 
 dependencies {
     implementation(libs.timber)
+    implementation(libs.androidx.palette)
 
     lintChecks(libs.compose.lint)
 }
