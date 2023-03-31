@@ -21,6 +21,10 @@ class PokemonsPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, SimplePokemonInfos> {
         return try {
             val page = params.key ?: 0
+            if (page >= 15) {
+                // dev : 앱 내에서 로드 할 수 있는 항목을 제한 하였고, 아이템 수는 300개 이며 페이지로는 15이다.
+                return LoadResult.Invalid()
+            }
             val response = pokeRepository.getPokemons(
                 offset = page * GetPokemonsUseCase.LOAD_POKEMONS_DEF_LIMIT,
                 limit = GetPokemonsUseCase.LOAD_POKEMONS_DEF_LIMIT

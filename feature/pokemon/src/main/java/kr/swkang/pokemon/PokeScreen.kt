@@ -1,28 +1,36 @@
 package kr.swkang.pokemon
 
-import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -31,7 +39,6 @@ import androidx.palette.graphics.Palette
 import kr.swkang.core.domain.pokemon.model.SimplePokemonInfos
 import kr.swkang.design.components.OnLoadingProgressWithDim
 import kr.swkang.design.extensions.getBitmapFromDrawable
-import timber.log.Timber
 
 /**
  * 포켓몬 목록 화면
@@ -45,11 +52,9 @@ fun PokeScreen(
     viewModel: PokeViewModel,
     modifier: Modifier = Modifier
 ) {
-    val context = LocalContext.current
     val isLoading: Boolean by viewModel.isLoading.collectAsState(initial = false)
     val pokemons = viewModel.getPokemons().collectAsLazyPagingItems()
     PokeScreenDetails(
-        context = context,
         pokemons = pokemons,
         isLoading = isLoading,
         modifier = modifier
@@ -58,15 +63,18 @@ fun PokeScreen(
 
 @Composable
 fun PokeScreenDetails(
-    context: Context,
     pokemons: LazyPagingItems<SimplePokemonInfos>,
     isLoading: Boolean,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
     Surface(
         modifier = modifier.fillMaxSize()
     ) {
-        LazyColumn {
+        LazyColumn(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
             items(
                 items = pokemons,
                 key = { it.id }
@@ -126,33 +134,60 @@ fun SimplePokemonCard(
     if (pokemons == null) return
     val context = LocalContext.current
     val pokemonSpriteResId = POKEMON_SPRITES[pokemons.id] ?: R.drawable._poke_placeholder
-    val bitmap = remember {
-        context.getBitmapFromDrawable(pokemonSpriteResId)
-    }
+    val bitmap = remember { context.getBitmapFromDrawable(pokemonSpriteResId) }
     val palette = bitmap?.let {
         remember {
             Palette.from(bitmap).generate()
         }
     }
-    Timber.d(">> ${pokemons.name} // palette = $palette")
     Card(
         modifier = modifier
             .fillMaxWidth()
             .height(140.dp)
-            .padding(10.dp),
+            .padding(start = 10.dp, end = 10.dp),
         colors = CardDefaults.cardColors(
-            containerColor = palette?.vibrantSwatch?.let {
+            containerColor = palette?.lightVibrantSwatch?.let {
                 Color(it.rgb)
             } ?: MaterialTheme.colorScheme.background
         )
     ) {
-        Image(
+        Row(
             modifier = Modifier
+                .fillMaxWidth()
                 .fillMaxHeight()
-                .padding(14.dp),
-            painter = painterResource(id = pokemonSpriteResId),
-            contentDescription = "pokemon background image"
-        )
+        ) {
+            Image(
+                modifier = Modifier
+                    .width(140.dp)
+                    .fillMaxHeight()
+                    .padding(10.dp),
+                painter = painterResource(id = pokemonSpriteResId),
+                contentDescription = "pokemon background image",
+                alignment = Alignment.Center,
+                contentScale = ContentScale.Inside
+            )
+            Column(
+                modifier = Modifier.padding(top = 15.dp, bottom = 15.dp)
+            ) {
+                Text(
+                    text = pokemons.name,
+                    fontSize = 28.sp,
+                    maxLines = 1,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = palette?.lightVibrantSwatch?.let {
+                        Color(it.titleTextColor)
+                    } ?: Color.White
+                )
+                Text(
+                    text = "(${pokemons.id})",
+                    fontSize = 18.sp,
+                    maxLines = 1,
+                    color = palette?.vibrantSwatch?.let {
+                        Color(it.titleTextColor)
+                    } ?: Color.White
+                )
+            }
+        }
     }
 }
 
@@ -162,7 +197,7 @@ fun SimplePokemonCardPreview() {
     SimplePokemonCard(
         SimplePokemonInfos(
             "asdf zxcv",
-            1,
+            2,
             "https://google.com"
         )
     )
