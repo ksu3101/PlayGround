@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.getByType
  * 컴포즈 플러그인에 적용될 상세 옵션 들
  */
 internal fun Project.configureAndroidCompose(
-    commonExtension: CommonExtension<*, *, *, *>,
+    commonExtension: CommonExtension<*, *, *, *>
 ) {
     val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 

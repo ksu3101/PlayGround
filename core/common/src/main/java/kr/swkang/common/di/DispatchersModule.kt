@@ -43,17 +43,17 @@ import kr.swkang.common.MainImmediateDispatcher
 object DispatchersModule {
     @Provides
     @DefaultDispatcher
-    fun provideDefaultDispatcher() : CoroutineDispatcher = Dispatchers.Default
+    fun provideDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
     @Provides
     @IoDispatcher
-    fun provideIoDispatcher() : CoroutineDispatcher = Dispatchers.IO
+    fun provideIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
     @Provides
     @MainDispatcher
-    fun provideMainDispatcher() : CoroutineDispatcher = Dispatchers.Main
+    fun provideMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
 
     @Provides
     @MainImmediateDispatcher
-    fun provideMainImmediateDispatcher() : CoroutineDispatcher = Dispatchers.Main.immediate
+    fun provideMainImmediateDispatcher(): CoroutineDispatcher = Dispatchers.Main.immediate
 }

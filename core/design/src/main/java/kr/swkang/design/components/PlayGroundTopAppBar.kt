@@ -42,7 +42,9 @@ fun PlayGroundTopAppBar(
                         contentDescription = "Back"
                     )
                 }
-            } else null
+            } else {
+                null
+            }
         }
     )
 }
@@ -52,7 +54,7 @@ fun PlayGroundTopAppBar(
 fun PlayGroundTopAppBarPreview() {
     PlayGroundTopAppBar(
         titleText = "타이틀 텍스트",
-        isShowBackButton = true,
+        isShowBackButton = true
     ) {
     }
 }

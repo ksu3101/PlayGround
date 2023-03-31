@@ -19,7 +19,7 @@ Toy Project.
     - [accompanist](https://github.com/google/accompanist)
 - [hilt](https://dagger.dev/hilt/)
 - [coil](https://coil-kt.github.io/coil/)
-- [moshi](https://github.com/square/moshi)
+- (WIP) kotlin-serializable
 - ci/cd, code quality
   - [gitHub action](https://github.com/ksu3101/PlayGround/actions)
   - [ktlint](https://pinterest.github.io/ktlint/)
@@ -27,6 +27,7 @@ Toy Project.
   - [secrets](https://developers.google.com/maps/documentation/android-sdk/secrets-gradle-plugin?hl=ko)
 - unit test
   - [turbine](https://github.com/cashapp/turbine) 
+  - [mockk](https://mockk.io/ANDROID.html)
 
 ## 2. modules
 
@@ -89,6 +90,7 @@ Toy Project.
 ## 4. Unit test
 
 - turbine
+- mockk
 
 ## References
 

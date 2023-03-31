@@ -12,7 +12,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
  *   - kotlin desugar, kotlin warning 등 옵션들은 일단 제거 하였음. 추 후 필요하면 재 추가 할 것
  */
 internal fun Project.configureKotlinAndroid(
-    commonExtension: CommonExtension<*, *, *, *>,
+    commonExtension: CommonExtension<*, *, *, *>
 ) {
     commonExtension.apply {
         compileSdk = 33

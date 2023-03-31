@@ -8,4 +8,4 @@ import dagger.hilt.android.HiltAndroidApp
  * @since 2023-03-08
  */
 @HiltAndroidApp
-class PlayGroundApplication: Application()
+class PlayGroundApplication : Application()

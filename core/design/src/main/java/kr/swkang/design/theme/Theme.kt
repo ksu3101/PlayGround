@@ -45,7 +45,7 @@ private val LightColors = lightColorScheme(
     inversePrimary = InversePrimaryLight,
     surfaceTint = SurfaceTintLight,
     outlineVariant = OutlineVariantLight,
-    scrim = ScrimLight,
+    scrim = ScrimLight
 )
 
 private val DarkColors = darkColorScheme(
@@ -77,7 +77,7 @@ private val DarkColors = darkColorScheme(
     inversePrimary = InversePrimaryDark,
     surfaceTint = SurfaceTintDark,
     outlineVariant = OutlineVariantDark,
-    scrim = ScrimDark,
+    scrim = ScrimDark
 )
 
 @Composable

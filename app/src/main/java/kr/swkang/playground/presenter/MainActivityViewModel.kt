@@ -10,6 +10,4 @@ import javax.inject.Inject
  * @since 2023-03-10
  */
 @HiltViewModel
-class MainActivityViewModel @Inject constructor(
-): ViewModel() {
-}
+class MainActivityViewModel @Inject constructor() : ViewModel()

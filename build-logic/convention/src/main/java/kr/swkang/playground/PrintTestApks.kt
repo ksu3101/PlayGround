@@ -4,6 +4,7 @@ import com.android.build.api.artifact.SingleArtifact
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.api.variant.BuiltArtifactsLoader
 import com.android.build.api.variant.HasAndroidTest
+import java.io.File
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.file.Directory
@@ -15,7 +16,6 @@ import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.TaskAction
-import java.io.File
 
 internal fun Project.configurePrintApksTask(extension: AndroidComponentsExtension<*, *, *>) {
     extension.onVariants { variant ->
@@ -29,7 +29,9 @@ internal fun Project.configurePrintApksTask(extension: AndroidComponentsExtensio
                 javaSources.zip(kotlinSources) { javaDirs, kotlinDirs ->
                     javaDirs + kotlinDirs
                 }
-            } else javaSources ?: kotlinSources
+            } else {
+                javaSources ?: kotlinSources
+            }
 
             if (artifact != null && testSources != null) {
                 tasks.register(
@@ -74,8 +76,9 @@ internal abstract class PrintApkLocationTask : DefaultTask() {
 
         val builtArtifacts = builtArtifactsLoader.get().load(apkFolder.get())
             ?: throw RuntimeException("Cannot load APKs")
-        if (builtArtifacts.elements.size != 1)
+        if (builtArtifacts.elements.size != 1) {
             throw RuntimeException("Expected one APK !")
+        }
         val apk = File(builtArtifacts.elements.single().outputFile).toPath()
         println(apk)
     }

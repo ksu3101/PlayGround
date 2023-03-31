@@ -3,7 +3,6 @@ package kr.swkang.playground.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
@@ -14,7 +13,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import kr.swkang.playground.presenter.MainScreen
 import kr.swkang.pokemon.PokeScreen
-import kr.swkang.pokemon.PokeViewModel
 import kr.swkang.pokemon.details.PokeDetailsScreen
 
 /**
