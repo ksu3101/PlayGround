@@ -18,7 +18,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -28,6 +27,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -52,11 +52,9 @@ fun PokeScreen(
     viewModel: PokeViewModel,
     modifier: Modifier = Modifier
 ) {
-    val isLoading: Boolean by viewModel.isLoading.collectAsState(initial = false)
     val pokemons = viewModel.getPokemons().collectAsLazyPagingItems()
     PokeScreenDetails(
         pokemons = pokemons,
-        isLoading = isLoading,
         modifier = modifier
     )
 }
@@ -64,7 +62,6 @@ fun PokeScreen(
 @Composable
 fun PokeScreenDetails(
     pokemons: LazyPagingItems<SimplePokemonInfos>,
-    isLoading: Boolean,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -119,10 +116,6 @@ fun PokeScreenDetails(
                 // nothing to do..
             }
         }
-
-        if (isLoading) {
-            OnLoadingProgressWithDim()
-        }
     }
 }
 
@@ -145,6 +138,9 @@ fun SimplePokemonCard(
             .fillMaxWidth()
             .height(140.dp)
             .padding(start = 10.dp, end = 10.dp),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 10.dp
+        ),
         colors = CardDefaults.cardColors(
             containerColor = palette?.lightVibrantSwatch?.let {
                 Color(it.rgb)
@@ -154,7 +150,8 @@ fun SimplePokemonCard(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight()
+                .fillMaxHeight(),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
                 modifier = Modifier
@@ -167,24 +164,25 @@ fun SimplePokemonCard(
                 contentScale = ContentScale.Inside
             )
             Column(
-                modifier = Modifier.padding(top = 15.dp, bottom = 15.dp)
+                modifier = Modifier.padding(start = 5.dp, top = 15.dp, bottom = 15.dp)
             ) {
                 Text(
                     text = pokemons.name,
                     fontSize = 28.sp,
-                    maxLines = 1,
+                    maxLines = 2,
                     fontWeight = FontWeight.ExtraBold,
+                    overflow = TextOverflow.Ellipsis,
                     color = palette?.lightVibrantSwatch?.let {
                         Color(it.titleTextColor)
-                    } ?: Color.White
+                    } ?: MaterialTheme.colorScheme.primary
                 )
                 Text(
+                    modifier = Modifier.padding(top = 8.dp),
                     text = "(${pokemons.id})",
                     fontSize = 18.sp,
-                    maxLines = 1,
                     color = palette?.vibrantSwatch?.let {
                         Color(it.titleTextColor)
-                    } ?: Color.White
+                    } ?: MaterialTheme.colorScheme.primary
                 )
             }
         }
@@ -196,7 +194,7 @@ fun SimplePokemonCard(
 fun SimplePokemonCardPreview() {
     SimplePokemonCard(
         SimplePokemonInfos(
-            "asdf zxcv",
+            "asdf zxcv ad ed zxcv 12 3456 omsb 78",
             2,
             "https://google.com"
         )
