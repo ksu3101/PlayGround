@@ -32,6 +32,9 @@ android {
         unitTests.isReturnDefaultValues = true
         unitTests.isIncludeAndroidResources = true
     }
+    buildFeatures {
+        buildConfig = true
+    }
     namespace = "kr.swkang.playground"
 }
 

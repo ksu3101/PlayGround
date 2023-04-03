@@ -1,7 +1,10 @@
 package kr.swkang.pokemon
 
+import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -39,6 +42,7 @@ import androidx.palette.graphics.Palette
 import kr.swkang.core.domain.pokemon.model.SimplePokemonInfos
 import kr.swkang.design.components.OnLoadingProgressWithDim
 import kr.swkang.design.extensions.getBitmapFromDrawable
+import timber.log.Timber
 
 /**
  * 포켓몬 목록 화면
@@ -77,40 +81,36 @@ fun PokeScreenDetails(
                 key = { it.id }
             ) { pokemon ->
                 if (pokemon == null) return@items
+                Timber.d(">> received | pokemons.itemCount = ${pokemons.itemCount}")
                 SimplePokemonCard(
                     pokemons = pokemon
                 )
             }
         }
 
-        // 포켓몬 목록 첫번째 로드
+        // 포켓몬 목록 첫번째 페이지 최초 로드에 대한 처리.
         when (val state = pokemons.loadState.refresh) {
             is LoadState.Error -> {
-                Toast.makeText(
-                    context,
-                    state.error.message?.ifEmpty { "Unknown error occure." },
-                    Toast.LENGTH_SHORT
-                ).show()
+                showingToast(context, state.error.message?.ifEmpty { "Unknown error occure." })
             }
             is LoadState.Loading -> {
-                OnLoadingProgressWithDim()
+                LoadingPokemons()
+            }
+            is LoadState.NotLoading -> {
+                PokemonNotFoundScreen()
             }
             else -> {
                 // nothing to do..
             }
         }
 
-        // 포켓못 목록의 페이징 ui 처리
+        // 포켓못 목록의 현재 위치에서 다음 페이지에 대한 ui 처리
         when (val state = pokemons.loadState.append) {
             is LoadState.Error -> {
-                Toast.makeText(
-                    context,
-                    state.error.message?.ifEmpty { "Unknown error occure." },
-                    Toast.LENGTH_SHORT
-                ).show()
+                showingToast(context, state.error.message?.ifEmpty { "Unknown error occure." })
             }
             is LoadState.Loading -> {
-                OnLoadingProgressWithDim()
+                LoadingPokemons()
             }
             else -> {
                 // nothing to do..
@@ -120,7 +120,37 @@ fun PokeScreenDetails(
 }
 
 @Composable
-fun SimplePokemonCard(
+internal fun PokemonNotFoundScreen() {
+    // todo : 최초 페이지 로드 할 때 포켓몬 목록을 불러오지 못했을 때(오류 등) 화면 처리
+}
+
+private fun showingToast(context: Context, errorMessage: String?) {
+    Toast.makeText(
+        context,
+        errorMessage?.ifEmpty { "Unknown error occure." },
+        Toast.LENGTH_SHORT
+    ).show()
+}
+
+@Composable
+private fun LoadingPokemons() {
+    // TODO : shimmer 같은 것 으로 바꾸자.
+    OnLoadingProgressWithDim(
+        isRectanbleBoxShowing = isSystemInDarkTheme().not(),
+        background = Color.Transparent,
+        progressBarColor = MaterialTheme.colorScheme.onSecondaryContainer
+    )
+}
+
+/**
+ * 불러온 포켓몬 하나에 대항 하는 카드 아이템 뷰.
+ *   - Palette를 사용 하여 포켓몬의 팔레트 컬러를 얻고 이를 이용해서 카드의 배경 컬러와
+ *   텍스트 컬러를 꾸며 준다.
+ *   - 버그인지 모르겠지만 각 페이지의 1번째 포켓몬에 대한 컬러값을 읽어오질 못한다. 해결
+ *   방법을 찾아봐야 할 것 같다.
+ */
+@Composable
+internal fun SimplePokemonCard(
     pokemons: SimplePokemonInfos?,
     modifier: Modifier = Modifier
 ) {
@@ -191,7 +221,7 @@ fun SimplePokemonCard(
 
 @Preview
 @Composable
-fun SimplePokemonCardPreview() {
+private fun SimplePokemonCardPreview() {
     SimplePokemonCard(
         SimplePokemonInfos(
             "asdf zxcv ad ed zxcv 12 3456 omsb 78",
@@ -203,7 +233,7 @@ fun SimplePokemonCardPreview() {
 
 @Preview
 @Composable
-fun PokeScreenDetailsPreView() {
+private fun PokeScreenDetailsPreView() {
     // PlayGroundTheme {
     //     PokeScreenDetails(
     //         isLoading = true

@@ -21,6 +21,7 @@ dependencies {
     api(libs.turbine)
     api(libs.mockk)
 
+    api(libs.androidx.paging.testing)
     api(libs.androidx.test.core)
     api(libs.androidx.test.espresso.core)
     api(libs.androidx.test.runner)

@@ -42,11 +42,14 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
                 add("implementation", libs.findLibrary("androidx.paging.runtime").get())
                 add("implementation", libs.findLibrary("androidx.paging.compose").get())
+                add("implementation", libs.findLibrary("androidx.paging.testing").get())
                 add("implementation", libs.findLibrary("kotlinx.coroutines.android").get())
 
                 // 테스트 모듈
                 add("testImplementation", kotlin("test"))
+                add("testImplementation", project(":core:test"))
                 add("androidTestImplementation", kotlin("test"))
+                add("androidTestImplementation", project(":core:test"))
             }
         }
     }
