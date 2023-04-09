@@ -3,7 +3,7 @@ package kr.swkang.pokemon
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,7 +21,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,6 +33,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -42,6 +42,7 @@ import androidx.palette.graphics.Palette
 import kr.swkang.core.domain.pokemon.model.SimplePokemonInfos
 import kr.swkang.design.components.OnLoadingProgressWithDim
 import kr.swkang.design.extensions.getBitmapFromDrawable
+import kr.swkang.pokemon.navigation.navigateToPokeDetails
 import timber.log.Timber
 
 /**
@@ -69,6 +70,7 @@ fun PokeScreenDetails(
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
+    val navController = rememberNavController()
     Surface(
         modifier = modifier.fillMaxSize()
     ) {
@@ -84,7 +86,11 @@ fun PokeScreenDetails(
                 Timber.d(">> received | pokemons.itemCount = ${pokemons.itemCount}")
                 SimplePokemonCard(
                     pokemons = pokemon
-                )
+                ) { clickedPokemon ->
+                    navController.navigateToPokeDetails(
+                        pokemonId = clickedPokemon.id
+                    )
+                }
             }
         }
 
@@ -152,7 +158,8 @@ private fun LoadingPokemons() {
 @Composable
 internal fun SimplePokemonCard(
     pokemons: SimplePokemonInfos?,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    itemOnClicked: (pokemon: SimplePokemonInfos) -> Unit
 ) {
     if (pokemons == null) return
     val context = LocalContext.current
@@ -167,7 +174,10 @@ internal fun SimplePokemonCard(
         modifier = modifier
             .fillMaxWidth()
             .height(140.dp)
-            .padding(start = 10.dp, end = 10.dp),
+            .padding(start = 10.dp, end = 10.dp)
+            .clickable {
+                itemOnClicked(pokemons)
+            },
         elevation = CardDefaults.cardElevation(
             defaultElevation = 10.dp
         ),
@@ -228,7 +238,7 @@ private fun SimplePokemonCardPreview() {
             2,
             "https://google.com"
         )
-    )
+    ) { }
 }
 
 @Preview

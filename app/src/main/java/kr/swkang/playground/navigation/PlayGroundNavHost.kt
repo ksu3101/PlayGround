@@ -2,18 +2,15 @@ package kr.swkang.playground.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import kr.swkang.playground.presenter.MainScreen
-import kr.swkang.pokemon.PokeScreen
-import kr.swkang.pokemon.details.PokeDetailsScreen
+import kr.swkang.pokemon.navigation.pokeDetailScreen
+import kr.swkang.pokemon.navigation.pokeMainScreen
 
 /**
  * 각 컴포즈 화면으로 네비게이션 하기 위해 `NavHost`를 정의 한다.
@@ -24,9 +21,6 @@ import kr.swkang.pokemon.details.PokeDetailsScreen
  */
 
 internal const val navDestMain = "main"
-internal const val navDestPoke = "poke"
-internal const val pokeDetailArgumentKey = "pokemonId"
-internal const val navDeskPokeDetails = "pokeDetails/"
 
 @Composable
 fun PlayGroundNavHost(
@@ -44,18 +38,10 @@ fun PlayGroundNavHost(
         composable(route = navDestMain) {
             MainScreen(navController = navController)
         }
-        composable(route = navDestPoke) {
-            PokeScreen(
-                // navigation graph 에서 ViewModel 의 인스턴스를 유지하기 위해 `hiltViewModel()`을 사용 한다.
-                viewModel = hiltViewModel()
-            )
-        }
-        composable(
-            route = "$navDeskPokeDetails{$pokeDetailArgumentKey}",
-            arguments = listOf(navArgument(pokeDetailArgumentKey) { type = NavType.IntType })
-        ) {
-            PokeDetailsScreen()
-        }
+        // 포켓몬 api 메인 화면
+        pokeMainScreen()
+        // 포켓몬 api 상세 화면
+        pokeDetailScreen()
     }
 }
 
@@ -64,18 +50,4 @@ fun PlayGroundNavHost(
  */
 fun NavController.navigateToMain(navOptions: NavOptions? = null) {
     this.navigate(navDestMain, navOptions)
-}
-
-/**
- * Poke 화면으로 탐색을 진행 한다.
- */
-fun NavController.navigateToPoke(navOptions: NavOptions? = null) {
-    this.navigate(navDestPoke, navOptions)
-}
-
-/**
- * Poke 상세 화면으로 탐색을 진행 한다.
- */
-fun NavController.navigateToPokeDetails(pokemonId: Int, navOption: NavOptions? = null) {
-    this.navigate("$navDeskPokeDetails{$pokemonId}", navOption)
 }
