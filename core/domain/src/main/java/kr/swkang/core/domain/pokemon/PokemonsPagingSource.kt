@@ -26,8 +26,8 @@ class PokemonsPagingSource(
                 return LoadResult.Invalid()
             }
             val response = pokeRepository.getPokemons(
-                offset = page * GetPokemonsUseCase.LOAD_POKEMONS_DEF_LIMIT,
-                limit = GetPokemonsUseCase.LOAD_POKEMONS_DEF_LIMIT
+                offset = page * GetPokemonPagesUseCase.LOAD_POKEMONS_DEF_LIMIT,
+                limit = GetPokemonPagesUseCase.LOAD_POKEMONS_DEF_LIMIT
             )
             LoadResult.Page(
                 data = response.results.map {

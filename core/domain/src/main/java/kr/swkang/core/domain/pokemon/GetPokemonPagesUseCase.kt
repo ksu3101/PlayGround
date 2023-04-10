@@ -10,7 +10,7 @@ import kr.swkang.core.data.PokeRepository
  * @author bmo
  * @since 2023-03-21
  */
-class GetPokemonsUseCase @Inject constructor(
+class GetPokemonPagesUseCase @Inject constructor(
     private val pokeRepository: PokeRepository
 ) {
     operator fun invoke() = Pager(
@@ -34,7 +34,7 @@ class GetPokemonsUseCase @Inject constructor(
  */
 internal fun String?.parsePokemonId(): Int {
     if (isNullOrEmpty() || !startsWith("https://pokeapi.co/api/v2/pokemon")) {
-        return GetPokemonsUseCase.NOT_AVAILABLE_POKEMON_ID
+        return GetPokemonPagesUseCase.NOT_AVAILABLE_POKEMON_ID
     }
     val path = substring(indexOf("//"))
     if (path.isNotEmpty()) {
@@ -45,5 +45,5 @@ internal fun String?.parsePokemonId(): Int {
             }
         }
     }
-    return GetPokemonsUseCase.NOT_AVAILABLE_POKEMON_ID
+    return GetPokemonPagesUseCase.NOT_AVAILABLE_POKEMON_ID
 }

@@ -6,7 +6,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.test.runTest
-import kr.swkang.core.domain.pokemon.GetPokemonsUseCase
+import kr.swkang.core.domain.pokemon.GetPokemonPagesUseCase
 import kr.swkang.core.domain.pokemon.model.SimplePokemonInfos
 import org.junit.Before
 import org.junit.Test
@@ -20,16 +20,16 @@ import org.junit.Test
 @OptIn(ExperimentalCoroutinesApi::class)
 class PokeScreenTest {
     private lateinit var viewModel: PokeViewModel
-    private val getPokemonsUseCase: GetPokemonsUseCase = mockk()
+    private val getPokemonPagesUseCase: GetPokemonPagesUseCase = mockk()
 
     @Before
     fun setUp() {
-        this.viewModel = PokeViewModel(getPokemonsUseCase)
+        this.viewModel = PokeViewModel(getPokemonPagesUseCase)
     }
 
     @Test
     fun testReceivePokemons_receivedSuccess() = runTest {
-        val items: Flow<PagingData<SimplePokemonInfos>> = viewModel.getPokemons()
+        val items: Flow<PagingData<SimplePokemonInfos>> = viewModel.getPokemonPages()
 
         val itemsSnapShot: List<SimplePokemonInfos> = items.asSnapshot(
             coroutineScope = this

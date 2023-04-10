@@ -1,6 +1,6 @@
 package kr.swkang.core.domain
 
-import kr.swkang.core.domain.pokemon.GetPokemonsUseCase
+import kr.swkang.core.domain.pokemon.GetPokemonPagesUseCase
 import kr.swkang.core.domain.pokemon.parsePokemonId
 import kr.swkang.core.test.shouldBe
 import org.junit.Test
@@ -80,7 +80,7 @@ class ParseIdTest {
 
         val id = url.parsePokemonId()
 
-        id shouldBe GetPokemonsUseCase.NOT_AVAILABLE_POKEMON_ID
+        id shouldBe GetPokemonPagesUseCase.NOT_AVAILABLE_POKEMON_ID
     }
 
     /**
@@ -99,7 +99,7 @@ class ParseIdTest {
 
         val id = url.parsePokemonId()
 
-        id shouldBe GetPokemonsUseCase.NOT_AVAILABLE_POKEMON_ID
+        id shouldBe GetPokemonPagesUseCase.NOT_AVAILABLE_POKEMON_ID
     }
 
     /**
@@ -117,7 +117,7 @@ class ParseIdTest {
 
         val id = url.parsePokemonId()
 
-        id shouldBe GetPokemonsUseCase.NOT_AVAILABLE_POKEMON_ID
+        id shouldBe GetPokemonPagesUseCase.NOT_AVAILABLE_POKEMON_ID
     }
 
     /**
@@ -135,6 +135,6 @@ class ParseIdTest {
 
         val id = url.parsePokemonId()
 
-        id shouldBe GetPokemonsUseCase.NOT_AVAILABLE_POKEMON_ID
+        id shouldBe GetPokemonPagesUseCase.NOT_AVAILABLE_POKEMON_ID
     }
 }

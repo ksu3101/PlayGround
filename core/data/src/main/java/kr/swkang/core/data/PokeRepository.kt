@@ -1,6 +1,7 @@
 package kr.swkang.core.data
 
-import kr.swkang.network.retrofit.poke.PokemonsResponse
+import kr.swkang.network.retrofit.poke.dto.PokemonResponse
+import kr.swkang.network.retrofit.poke.dto.PokemonsResponse
 
 /**
  * @author bmo
@@ -11,4 +12,8 @@ interface PokeRepository {
         offset: Int,
         limit: Int
     ): PokemonsResponse
+
+    suspend fun getPokemon(
+        pokemonId: Int
+    ): PokemonResponse
 }

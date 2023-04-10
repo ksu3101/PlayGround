@@ -57,7 +57,7 @@ fun PokeScreen(
     viewModel: PokeViewModel,
     modifier: Modifier = Modifier
 ) {
-    val pokemons = viewModel.getPokemons().collectAsLazyPagingItems()
+    val pokemons = viewModel.getPokemonPages().collectAsLazyPagingItems()
     PokeScreenDetails(
         pokemons = pokemons,
         modifier = modifier

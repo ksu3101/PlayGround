@@ -2,7 +2,8 @@ package kr.swkang.core.data
 
 import javax.inject.Inject
 import kr.swkang.network.retrofit.poke.PokeApi
-import kr.swkang.network.retrofit.poke.PokemonsResponse
+import kr.swkang.network.retrofit.poke.dto.PokemonResponse
+import kr.swkang.network.retrofit.poke.dto.PokemonsResponse
 
 class PokeRepositoryImpl @Inject constructor(
     private val pokeApi: PokeApi
@@ -12,4 +13,7 @@ class PokeRepositoryImpl @Inject constructor(
             offset = offset,
             limit = limit
         )
+
+    override suspend fun getPokemon(pokemonId: Int): PokemonResponse =
+        pokeApi.getPokemon(pokemonId)
 }
