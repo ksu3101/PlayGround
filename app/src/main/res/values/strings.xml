@@ -3,4 +3,6 @@
     <string name="pokeapi">Poke Api</string>
     <string name="pokemons">Pokemons</string>
 
+    <string name="component_gallery">Component Gallery</string>
+
 </resources>

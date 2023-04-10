@@ -10,9 +10,9 @@ import androidx.navigation.navArgument
 import kr.swkang.pokemon.PokeScreen
 import kr.swkang.pokemon.details.PokeDetailsScreen
 
-internal const val navDestPoke = "poke"
+const val navDestPoke = "poke"
+const val navDeskPokeDetails = "pokeDetails/"
 internal const val pokeDetailArgumentKey = "pokemonId"
-internal const val navDeskPokeDetails = "pokeDetails/"
 
 /**
  * Poke 화면으로 탐색을 진행 한다.

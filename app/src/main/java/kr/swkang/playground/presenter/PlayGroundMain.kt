@@ -22,11 +22,12 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kr.swkang.design.components.PlayGroundTextButton
 import kr.swkang.design.components.PlayGroundTopAppBar
 import kr.swkang.design.theme.PlayGroundTheme
+import kr.swkang.gallery.navigation.navigateToGalleryMain
 import kr.swkang.playground.R
 import kr.swkang.playground.navigation.PlayGroundNavHost
 import kr.swkang.playground.navigation.navDestMain
-import kr.swkang.playground.navigation.navDestPoke
-import kr.swkang.playground.navigation.navigateToPoke
+import kr.swkang.pokemon.navigation.navDestPoke
+import kr.swkang.pokemon.navigation.navigateToPoke
 
 /**
  * 메인 화면
@@ -98,6 +99,16 @@ fun MainScreen(
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(id = R.string.pokeapi)
         )
+
+        PlayGroundTextButton(
+            onClick = {
+                navController.navigateToGalleryMain()
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 10.dp),
+            text = stringResource(id = R.string.component_gallery)
+        )
     }
 }
 
@@ -114,6 +125,7 @@ fun MainScreenPreViewLight() {
 
 @Preview(
     uiMode = UI_MODE_NIGHT_YES,
+    backgroundColor = 0x000000000,
     showBackground = true
 )
 @Composable

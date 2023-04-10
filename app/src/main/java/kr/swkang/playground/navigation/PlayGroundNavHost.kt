@@ -8,6 +8,8 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kr.swkang.gallery.navigation.basicComponentGalleryScreen
+import kr.swkang.gallery.navigation.galleryMainScreen
 import kr.swkang.playground.presenter.MainScreen
 import kr.swkang.pokemon.navigation.pokeDetailScreen
 import kr.swkang.pokemon.navigation.pokeMainScreen
@@ -42,6 +44,11 @@ fun PlayGroundNavHost(
         pokeMainScreen()
         // 포켓몬 api 상세 화면
         pokeDetailScreen()
+
+        // 갤러리 메인 화면
+        galleryMainScreen()
+        // 기본 컴포넌트 갤러리 화면
+        basicComponentGalleryScreen()
     }
 }
 

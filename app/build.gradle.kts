@@ -43,6 +43,7 @@ dependencies {
     implementation(project(":core:design"))
 
     implementation(project(":feature:pokemon"))
+    implementation(project(":feature:gallery"))
 
     androidTestImplementation(project(":core:test"))
     testImplementation(project(":core:test"))
