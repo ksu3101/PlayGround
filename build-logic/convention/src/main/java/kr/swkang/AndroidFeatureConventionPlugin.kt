@@ -33,6 +33,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", project(":core:common"))
                 add("implementation", project(":core:domain"))
                 add("implementation", project(":core:design"))
+                add("implementation", project(":core:annotation"))
 
                 // 그 외 공통 의존 들
                 add("implementation", libs.findLibrary("coil.kt").get())

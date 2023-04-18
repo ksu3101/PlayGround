@@ -12,7 +12,6 @@ java {
 dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
-    compileOnly(libs.ksp.gradlePlugin)
 }
 
 // 공통으로 사용되는 플러그인들 클래스를 id 로 선언 한다.

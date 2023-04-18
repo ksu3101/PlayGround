@@ -42,9 +42,10 @@ fun PlayGroundTopAppBar(
                         contentDescription = "Back"
                     )
                 }
-            } else {
-                null
             }
+            // else {
+            //     null
+            // }
         }
     )
 }
