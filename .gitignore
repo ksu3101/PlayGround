@@ -24,6 +24,9 @@ local.properties
 # Windows thumbnail db
 .DS_Store
 
+gradlew
+gradlew.bat
+
 # IDEA/Android Studio project files, because
 # the project can be imported from settings.gradle.kts
 *.iml
