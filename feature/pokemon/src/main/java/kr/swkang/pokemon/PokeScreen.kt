@@ -37,7 +37,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
 import androidx.palette.graphics.Palette
 import kr.swkang.core.domain.pokemon.model.SimplePokemonInfos
 import kr.swkang.design.components.OnLoadingProgressWithDim
@@ -79,13 +78,16 @@ fun PokeScreenDetails(
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(
-                items = pokemons,
-                key = { it.id }
-            ) { pokemon ->
-                if (pokemon == null) return@items
+                count = pokemons.itemCount,
+                key = {
+                    pokemons[it]?.id ?: throw IndexOutOfBoundsException(
+                        "인덱스 [$it] 는 허용되지 않은 범위 입니다."
+                    )
+                }
+            ) {
                 Timber.d(">> received | pokemons.itemCount = ${pokemons.itemCount}")
                 SimplePokemonCard(
-                    pokemons = pokemon
+                    pokemons = pokemons[it]
                 ) { clickedPokemon ->
                     navController.navigateToPokeDetails(
                         pokemonId = clickedPokemon.id
