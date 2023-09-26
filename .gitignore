@@ -28,6 +28,10 @@ local.properties
 # the project can be imported from settings.gradle.kts
 *.iml
 .idea/*
+.idea/compiler.xml
+.idea/gradle.xml
+.idea/misc.xml
+
 !.idea/copyright
 # Keep the code styles.
 !/.idea/codeStyles
