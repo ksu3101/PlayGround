@@ -36,6 +36,7 @@
             <option value="$PROJECT_DIR$/core/test" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/gallery" />
+            <option value="$PROJECT_DIR$/feature/google-billing" />
             <option value="$PROJECT_DIR$/feature/pokemon" />
           </set>
         </option>

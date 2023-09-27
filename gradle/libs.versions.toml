@@ -31,6 +31,7 @@ androidxWork = "2.8.1"
 coil = "2.2.2"
 composeLint = "1.1.1"
 detekt = "1.22.0"
+googleBilling = "6.0.1"
 gmsPlugin = "4.3.14"
 hilt = "2.44.2"
 hiltExt = "1.0.0"
@@ -55,6 +56,9 @@ room = "2.5.2"
 secrets = "2.0.1"
 timber = "5.0.1"
 turbine = "0.12.1"
+org-jetbrains-kotlin-android = "1.9.0"
+junit = "1.1.5"
+material = "1.8.0"
 
 [libraries]
 accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist" }
@@ -109,6 +113,7 @@ coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
 compose-lint = { group = "com.slack.lint.compose", name = "compose-lint-checks", version.ref = "composeLint"}
+google-billing = { group = "com.android.billingclient", name = "billing", version.ref = "googleBilling" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
@@ -139,6 +144,8 @@ timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "tim
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -149,3 +156,4 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
