@@ -30,10 +30,7 @@ gradlew.bat
 # IDEA/Android Studio project files, because
 # the project can be imported from settings.gradle.kts
 *.iml
-.idea/*
-.idea/compiler.xml
-.idea/gradle.xml
-.idea/misc.xml
+.idea/
 
 !.idea/copyright
 # Keep the code styles.
@@ -50,3 +47,9 @@ _sandbox
 
 # Android Studio captures folder
 captures/
+
+# Serena
+.serena/
+
+# MCP configuration
+.mcp.json
